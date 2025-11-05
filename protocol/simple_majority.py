@@ -1,10 +1,10 @@
 from .state import AbstractState
 from simulator.state_machine import StateMachine
+import config
 
 from enum import Enum
-from typing import List
 
-PROTOCOL_NAME = "simple_majority"
+PROTOCOL_NAME = config.SUPPORT_PROTOCOLS[0]
 ROUND = 1
 
 class State(AbstractState, Enum):
@@ -32,6 +32,18 @@ class State(AbstractState, Enum):
     @property
     def is_initial(self) -> bool:
         return self in {State.NO, State.YES}
+    
+    @property
+    def is_final(self) -> bool:
+        return self in {State.FAIL, State.PASS}
+
+    @classmethod
+    def get_lost_state(cls) -> 'State':
+        return State.NO
+    
+    @classmethod
+    def get_initial_states(cls) -> list['State']:
+        return [State.NO, State.YES]
 
 class SimpleMajorityProtocol:
     """
@@ -45,7 +57,7 @@ class SimpleMajorityProtocol:
     }
 
     @classmethod
-    def get_reward(cls, global_state: List[StateMachine]) -> int:
+    def get_reward(cls, global_state: list[StateMachine]) -> int:
         """
         Computes the reward based on the global states of all state machines
         according to the rules of the simple majority protocol.
@@ -57,8 +69,12 @@ class SimpleMajorityProtocol:
         num_nodes = len(global_state)
         num_vote_yes_valid = sum(1 for sm in global_state if not sm.crashed and sm.get_initial_state() is State.YES)
         num_vote_no_valid = sum(1 for sm in global_state if not sm.crashed and sm.get_initial_state() is State.NO)
+
+        # Rule 1: all uncrashed nodes must reach a final decision
+        if any(not sm.get_final_state().is_final for sm in global_state if not sm.crashed):
+            return cls.REWARD["bad"]
         
-        # Rule 1: majority voting correctness (since there is only one round)
+        # Rule 2: majority voting correctness (since there is only one round)
         if num_vote_yes_valid > num_nodes / 2:
             # Majority voted YES without crashing
             if any(sm.get_final_state() is State.FAIL for sm in global_state if not sm.crashed):
@@ -66,7 +82,7 @@ class SimpleMajorityProtocol:
             else:
                 return cls.REWARD["good"]
 
-        # Rule 2: majority voting correctness (since there is only one round)
+        # Rule 3: majority voting correctness (since there is only one round)
         if num_vote_no_valid >= (num_nodes + 1) / 2:
             # Majority voted NO without crashing
             if any(sm.get_final_state() is State.PASS for sm in global_state if not sm.crashed):

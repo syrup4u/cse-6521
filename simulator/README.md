@@ -4,5 +4,11 @@ In order to efficiently run the protocols and verify their effectiveness, simula
 
 ## What are included
 
-1. State Machine.
-2. Initial State Generator.
+1. State Machine and State Machine Manager.
+2. All kinds of generator.
+
+## Note
+
+All indices start from 0, for example, `round_idx`.
+
+But all human readable variables start from 1, for example `round`.

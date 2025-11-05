@@ -3,17 +3,17 @@ from protocol.simple_majority import State
 
 from itertools import combinations, product
 import numpy as np
-from typing import List
 
 class CrashNodeGenerator:
     """
     Generates all possible crash node patterns and corresponding message patterns for a given number of nodes and rounds.
     """
-    
-    def __init__(self, num_nodes: int, rounds: int, *, limit_crash: bool = True):
+
+    def __init__(self, num_nodes: int, rounds: int, *, last_round_work: bool = True):
         """
-        <limit_crash>: if True, at most rounds - 1 nodes can crash in total.
+        <last_round_work>: if True, at most rounds - 1 nodes can crash in total.
             True reason is that the nodes crashing in the last round could still make decisions.
+            Thus, we need at least one round without crashing for fully broadcasting.
         """
 
         self.num_nodes = num_nodes
@@ -23,9 +23,9 @@ class CrashNodeGenerator:
 
         # TODO: can use streams to yield patterns instead of storing all in memory
         # if needed (for large num_nodes, rounds), by saving a Tree structure
-        most_crash = min(rounds - 1, num_nodes - 1) if limit_crash else num_nodes - 1
+        most_crash = min(rounds - 1, num_nodes - 1) if last_round_work else num_nodes - 1
         self.generate_all_crash(most_crash)
-        self.generate_all_message_for_crash(last_round_work=limit_crash)
+        self.generate_all_message_for_crash(last_round_work=last_round_work)
 
     def generate_all_crash(self, most_crash: int):
         """
@@ -34,38 +34,42 @@ class CrashNodeGenerator:
         """
 
         """
-        each crash pattern is a list of sets, where each set contains the indices of nodes that crash in that round.
+        each crash pattern is a list of lists, where each list contains the indices of nodes that crash in that round.
         Example:
         [
-            {0},        # round 0: node 0 crashes
-            {1, 2},     # round 1: nodes 1 and 2 crash
-            {}          # round 2: no crashes
+            [0],        # round 0: node 0 crashes
+            [1, 2],     # round 1: nodes 1 and 2 crash
+            []          # round 2: no crashes
         ]
         """
         self.all_crash_patterns = []
 
-        def dfs(round_idx: int, remaining_nodes: list, crash_so_far: set, crash_pattern: list):
+        def dfs(round_idx: int, remaining_nodes: list, crash_so_far: list, crash_pattern: list):
             if round_idx == self.rounds:
                 self.all_crash_patterns.append([round_crash for round_crash in crash_pattern])
                 return
             if len(crash_so_far) == most_crash:
-                dfs(round_idx + 1, remaining_nodes, crash_so_far, crash_pattern + [set()])
+                dfs(round_idx + 1, remaining_nodes, crash_so_far, crash_pattern + [list()])
                 return
             max_to_crash = min(len(remaining_nodes), most_crash - len(crash_so_far))
             for num_crash in range(0, max_to_crash + 1):
                 for nodes_to_crash in combinations(remaining_nodes, num_crash):
-                    new_crash_so_far = crash_so_far.union(set(nodes_to_crash))
+                    new_crash_so_far = crash_so_far + list(nodes_to_crash)
                     new_remaining_nodes = [n for n in remaining_nodes if n not in nodes_to_crash]
-                    dfs(round_idx + 1, new_remaining_nodes, new_crash_so_far, crash_pattern + [set(nodes_to_crash)])
+                    dfs(round_idx + 1, new_remaining_nodes, new_crash_so_far, crash_pattern + [list(nodes_to_crash)])
 
-        dfs(0, list(range(self.num_nodes)), set(), [])
+        dfs(0, list(range(self.num_nodes)), [], [])
 
+
+    @staticmethod
+    def get_receiver(num_nodes: int, exclude_nodes: list) -> list[int]:
+        return [n for n in range(num_nodes) if n not in exclude_nodes]
 
     def generate_all_message_for_crash(self, last_round_work: bool = True):
         """
         Generates all possible message patterns according to crash patterns.
         Uses masks to represent lost / sent messages.
-        <last_round_work>: even if nodes crash in the last round, they can still receive messages and make decisions. (a synchronous model assumption)
+        <last_round_work>: even if nodes crash in the last round, they can still receive messages and make decisions. (a synchronous model assumption, as they can ask for lost messages)
         """
 
         assert self.all_crash_patterns is not None, "Crash patterns must be generated before message patterns."
@@ -79,7 +83,7 @@ class CrashNodeGenerator:
         """
         self.all_message_patterns = []
 
-        def get_receiver_row_patterns(senders: List[int], receiver: int) -> List[np.ndarray]:
+        def get_receiver_row_patterns(senders: list[int], receiver: int) -> list[np.ndarray]:
             """
             Return a *list* of NumPy bool arrays, each of length |senders|,
             representing every legal bit-row for this receiver.
@@ -111,14 +115,13 @@ class CrashNodeGenerator:
         for crash_pattern in self.all_crash_patterns:
             # message patterns for this crash pattern
             message_patterns = []
-            crash_so_far = set()
+            crash_so_far = []
             for round_idx, crashed_nodes in enumerate(crash_pattern):
                 senders = sorted(list(crashed_nodes))
-                if round_idx == self.rounds - 1 and last_round_work:
-                    receivers = [n for n in range(self.num_nodes) if n not in crash_so_far]
-                else:
-                    receivers = [n for n in range(self.num_nodes) if n not in crash_so_far.union(crashed_nodes)]
-                crash_so_far = crash_so_far.union(crashed_nodes)
+                receivers = self.get_receiver(self.num_nodes, 
+                                              crash_so_far if round_idx == self.rounds - 1 and last_round_work
+                                              else crash_so_far + crashed_nodes)
+                crash_so_far = crash_so_far + crashed_nodes
                 row_patterns_per_receiver = [get_receiver_row_patterns(senders, receiver) for receiver in receivers]
                 all_cases_this_round = []
                 for one_case in product(*row_patterns_per_receiver):
@@ -132,10 +135,10 @@ class CrashNodeGenerator:
 class InitialStateGenerator:
     """ Generates all possible initial states for the nodes. """
     
-    def __init__(self, num_nodes: int, legal_initial_state: List[AbstractState]):
+    def __init__(self, num_nodes: int, legal_initial_state: list[AbstractState]):
         self.num_nodes = num_nodes
         self.legal_initial_state = legal_initial_state
-        self.all_initial_states: List[List[AbstractState]] = None
+        self.all_initial_states: list[list[AbstractState]] = None
         self.generate_all_state()
 
     def generate_all_state(self):
@@ -155,10 +158,10 @@ class ReadableInput:
     A readable representation of one possible input combination, combining crash patterns, message patterns, and initial states.
     """
 
-    def __init__(self, initial_states: List[AbstractState], crash_pattern: List[set], message_pattern: List[np.ndarray]):
+    def __init__(self, initial_states: list[AbstractState], crash_pattern: list[list[int]], message_pattern: list[np.ndarray]):
         self.initial_states = initial_states
         self.crash_pattern = crash_pattern
-        self.message_pattern = message_pattern
+        self.message_pattern = message_pattern # message pattern for crash node (because alive nodes always broadcast to all)
 
     def __str__(self):
         result = []
@@ -172,12 +175,10 @@ class ReadableInput:
 
 
 class ReadableInputGenerator:
-    """
-    Combines CrashNodeGenerator and InitialStateGenerator to produce readable input patterns.
-    """
+    """ Combines CrashNodeGenerator and InitialStateGenerator to produce readable input patterns. """
 
-    def __init__(self, num_nodes: int, rounds: int, *, legal_initial_state: List[AbstractState], limit_crash: bool = True):
-        self.gen_crash = CrashNodeGenerator(num_nodes=num_nodes, rounds=rounds, limit_crash=limit_crash)
+    def __init__(self, num_nodes: int, rounds: int, *, legal_initial_state: list[AbstractState], last_round_work: bool = True):
+        self.gen_crash = CrashNodeGenerator(num_nodes=num_nodes, rounds=rounds, last_round_work=last_round_work)
         self.gen_initial = InitialStateGenerator(num_nodes=num_nodes, legal_initial_state=legal_initial_state)
         self.all_inputs = None
 
@@ -208,8 +209,39 @@ class ReadableInputGenerator:
                     )
 
 
+def get_sender_idx_from_input(input_pattern: ReadableInput, round_idx: int, last_round_work: bool) -> list[list[int]]:
+    """
+    Given a ReadableInput and a round index, returns the sender indices for that round.
+
+    Each element in the returned list corresponds to a node's mailbox.
+    """
+
+    """
+    last_round_work: we consider crashed nodes in the last round as still able to get messages.
+    (they can ask for lost messages)
+    """
+    crashed_so_far = [crashed for round_crash in input_pattern.crash_pattern[:round_idx] for crashed in round_crash]
+    crashed_this_round = input_pattern.crash_pattern[round_idx]
+    if last_round_work and round_idx == len(input_pattern.crash_pattern) - 1:
+        excluded = crashed_so_far
+    else:
+        excluded = crashed_so_far + list(crashed_this_round)
+    message_mask = input_pattern.message_pattern[round_idx]
+    num_nodes = len(input_pattern.initial_states)
+    receivers = CrashNodeGenerator.get_receiver(num_nodes, excluded)
+    senders = sorted(list(set(receivers + crashed_this_round)))
+
+    # build "mailboxes"
+    mailboxes = [[] for _ in range(num_nodes)]
+    for receiver_idx, receiver in enumerate(receivers):
+        lost_senders = [sender for sender_idx, sender in enumerate(crashed_this_round) if not message_mask[receiver_idx, sender_idx]]
+        mailboxes[receiver] = [sender for sender in senders if sender not in lost_senders]
+
+    return mailboxes
+
+
 if __name__ == "__main__":
-    # gen = CrashNodeGenerator(num_nodes=3, rounds=2, limit_crash=True)
+    # gen = CrashNodeGenerator(num_nodes=3, rounds=2, last_round_work=True)
     # for pattern in gen.all_crash_patterns:
     #     print(pattern)
     # print(len(gen.all_crash_patterns))
@@ -220,10 +252,18 @@ if __name__ == "__main__":
     #         cnt_for_this_patterns *= len(round_patterns)
     #     cnt += cnt_for_this_patterns
     # print(cnt)
-    gen = ReadableInputGenerator(num_nodes=3, rounds=2, legal_initial_state=[State.NO, State.YES], limit_crash=True)
+    gen = ReadableInputGenerator(num_nodes=3, rounds=1, legal_initial_state=[State.NO, State.YES], last_round_work=False)
     cnt = 0
     for input_pattern in gen.generate_yield_inputs():
-        # print(input_pattern)
-        # print("-----")
+        print(input_pattern)
+        print("-----")
         cnt += 1
+        # for round_idx in range(3):
+        #     if len(input_pattern.crash_pattern[round_idx]) >= 2:
+        #         print(input_pattern)
+        #         senders = get_sender_idx_from_input(input_pattern, round_idx, last_round_work=True)
+        #         print(f"Round {round_idx + 1} senders: {senders}")
+        #         cnt += 1
+        # if cnt > 2:
+        #     break
     print(f"Total input patterns: {cnt}")
