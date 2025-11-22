@@ -24,7 +24,7 @@ class StateMachineManager:
         Applies the given mask to the list of states, returning a new list with
         states included or replaced by lost_state based on the mask.
         """
-        lost_state = AbstractState.get_lost_state()
+        lost_state = states[0].get_lost_state()
         return [states[i] if i in mask else lost_state for i in range(len(states))]
 
 

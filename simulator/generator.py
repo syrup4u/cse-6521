@@ -214,9 +214,7 @@ def get_sender_idx_from_input(input_pattern: ReadableInput, round_idx: int, last
     Given a ReadableInput and a round index, returns the sender indices for that round.
 
     Each element in the returned list corresponds to a node's mailbox.
-    """
 
-    """
     last_round_work: we consider crashed nodes in the last round as still able to get messages.
     (they can ask for lost messages)
     """

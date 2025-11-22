@@ -2,6 +2,8 @@
 
 In order to efficiently run the protocols and verify their effectiveness, simulator is the best choice to avoid the real running of the protocols on many nodes.
 
+As the interface of agents' initialization and interaction.
+
 ## What are included
 
 1. State Machine and State Machine Manager.

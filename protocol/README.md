@@ -1,6 +1,6 @@
 # Protocol Rules and States
 
-Definition of protocols' rules and states.
+The definition of protocols' rules and states (or the definition of the environment).
 
 ## Current Support
 

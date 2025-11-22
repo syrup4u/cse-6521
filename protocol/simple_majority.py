@@ -2,12 +2,10 @@ from .state import AbstractState
 from simulator.state_machine import StateMachine
 import config
 
-from enum import Enum
-
 PROTOCOL_NAME = config.SUPPORT_PROTOCOLS[0]
 ROUND = 1
 
-class State(AbstractState, Enum):
+class State(AbstractState):
     """
     Enumeration representing the possible states in a simple majority voting protocol.
     """

@@ -1,6 +1,10 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC, ABCMeta
+from enum import Enum, EnumMeta
 
-class AbstractState:
+class AbstractStateMeta(ABCMeta, EnumMeta):
+    pass
+
+class AbstractState(ABC, Enum, metaclass=AbstractStateMeta):
     @property
     @abstractmethod
     def meaning(self) -> str:
