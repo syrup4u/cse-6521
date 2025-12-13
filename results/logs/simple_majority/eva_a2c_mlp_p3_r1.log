@@ -1,0 +1,148 @@
+[INFO] 2025-11-25 23:46:04,973 - main - ===== Evaluation Mode =====
+[INFO] 2025-11-25 23:46:04,974 - main - Evaluating protocol: simple_majority with 3 players and 1 rounds.
+[INFO] 2025-11-25 23:46:04,974 - main - Generating all possible input patterns...
+[INFO] 2025-11-25 23:46:04,974 - main - Input patterns generated.
+[INFO] 2025-11-25 23:46:04,974 - main - Using trained model for evaluation.
+[INFO] 2025-11-25 23:46:05,213 - main - Loaded trained model from results/models/sm_a2c_mlp_3_1.pth.
+[ERROR] 2025-11-25 23:46:05,216 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.NO: 0>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: []
+-- Message Mask:
+[]
+[ERROR] 2025-11-25 23:46:05,216 - verifier.verifier - Final global state: [<State.PASS: 3>, <State.PASS: 3>, <State.PASS: 3>]
+[ERROR] 2025-11-25 23:46:05,217 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.NO: 0>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[False]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,217 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.NO: 0>, <State.PASS: 3>]
+[ERROR] 2025-11-25 23:46:05,217 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.NO: 0>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[ True]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,217 - verifier.verifier - Final global state: [<State.PASS: 3>, <State.NO: 0>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,217 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.NO: 0>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[ True]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,217 - verifier.verifier - Final global state: [<State.PASS: 3>, <State.NO: 0>, <State.PASS: 3>]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.NO: 0>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: []
+-- Message Mask:
+[]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.FAIL: 2>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.NO: 0>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[False]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.NO: 0>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.NO: 0>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[False]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.NO: 0>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.NO: 0>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[ True]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.NO: 0>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.NO: 0>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[ True]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,221 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.NO: 0>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: []
+-- Message Mask:
+[]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.FAIL: 2>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: [2]
+-- Message Mask:
+[[False]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.FAIL: 2>, <State.NO: 0>]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: [2]
+-- Message Mask:
+[[False]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.FAIL: 2>, <State.NO: 0>]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: [2]
+-- Message Mask:
+[[ True]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.FAIL: 2>, <State.NO: 0>]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.NO: 0>]
+Round 1
+-- Crashed Nodes: [2]
+-- Message Mask:
+[[ True]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,223 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.FAIL: 2>, <State.NO: 0>]
+[ERROR] 2025-11-25 23:46:05,224 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[False]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,224 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.NO: 0>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,224 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[False]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,224 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.NO: 0>, <State.PASS: 3>]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [1]
+-- Message Mask:
+[[ True]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Final global state: [<State.PASS: 3>, <State.NO: 0>, <State.FAIL: 2>]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [2]
+-- Message Mask:
+[[False]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.FAIL: 2>, <State.NO: 0>]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [2]
+-- Message Mask:
+[[False]
+ [ True]]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Final global state: [<State.FAIL: 2>, <State.PASS: 3>, <State.NO: 0>]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Verification failed for input pattern: Initial States: [<State.YES: 1>, <State.YES: 1>, <State.YES: 1>]
+Round 1
+-- Crashed Nodes: [2]
+-- Message Mask:
+[[ True]
+ [False]]
+[ERROR] 2025-11-25 23:46:05,225 - verifier.verifier - Final global state: [<State.PASS: 3>, <State.FAIL: 2>, <State.NO: 0>]
+[INFO] 2025-11-25 23:46:05,226 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-11-25 23:46:05,226 - verifier.verifier - Setting: players=3, rounds=1
+[INFO] 2025-11-25 23:46:05,226 - verifier.verifier - Result: 20 failed cases out of 200 total cases.
+[INFO] 2025-11-25 23:46:05,226 - verifier.verifier - Accumulated reward: 16
+[INFO] 2025-11-25 23:46:05,226 - main - Evaluation completed successfully.

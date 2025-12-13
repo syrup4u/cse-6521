@@ -1,0 +1,11 @@
+[INFO] 2025-12-07 23:07:39,139 - main - ===== Evaluation Mode =====
+[INFO] 2025-12-07 23:07:39,139 - main - Evaluating protocol: simple_majority with 5 players and 1 rounds.
+[INFO] 2025-12-07 23:07:39,139 - main - Generating all possible input patterns...
+[INFO] 2025-12-07 23:07:39,163 - main - Input patterns generated.
+[INFO] 2025-12-07 23:07:39,163 - main - Using trained model for evaluation.
+[INFO] 2025-12-07 23:07:39,416 - main - Loaded trained model from results/models/sm_a2c_st_4_1.pth.
+[INFO] 2025-12-07 23:07:54,184 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-07 23:07:54,184 - verifier.verifier - Setting: players=4, rounds=1
+[INFO] 2025-12-07 23:07:54,184 - verifier.verifier - Result: 680 failed cases out of 46112 total cases.
+[INFO] 2025-12-07 23:07:54,184 - verifier.verifier - Accumulated reward: 5392
+[INFO] 2025-12-07 23:07:54,184 - main - Evaluation completed successfully.

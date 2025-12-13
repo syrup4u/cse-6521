@@ -1,0 +1,11 @@
+[INFO] 2025-12-11 22:36:55,683 - main - ===== Evaluation Mode =====
+[INFO] 2025-12-11 22:36:55,683 - main - Evaluating protocol: atomic_commit with 5 players and 2 rounds.
+[INFO] 2025-12-11 22:36:55,683 - main - Generating all possible input patterns...
+[INFO] 2025-12-11 22:36:55,685 - main - Input patterns generated.
+[INFO] 2025-12-11 22:36:55,685 - main - Using trained model for evaluation.
+[INFO] 2025-12-11 22:36:55,925 - main - Loaded trained model from results/models/atomic_commit/dqn_mlpop_3_2.pth.
+[INFO] 2025-12-11 22:36:56,756 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:36:56,756 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:36:56,756 - verifier.verifier - Result: 505 failed cases out of 5152 total cases.
+[INFO] 2025-12-11 22:36:56,756 - verifier.verifier - Accumulated reward: 2788
+[INFO] 2025-12-11 22:36:56,756 - main - Evaluation completed successfully.

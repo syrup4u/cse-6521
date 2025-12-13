@@ -1,0 +1,78 @@
+[INFO] 2025-12-11 22:34:52,017 - main - ===== Training Mode =====
+[INFO] 2025-12-11 22:34:52,017 - main - Training protocol: atomic_commit with 3 players and 2 rounds.
+[INFO] 2025-12-11 22:34:52,017 - main - Initializing the environment and model...
+[INFO] 2025-12-11 22:34:52,258 - main - Generating all possible input patterns...
+[INFO] 2025-12-11 22:34:52,259 - main - Input patterns generated.
+[INFO] 2025-12-11 22:34:52,259 - main - Starting training...
+[INFO] 2025-12-11 22:34:52,259 - main - Epoch 1/100, training on 40 failed cases from last evaluation.
+[INFO] 2025-12-11 22:34:53,527 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-11 22:34:53,531 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:53,532 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:53,532 - verifier.verifier - Result: 1 failed cases out of 40 total cases.
+[INFO] 2025-12-11 22:34:53,532 - verifier.verifier - Accumulated reward: 35
+[INFO] 2025-12-11 22:34:53,532 - main - Epoch 2/100, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-11 22:34:54,766 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-11 22:34:54,767 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:54,767 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:54,767 - verifier.verifier - Result: 1 failed cases out of 1 total cases.
+[INFO] 2025-12-11 22:34:54,767 - verifier.verifier - Accumulated reward: -4
+[INFO] 2025-12-11 22:34:54,767 - main - Epoch 3/100, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-11 22:34:56,053 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-11 22:34:56,054 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:56,054 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:56,054 - verifier.verifier - Result: 1 failed cases out of 1 total cases.
+[INFO] 2025-12-11 22:34:56,054 - verifier.verifier - Accumulated reward: -4
+[INFO] 2025-12-11 22:34:56,054 - main - Epoch 4/100, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-11 22:34:57,330 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-11 22:34:57,330 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:57,330 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:57,330 - verifier.verifier - Result: 0 failed cases out of 1 total cases.
+[INFO] 2025-12-11 22:34:57,330 - verifier.verifier - Accumulated reward: 2
+[INFO] 2025-12-11 22:34:57,330 - main - All failed cases passed verification!
+[INFO] 2025-12-11 22:34:57,330 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-11 22:34:57,335 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:57,335 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:57,335 - verifier.verifier - Result: 20 failed cases out of 40 total cases.
+[INFO] 2025-12-11 22:34:57,335 - verifier.verifier - Accumulated reward: -58
+[INFO] 2025-12-11 22:34:57,335 - main - 20 failed cases remain after final evaluation.
+[INFO] 2025-12-11 22:34:57,335 - main - Epoch 5/100, training on 20 failed cases from last evaluation.
+[INFO] 2025-12-11 22:34:58,577 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-11 22:34:58,580 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:58,580 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:58,580 - verifier.verifier - Result: 0 failed cases out of 20 total cases.
+[INFO] 2025-12-11 22:34:58,580 - verifier.verifier - Accumulated reward: 20
+[INFO] 2025-12-11 22:34:58,580 - main - All failed cases passed verification!
+[INFO] 2025-12-11 22:34:58,580 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-11 22:34:58,584 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:58,584 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:58,584 - verifier.verifier - Result: 1 failed cases out of 40 total cases.
+[INFO] 2025-12-11 22:34:58,584 - verifier.verifier - Accumulated reward: 35
+[INFO] 2025-12-11 22:34:58,584 - main - 1 failed cases remain after final evaluation.
+[INFO] 2025-12-11 22:34:58,584 - main - Epoch 6/100, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-11 22:34:59,844 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-11 22:34:59,845 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:59,845 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:59,845 - verifier.verifier - Result: 0 failed cases out of 1 total cases.
+[INFO] 2025-12-11 22:34:59,845 - verifier.verifier - Accumulated reward: 2
+[INFO] 2025-12-11 22:34:59,845 - main - All failed cases passed verification!
+[INFO] 2025-12-11 22:34:59,845 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-11 22:34:59,849 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:34:59,849 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:34:59,849 - verifier.verifier - Result: 9 failed cases out of 40 total cases.
+[INFO] 2025-12-11 22:34:59,849 - verifier.verifier - Accumulated reward: -3
+[INFO] 2025-12-11 22:34:59,849 - main - 9 failed cases remain after final evaluation.
+[INFO] 2025-12-11 22:34:59,849 - main - Epoch 7/100, training on 9 failed cases from last evaluation.
+[INFO] 2025-12-11 22:35:01,109 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-11 22:35:01,110 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:35:01,110 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:35:01,110 - verifier.verifier - Result: 0 failed cases out of 9 total cases.
+[INFO] 2025-12-11 22:35:01,110 - verifier.verifier - Accumulated reward: 11
+[INFO] 2025-12-11 22:35:01,110 - main - All failed cases passed verification!
+[INFO] 2025-12-11 22:35:01,110 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-11 22:35:01,115 - verifier.verifier - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2025-12-11 22:35:01,115 - verifier.verifier - Setting: players=3, rounds=2
+[INFO] 2025-12-11 22:35:01,115 - verifier.verifier - Result: 0 failed cases out of 40 total cases.
+[INFO] 2025-12-11 22:35:01,115 - verifier.verifier - Accumulated reward: 45
+[INFO] 2025-12-11 22:35:01,115 - main - All cases passed verification! Training successful.
+[INFO] 2025-12-11 22:35:01,115 - main - Saving trained model to results/temp/dqn_mlpop_3_2.pth...
+[INFO] 2025-12-11 22:35:01,117 - main - Model saved successfully.

@@ -1,0 +1,126 @@
+[INFO] 2025-12-11 16:56:01,578 - benchmark - Trial 0, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 16:56:47,765 - benchmark - Trial 0 succeeded in 40 epochs.
+[INFO] 2025-12-11 16:56:47,765 - benchmark - Trial 1, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 16:58:43,153 - benchmark - Trial 1 failed after 101 epochs.
+[INFO] 2025-12-11 16:58:43,153 - benchmark - Trial 2, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:00:39,606 - benchmark - Trial 2 failed after 101 epochs.
+[INFO] 2025-12-11 17:00:39,606 - benchmark - Trial 3, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:00:58,946 - benchmark - Trial 3 succeeded in 17 epochs.
+[INFO] 2025-12-11 17:00:58,947 - benchmark - Trial 4, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:01:35,798 - benchmark - Trial 4 succeeded in 27 epochs.
+[INFO] 2025-12-11 17:01:35,798 - benchmark - Trial 5, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:01:56,674 - benchmark - Trial 5 succeeded in 18 epochs.
+[INFO] 2025-12-11 17:01:56,674 - benchmark - Trial 6, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:03:52,839 - benchmark - Trial 6 failed after 101 epochs.
+[INFO] 2025-12-11 17:03:52,839 - benchmark - Trial 7, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:05:49,570 - benchmark - Trial 7 failed after 101 epochs.
+[INFO] 2025-12-11 17:05:49,570 - benchmark - Trial 8, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:07:45,059 - benchmark - Trial 8 failed after 101 epochs.
+[INFO] 2025-12-11 17:07:45,059 - benchmark - Trial 9, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 17:08:29,853 - benchmark - Trial 9 succeeded in 39 epochs.
+[INFO] 2025-12-11 17:08:29,853 - benchmark - Trial 0, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:08:42,382 - benchmark - Trial 0 succeeded in 10 epochs.
+[INFO] 2025-12-11 17:08:42,382 - benchmark - Trial 1, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:09:02,841 - benchmark - Trial 1 succeeded in 16 epochs.
+[INFO] 2025-12-11 17:09:02,842 - benchmark - Trial 2, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:09:20,594 - benchmark - Trial 2 succeeded in 14 epochs.
+[INFO] 2025-12-11 17:09:20,594 - benchmark - Trial 3, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:10:21,210 - benchmark - Trial 3 succeeded in 48 epochs.
+[INFO] 2025-12-11 17:10:21,210 - benchmark - Trial 4, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:10:32,484 - benchmark - Trial 4 succeeded in 9 epochs.
+[INFO] 2025-12-11 17:10:32,484 - benchmark - Trial 5, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:12:40,423 - benchmark - Trial 5 failed after 101 epochs.
+[INFO] 2025-12-11 17:12:40,424 - benchmark - Trial 6, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:14:09,026 - benchmark - Trial 6 succeeded in 70 epochs.
+[INFO] 2025-12-11 17:14:09,026 - benchmark - Trial 7, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:16:19,221 - benchmark - Trial 7 failed after 101 epochs.
+[INFO] 2025-12-11 17:16:19,221 - benchmark - Trial 8, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:16:25,427 - benchmark - Trial 8 succeeded in 5 epochs.
+[INFO] 2025-12-11 17:16:25,427 - benchmark - Trial 9, Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 17:17:04,789 - benchmark - Trial 9 succeeded in 31 epochs.
+[INFO] 2025-12-11 17:17:04,789 - benchmark - Trial 0, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 17:30:08,935 - benchmark - Trial 0 succeeded in 37 epochs.
+[INFO] 2025-12-11 17:30:08,936 - benchmark - Trial 1, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 17:32:33,208 - benchmark - Trial 1 succeeded in 7 epochs.
+[INFO] 2025-12-11 17:32:33,208 - benchmark - Trial 2, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 17:47:01,428 - benchmark - Trial 2 succeeded in 41 epochs.
+[INFO] 2025-12-11 17:47:01,428 - benchmark - Trial 3, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 18:22:36,757 - benchmark - Trial 3 failed after 101 epochs.
+[INFO] 2025-12-11 18:22:36,759 - benchmark - Trial 4, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 18:26:06,231 - benchmark - Trial 4 succeeded in 10 epochs.
+[INFO] 2025-12-11 18:26:06,233 - benchmark - Trial 5, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 18:28:48,607 - benchmark - Trial 5 succeeded in 8 epochs.
+[INFO] 2025-12-11 18:28:48,608 - benchmark - Trial 6, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 18:30:31,095 - benchmark - Trial 6 succeeded in 5 epochs.
+[INFO] 2025-12-11 18:30:31,095 - benchmark - Trial 7, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 18:39:18,866 - benchmark - Trial 7 succeeded in 25 epochs.
+[INFO] 2025-12-11 18:39:18,867 - benchmark - Trial 8, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 18:41:22,300 - benchmark - Trial 8 succeeded in 6 epochs.
+[INFO] 2025-12-11 18:41:22,302 - benchmark - Trial 9, Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 19:16:45,836 - benchmark - Trial 9 failed after 101 epochs.
+[INFO] 2025-12-11 19:16:45,838 - benchmark - Trial 0, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:17:13,340 - benchmark - Trial 0 succeeded in 19 epochs.
+[INFO] 2025-12-11 19:17:13,340 - benchmark - Trial 1, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:19:37,013 - benchmark - Trial 1 failed after 101 epochs.
+[INFO] 2025-12-11 19:19:37,014 - benchmark - Trial 2, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:21:59,480 - benchmark - Trial 2 failed after 101 epochs.
+[INFO] 2025-12-11 19:21:59,481 - benchmark - Trial 3, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:22:28,617 - benchmark - Trial 3 succeeded in 21 epochs.
+[INFO] 2025-12-11 19:22:28,617 - benchmark - Trial 4, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:22:59,608 - benchmark - Trial 4 succeeded in 22 epochs.
+[INFO] 2025-12-11 19:22:59,608 - benchmark - Trial 5, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:25:22,849 - benchmark - Trial 5 failed after 101 epochs.
+[INFO] 2025-12-11 19:25:22,849 - benchmark - Trial 6, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:25:38,018 - benchmark - Trial 6 succeeded in 11 epochs.
+[INFO] 2025-12-11 19:25:38,019 - benchmark - Trial 7, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:27:11,545 - benchmark - Trial 7 succeeded in 65 epochs.
+[INFO] 2025-12-11 19:27:11,545 - benchmark - Trial 8, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:28:08,160 - benchmark - Trial 8 succeeded in 40 epochs.
+[INFO] 2025-12-11 19:28:08,160 - benchmark - Trial 9, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0
+[INFO] 2025-12-11 19:29:46,044 - benchmark - Trial 9 succeeded in 66 epochs.
+[INFO] 2025-12-11 19:29:46,044 - benchmark - Trial 0, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:32:27,394 - benchmark - Trial 0 failed after 101 epochs.
+[INFO] 2025-12-11 19:32:27,394 - benchmark - Trial 1, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:32:56,164 - benchmark - Trial 1 succeeded in 19 epochs.
+[INFO] 2025-12-11 19:32:56,164 - benchmark - Trial 2, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:33:22,917 - benchmark - Trial 2 succeeded in 16 epochs.
+[INFO] 2025-12-11 19:33:22,917 - benchmark - Trial 3, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:34:31,962 - benchmark - Trial 3 succeeded in 44 epochs.
+[INFO] 2025-12-11 19:34:31,962 - benchmark - Trial 4, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:35:09,557 - benchmark - Trial 4 succeeded in 24 epochs.
+[INFO] 2025-12-11 19:35:09,557 - benchmark - Trial 5, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:37:38,586 - benchmark - Trial 5 succeeded in 92 epochs.
+[INFO] 2025-12-11 19:37:38,586 - benchmark - Trial 6, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:38:23,253 - benchmark - Trial 6 succeeded in 28 epochs.
+[INFO] 2025-12-11 19:38:23,253 - benchmark - Trial 7, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:38:29,637 - benchmark - Trial 7 succeeded in 4 epochs.
+[INFO] 2025-12-11 19:38:29,637 - benchmark - Trial 8, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:38:47,261 - benchmark - Trial 8 succeeded in 11 epochs.
+[INFO] 2025-12-11 19:38:47,261 - benchmark - Trial 9, Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3
+[INFO] 2025-12-11 19:39:00,915 - benchmark - Trial 9 succeeded in 8 epochs.
+[INFO] 2025-12-11 19:39:00,915 - benchmark - Trial 0, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 19:46:34,415 - benchmark - Trial 0 succeeded in 14 epochs.
+[INFO] 2025-12-11 19:46:34,416 - benchmark - Trial 1, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 19:50:01,615 - benchmark - Trial 1 succeeded in 7 epochs.
+[INFO] 2025-12-11 19:50:01,616 - benchmark - Trial 2, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 19:51:56,725 - benchmark - Trial 2 succeeded in 4 epochs.
+[INFO] 2025-12-11 19:51:56,725 - benchmark - Trial 3, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 20:43:04,916 - benchmark - Trial 3 failed after 101 epochs.
+[INFO] 2025-12-11 20:43:04,917 - benchmark - Trial 4, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 20:45:00,997 - benchmark - Trial 4 succeeded in 4 epochs.
+[INFO] 2025-12-11 20:45:00,997 - benchmark - Trial 5, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 20:46:28,147 - benchmark - Trial 5 succeeded in 3 epochs.
+[INFO] 2025-12-11 20:46:28,147 - benchmark - Trial 6, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 20:48:24,891 - benchmark - Trial 6 succeeded in 4 epochs.
+[INFO] 2025-12-11 20:48:24,891 - benchmark - Trial 7, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 21:24:24,208 - benchmark - Trial 7 succeeded in 71 epochs.
+[INFO] 2025-12-11 21:24:24,208 - benchmark - Trial 8, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 21:35:26,664 - benchmark - Trial 8 succeeded in 22 epochs.
+[INFO] 2025-12-11 21:35:26,664 - benchmark - Trial 9, Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3
+[INFO] 2025-12-11 21:38:24,349 - benchmark - Trial 9 succeeded in 6 epochs.
+[INFO] 2025-12-11 21:38:24,349 - benchmark - Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp, invariance 0: 5/10 succeeded, average epochs: 28.2
+[INFO] 2025-12-11 21:38:24,349 - benchmark - Benchmarking atomic_commit with 3 nodes, 2 rounds, model mlp_op, invariance 3: 8/10 succeeded, average epochs: 25.375
+[INFO] 2025-12-11 21:38:24,349 - benchmark - Benchmarking atomic_commit with 3 nodes, 2 rounds, model set_transformer, invariance 3: 8/10 succeeded, average epochs: 17.375
+[INFO] 2025-12-11 21:38:24,349 - benchmark - Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp, invariance 0: 7/10 succeeded, average epochs: 34.857142857142854
+[INFO] 2025-12-11 21:38:24,349 - benchmark - Benchmarking atomic_commit with 4 nodes, 2 rounds, model mlp_op, invariance 3: 9/10 succeeded, average epochs: 27.333333333333332
+[INFO] 2025-12-11 21:38:24,349 - benchmark - Benchmarking atomic_commit with 4 nodes, 2 rounds, model set_transformer, invariance 3: 9/10 succeeded, average epochs: 15.0

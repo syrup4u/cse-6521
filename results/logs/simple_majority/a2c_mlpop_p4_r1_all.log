@@ -1,0 +1,21 @@
+[INFO] 2025-12-06 21:30:58,319 - main - ===== Training Mode =====
+[INFO] 2025-12-06 21:30:58,319 - main - Training protocol: simple_majority with 4 players and 1 rounds.
+[INFO] 2025-12-06 21:30:58,319 - main - Initializing the environment and model...
+[INFO] 2025-12-06 21:30:58,727 - main - Generating all possible input patterns...
+[INFO] 2025-12-06 21:30:58,728 - main - Input patterns generated.
+[INFO] 2025-12-06 21:30:58,728 - main - Starting training...
+[INFO] 2025-12-06 21:30:58,728 - main - Epoch 1/100, training on 2576 failed cases from last evaluation.
+[INFO] 2025-12-06 21:30:59,580 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:30:59,720 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:30:59,720 - verifier.verifier - Setting: players=4, rounds=1
+[INFO] 2025-12-06 21:30:59,720 - verifier.verifier - Result: 0 failed cases out of 2576 total cases.
+[INFO] 2025-12-06 21:30:59,720 - verifier.verifier - Accumulated reward: 138
+[INFO] 2025-12-06 21:30:59,720 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:30:59,720 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:30:59,859 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:30:59,859 - verifier.verifier - Setting: players=4, rounds=1
+[INFO] 2025-12-06 21:30:59,859 - verifier.verifier - Result: 0 failed cases out of 2576 total cases.
+[INFO] 2025-12-06 21:30:59,859 - verifier.verifier - Accumulated reward: 138
+[INFO] 2025-12-06 21:30:59,859 - main - All cases passed verification! Training successful.
+[INFO] 2025-12-06 21:30:59,859 - main - Saving trained model to results/temp/a2c_mlpop_4_1.pth...
+[INFO] 2025-12-06 21:30:59,862 - main - Model saved successfully.

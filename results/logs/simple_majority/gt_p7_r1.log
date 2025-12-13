@@ -1,0 +1,9 @@
+[INFO] 2025-11-02 21:16:32,998 - main - Evaluating protocol: simple_majority with 7 players and 1 rounds.
+[INFO] 2025-11-02 21:16:32,998 - main - Using ground truth for evaluation.
+[INFO] 2025-11-02 21:16:32,998 - main - Ground truth protocol check passed.
+[INFO] 2025-11-02 21:16:32,998 - main - Generating all possible input patterns...
+[INFO] 2025-11-02 21:16:54,627 - main - Input patterns generated.
+[INFO] 2025-11-02 21:34:20,851 - main - Evaluation for protocol <simple_majority> (ground truth) completed.
+[INFO] 2025-11-02 21:34:20,855 - main - Setting: players=7, rounds=1
+[INFO] 2025-11-02 21:34:20,855 - main - Result: 0 failed cases out of 42320000 total cases.
+[INFO] 2025-11-02 21:34:20,855 - main - Evaluation completed successfully.

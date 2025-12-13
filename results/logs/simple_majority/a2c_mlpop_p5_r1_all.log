@@ -1,0 +1,99 @@
+[INFO] 2025-12-06 21:44:51,782 - main - ===== Training Mode =====
+[INFO] 2025-12-06 21:44:51,782 - main - Training protocol: simple_majority with 5 players and 1 rounds.
+[INFO] 2025-12-06 21:44:51,782 - main - Initializing the environment and model...
+[INFO] 2025-12-06 21:44:52,162 - main - Generating all possible input patterns...
+[INFO] 2025-12-06 21:44:52,195 - main - Input patterns generated.
+[INFO] 2025-12-06 21:44:52,195 - main - Starting training...
+[INFO] 2025-12-06 21:44:52,195 - main - Epoch 1/100, training on 46112 failed cases from last evaluation.
+[INFO] 2025-12-06 21:44:53,049 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:44:55,778 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:44:55,778 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:44:55,778 - verifier.verifier - Result: 2760 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:44:55,778 - verifier.verifier - Accumulated reward: 1232
+[INFO] 2025-12-06 21:44:55,778 - main - Epoch 2/100, training on 2760 failed cases from last evaluation.
+[INFO] 2025-12-06 21:44:56,584 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:44:56,761 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:44:56,761 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:44:56,761 - verifier.verifier - Result: 0 failed cases out of 2760 total cases.
+[INFO] 2025-12-06 21:44:56,761 - verifier.verifier - Accumulated reward: 2760
+[INFO] 2025-12-06 21:44:56,761 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:44:56,761 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:44:59,470 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:44:59,470 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:44:59,470 - verifier.verifier - Result: 680 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:44:59,470 - verifier.verifier - Accumulated reward: 5392
+[INFO] 2025-12-06 21:44:59,470 - main - Epoch 3/100, training on 680 failed cases from last evaluation.
+[INFO] 2025-12-06 21:45:00,304 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:45:00,349 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:00,349 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:00,349 - verifier.verifier - Result: 0 failed cases out of 680 total cases.
+[INFO] 2025-12-06 21:45:00,349 - verifier.verifier - Accumulated reward: 680
+[INFO] 2025-12-06 21:45:00,349 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:45:00,349 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:45:03,103 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:03,103 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:03,103 - verifier.verifier - Result: 3376 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:45:03,103 - verifier.verifier - Accumulated reward: 0
+[INFO] 2025-12-06 21:45:03,103 - main - Epoch 4/100, training on 3376 failed cases from last evaluation.
+[INFO] 2025-12-06 21:45:03,917 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:45:04,135 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:04,135 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:04,135 - verifier.verifier - Result: 0 failed cases out of 3376 total cases.
+[INFO] 2025-12-06 21:45:04,135 - verifier.verifier - Accumulated reward: 3376
+[INFO] 2025-12-06 21:45:04,135 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:45:04,135 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:45:06,889 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:06,889 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:06,889 - verifier.verifier - Result: 2480 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:45:06,889 - verifier.verifier - Accumulated reward: 1792
+[INFO] 2025-12-06 21:45:06,889 - main - Epoch 5/100, training on 2480 failed cases from last evaluation.
+[INFO] 2025-12-06 21:45:07,713 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:45:07,873 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:07,873 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:07,873 - verifier.verifier - Result: 0 failed cases out of 2480 total cases.
+[INFO] 2025-12-06 21:45:07,873 - verifier.verifier - Accumulated reward: 2480
+[INFO] 2025-12-06 21:45:07,873 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:45:07,873 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:45:10,636 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:10,636 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:10,636 - verifier.verifier - Result: 2760 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:45:10,636 - verifier.verifier - Accumulated reward: 1232
+[INFO] 2025-12-06 21:45:10,637 - main - Epoch 6/100, training on 2760 failed cases from last evaluation.
+[INFO] 2025-12-06 21:45:11,458 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:45:11,630 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:11,630 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:11,630 - verifier.verifier - Result: 0 failed cases out of 2760 total cases.
+[INFO] 2025-12-06 21:45:11,630 - verifier.verifier - Accumulated reward: 2760
+[INFO] 2025-12-06 21:45:11,630 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:45:11,630 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:45:14,374 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:14,374 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:14,374 - verifier.verifier - Result: 680 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:45:14,374 - verifier.verifier - Accumulated reward: 5392
+[INFO] 2025-12-06 21:45:14,374 - main - Epoch 7/100, training on 680 failed cases from last evaluation.
+[INFO] 2025-12-06 21:45:15,211 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:45:15,256 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:15,256 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:15,256 - verifier.verifier - Result: 0 failed cases out of 680 total cases.
+[INFO] 2025-12-06 21:45:15,256 - verifier.verifier - Accumulated reward: 680
+[INFO] 2025-12-06 21:45:15,256 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:45:15,256 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:45:18,040 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:18,040 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:18,040 - verifier.verifier - Result: 2760 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:45:18,040 - verifier.verifier - Accumulated reward: 1232
+[INFO] 2025-12-06 21:45:18,040 - main - Epoch 8/100, training on 2760 failed cases from last evaluation.
+[INFO] 2025-12-06 21:45:18,856 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 21:45:19,031 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:19,031 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:19,031 - verifier.verifier - Result: 0 failed cases out of 2760 total cases.
+[INFO] 2025-12-06 21:45:19,031 - verifier.verifier - Accumulated reward: 2760
+[INFO] 2025-12-06 21:45:19,031 - main - All failed cases passed verification!
+[INFO] 2025-12-06 21:45:19,031 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 21:45:21,792 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 21:45:21,793 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-06 21:45:21,793 - verifier.verifier - Result: 0 failed cases out of 46112 total cases.
+[INFO] 2025-12-06 21:45:21,793 - verifier.verifier - Accumulated reward: 6752
+[INFO] 2025-12-06 21:45:21,793 - main - All cases passed verification! Training successful.
+[INFO] 2025-12-06 21:45:21,793 - main - Saving trained model to results/temp/a2c_mlpop_4_1.pth...
+[INFO] 2025-12-06 21:45:21,796 - main - Model saved successfully.

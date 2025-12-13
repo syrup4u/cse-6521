@@ -1,0 +1,121 @@
+[INFO] 2025-12-10 20:42:55,508 - main - ===== Training Mode =====
+[INFO] 2025-12-10 20:42:55,508 - main - Training protocol: simple_majority with 5 players and 1 rounds.
+[INFO] 2025-12-10 20:42:55,508 - main - Initializing the environment and model...
+[INFO] 2025-12-10 20:42:55,888 - main - Generating all possible input patterns...
+[INFO] 2025-12-10 20:42:55,902 - main - Input patterns generated.
+[INFO] 2025-12-10 20:42:55,902 - main - Starting training...
+[INFO] 2025-12-10 20:42:55,902 - main - Epoch 1/100, training on 608 failed cases from last evaluation.
+[DEBUG] 2025-12-10 20:42:55,920 - model.dqn - Training loss: None
+[DEBUG] 2025-12-10 20:42:55,927 - model.dqn - Training loss: None
+[DEBUG] 2025-12-10 20:42:55,933 - model.dqn - Training loss: None
+[DEBUG] 2025-12-10 20:42:56,166 - model.dqn - Training loss: 0.01586378738284111
+[DEBUG] 2025-12-10 20:42:56,358 - model.dqn - Training loss: 0.009798366576433182
+[DEBUG] 2025-12-10 20:42:56,539 - model.dqn - Training loss: 0.00528676575049758
+[DEBUG] 2025-12-10 20:42:56,715 - model.dqn - Training loss: 0.0031178013887256384
+[DEBUG] 2025-12-10 20:42:56,919 - model.dqn - Training loss: 0.010449470020830631
+[DEBUG] 2025-12-10 20:42:57,122 - model.dqn - Training loss: 0.017818164080381393
+[DEBUG] 2025-12-10 20:42:57,312 - model.dqn - Training loss: 0.03254567086696625
+[DEBUG] 2025-12-10 20:42:57,502 - model.dqn - Training loss: 0.03123999573290348
+[DEBUG] 2025-12-10 20:42:57,695 - model.dqn - Training loss: 0.04185742512345314
+[DEBUG] 2025-12-10 20:42:57,884 - model.dqn - Training loss: 0.050636712461709976
+[DEBUG] 2025-12-10 20:42:58,079 - model.dqn - Training loss: 0.04623788595199585
+[DEBUG] 2025-12-10 20:42:58,284 - model.dqn - Training loss: 0.031466349959373474
+[DEBUG] 2025-12-10 20:42:58,497 - model.dqn - Training loss: 0.03194890171289444
+[DEBUG] 2025-12-10 20:42:58,708 - model.dqn - Training loss: 0.02797682024538517
+[DEBUG] 2025-12-10 20:42:58,994 - model.dqn - Training loss: 0.050891365855932236
+[DEBUG] 2025-12-10 20:42:59,192 - model.dqn - Training loss: 0.03469519689679146
+[DEBUG] 2025-12-10 20:42:59,397 - model.dqn - Training loss: 0.03962797671556473
+[DEBUG] 2025-12-10 20:42:59,610 - model.dqn - Training loss: 0.051175303757190704
+[DEBUG] 2025-12-10 20:42:59,830 - model.dqn - Training loss: 0.03500993177294731
+[DEBUG] 2025-12-10 20:43:00,040 - model.dqn - Training loss: 0.05735130235552788
+[DEBUG] 2025-12-10 20:43:00,242 - model.dqn - Training loss: 0.07129345834255219
+[DEBUG] 2025-12-10 20:43:00,447 - model.dqn - Training loss: 0.0719887912273407
+[DEBUG] 2025-12-10 20:43:00,647 - model.dqn - Training loss: 0.09016193449497223
+[DEBUG] 2025-12-10 20:43:00,844 - model.dqn - Training loss: 0.05786940082907677
+[DEBUG] 2025-12-10 20:43:01,047 - model.dqn - Training loss: 0.08436249941587448
+[DEBUG] 2025-12-10 20:43:01,242 - model.dqn - Training loss: 0.06492097675800323
+[DEBUG] 2025-12-10 20:43:01,439 - model.dqn - Training loss: 0.05590099096298218
+[DEBUG] 2025-12-10 20:43:01,639 - model.dqn - Training loss: 0.0892677828669548
+[DEBUG] 2025-12-10 20:43:01,836 - model.dqn - Training loss: 0.06101474165916443
+[DEBUG] 2025-12-10 20:43:02,033 - model.dqn - Training loss: 0.0932399183511734
+[DEBUG] 2025-12-10 20:43:02,233 - model.dqn - Training loss: 0.07029301673173904
+[DEBUG] 2025-12-10 20:43:02,428 - model.dqn - Training loss: 0.053263090550899506
+[DEBUG] 2025-12-10 20:43:02,619 - model.dqn - Training loss: 0.0468551330268383
+[DEBUG] 2025-12-10 20:43:02,809 - model.dqn - Training loss: 0.0734047144651413
+[DEBUG] 2025-12-10 20:43:03,001 - model.dqn - Training loss: 0.07890567928552628
+[DEBUG] 2025-12-10 20:43:03,191 - model.dqn - Training loss: 0.0622832216322422
+[DEBUG] 2025-12-10 20:43:03,382 - model.dqn - Training loss: 0.06802307814359665
+[DEBUG] 2025-12-10 20:43:03,571 - model.dqn - Training loss: 0.057611141353845596
+[DEBUG] 2025-12-10 20:43:03,757 - model.dqn - Training loss: 0.08547685295343399
+[DEBUG] 2025-12-10 20:43:03,943 - model.dqn - Training loss: 0.06866434216499329
+[DEBUG] 2025-12-10 20:43:04,129 - model.dqn - Training loss: 0.05328311026096344
+[DEBUG] 2025-12-10 20:43:04,342 - model.dqn - Training loss: 0.10843221098184586
+[DEBUG] 2025-12-10 20:43:04,537 - model.dqn - Training loss: 0.07774180173873901
+[DEBUG] 2025-12-10 20:43:04,726 - model.dqn - Training loss: 0.09720207750797272
+[DEBUG] 2025-12-10 20:43:04,915 - model.dqn - Training loss: 0.06596893817186356
+[DEBUG] 2025-12-10 20:43:05,104 - model.dqn - Training loss: 0.08749691396951675
+[DEBUG] 2025-12-10 20:43:05,297 - model.dqn - Training loss: 0.07771066576242447
+[DEBUG] 2025-12-10 20:43:05,490 - model.dqn - Training loss: 0.08087579905986786
+[DEBUG] 2025-12-10 20:43:05,683 - model.dqn - Training loss: 0.05485958978533745
+[DEBUG] 2025-12-10 20:43:05,891 - model.dqn - Training loss: 0.06970527768135071
+[DEBUG] 2025-12-10 20:43:06,095 - model.dqn - Training loss: 0.07459906488656998
+[DEBUG] 2025-12-10 20:43:06,290 - model.dqn - Training loss: 0.09023145586252213
+[DEBUG] 2025-12-10 20:43:06,495 - model.dqn - Training loss: 0.06636595726013184
+[DEBUG] 2025-12-10 20:43:06,687 - model.dqn - Training loss: 0.06380244344472885
+[DEBUG] 2025-12-10 20:43:06,876 - model.dqn - Training loss: 0.06935586780309677
+[DEBUG] 2025-12-10 20:43:07,076 - model.dqn - Training loss: 0.06040962412953377
+[DEBUG] 2025-12-10 20:43:07,264 - model.dqn - Training loss: 0.0679241418838501
+[DEBUG] 2025-12-10 20:43:07,448 - model.dqn - Training loss: 0.06019645184278488
+[DEBUG] 2025-12-10 20:43:07,636 - model.dqn - Training loss: 0.07778238505125046
+[DEBUG] 2025-12-10 20:43:07,827 - model.dqn - Training loss: 0.09198401123285294
+[DEBUG] 2025-12-10 20:43:08,012 - model.dqn - Training loss: 0.08310402184724808
+[DEBUG] 2025-12-10 20:43:08,196 - model.dqn - Training loss: 0.05520622059702873
+[DEBUG] 2025-12-10 20:43:08,386 - model.dqn - Training loss: 0.08342409133911133
+[DEBUG] 2025-12-10 20:43:08,581 - model.dqn - Training loss: 0.05462133139371872
+[DEBUG] 2025-12-10 20:43:08,783 - model.dqn - Training loss: 0.05077793449163437
+[DEBUG] 2025-12-10 20:43:09,037 - model.dqn - Training loss: 0.0753755196928978
+[DEBUG] 2025-12-10 20:43:09,228 - model.dqn - Training loss: 0.10485026240348816
+[DEBUG] 2025-12-10 20:43:09,418 - model.dqn - Training loss: 0.07401910424232483
+[DEBUG] 2025-12-10 20:43:09,614 - model.dqn - Training loss: 0.059952545911073685
+[DEBUG] 2025-12-10 20:43:09,809 - model.dqn - Training loss: 0.04250100255012512
+[DEBUG] 2025-12-10 20:43:10,000 - model.dqn - Training loss: 0.07394617050886154
+[DEBUG] 2025-12-10 20:43:10,195 - model.dqn - Training loss: 0.06711956858634949
+[DEBUG] 2025-12-10 20:43:10,380 - model.dqn - Training loss: 0.08662578463554382
+[DEBUG] 2025-12-10 20:43:10,571 - model.dqn - Training loss: 0.07108704000711441
+[DEBUG] 2025-12-10 20:43:10,757 - model.dqn - Training loss: 0.09711568057537079
+[DEBUG] 2025-12-10 20:43:10,946 - model.dqn - Training loss: 0.059089452028274536
+[DEBUG] 2025-12-10 20:43:11,133 - model.dqn - Training loss: 0.07495367527008057
+[DEBUG] 2025-12-10 20:43:11,317 - model.dqn - Training loss: 0.07739833742380142
+[DEBUG] 2025-12-10 20:43:11,506 - model.dqn - Training loss: 0.06247660890221596
+[DEBUG] 2025-12-10 20:43:11,691 - model.dqn - Training loss: 0.09700024873018265
+[DEBUG] 2025-12-10 20:43:11,887 - model.dqn - Training loss: 0.06896008551120758
+[DEBUG] 2025-12-10 20:43:12,082 - model.dqn - Training loss: 0.07332876324653625
+[DEBUG] 2025-12-10 20:43:12,272 - model.dqn - Training loss: 0.08188742399215698
+[DEBUG] 2025-12-10 20:43:12,459 - model.dqn - Training loss: 0.05966128781437874
+[DEBUG] 2025-12-10 20:43:12,645 - model.dqn - Training loss: 0.05525076389312744
+[DEBUG] 2025-12-10 20:43:12,836 - model.dqn - Training loss: 0.09904696047306061
+[DEBUG] 2025-12-10 20:43:13,028 - model.dqn - Training loss: 0.07488658279180527
+[DEBUG] 2025-12-10 20:43:13,220 - model.dqn - Training loss: 0.07537293434143066
+[DEBUG] 2025-12-10 20:43:13,407 - model.dqn - Training loss: 0.08788152784109116
+[DEBUG] 2025-12-10 20:43:13,598 - model.dqn - Training loss: 0.06769504398107529
+[DEBUG] 2025-12-10 20:43:13,788 - model.dqn - Training loss: 0.08351323008537292
+[DEBUG] 2025-12-10 20:43:13,986 - model.dqn - Training loss: 0.0734638124704361
+[DEBUG] 2025-12-10 20:43:14,180 - model.dqn - Training loss: 0.05402097851037979
+[DEBUG] 2025-12-10 20:43:14,379 - model.dqn - Training loss: 0.08733250945806503
+[DEBUG] 2025-12-10 20:43:14,571 - model.dqn - Training loss: 0.07122143357992172
+[DEBUG] 2025-12-10 20:43:14,761 - model.dqn - Training loss: 0.04597274214029312
+[DEBUG] 2025-12-10 20:43:14,945 - model.dqn - Training loss: 0.09044978767633438
+[INFO] 2025-12-10 20:43:14,945 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-10 20:43:15,136 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-10 20:43:15,136 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-10 20:43:15,136 - verifier.verifier - Result: 0 failed cases out of 608 total cases.
+[INFO] 2025-12-10 20:43:15,136 - verifier.verifier - Accumulated reward: 126
+[INFO] 2025-12-10 20:43:15,136 - main - All failed cases passed verification!
+[INFO] 2025-12-10 20:43:15,136 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-10 20:43:15,323 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-10 20:43:15,323 - verifier.verifier - Setting: players=5, rounds=1
+[INFO] 2025-12-10 20:43:15,323 - verifier.verifier - Result: 0 failed cases out of 608 total cases.
+[INFO] 2025-12-10 20:43:15,323 - verifier.verifier - Accumulated reward: 126
+[INFO] 2025-12-10 20:43:15,323 - main - All cases passed verification! Training successful.
+[INFO] 2025-12-10 20:43:15,323 - main - Saving trained model to results/temp/st_5_1.pth...
+[INFO] 2025-12-10 20:43:15,327 - main - Model saved successfully.

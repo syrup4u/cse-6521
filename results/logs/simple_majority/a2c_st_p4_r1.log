@@ -1,0 +1,21 @@
+[INFO] 2025-12-06 20:21:49,745 - main - ===== Training Mode =====
+[INFO] 2025-12-06 20:21:49,745 - main - Training protocol: simple_majority with 4 players and 1 rounds.
+[INFO] 2025-12-06 20:21:49,745 - main - Initializing the environment and model...
+[INFO] 2025-12-06 20:21:50,206 - main - Generating all possible input patterns...
+[INFO] 2025-12-06 20:21:50,207 - main - Input patterns generated.
+[INFO] 2025-12-06 20:21:50,207 - main - Starting training...
+[INFO] 2025-12-06 20:21:50,207 - main - Epoch 1/100, training on 277 failed cases from last evaluation.
+[INFO] 2025-12-06 20:21:54,814 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-06 20:21:54,891 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 20:21:54,891 - verifier.verifier - Setting: players=4, rounds=1
+[INFO] 2025-12-06 20:21:54,891 - verifier.verifier - Result: 0 failed cases out of 277 total cases.
+[INFO] 2025-12-06 20:21:54,891 - verifier.verifier - Accumulated reward: 36
+[INFO] 2025-12-06 20:21:54,891 - main - All failed cases passed verification!
+[INFO] 2025-12-06 20:21:54,891 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-06 20:21:54,967 - verifier.verifier - Evaluation for protocol <simple_majority> completed.
+[INFO] 2025-12-06 20:21:54,967 - verifier.verifier - Setting: players=4, rounds=1
+[INFO] 2025-12-06 20:21:54,967 - verifier.verifier - Result: 0 failed cases out of 277 total cases.
+[INFO] 2025-12-06 20:21:54,967 - verifier.verifier - Accumulated reward: 36
+[INFO] 2025-12-06 20:21:54,967 - main - All cases passed verification! Training successful.
+[INFO] 2025-12-06 20:21:54,967 - main - Saving trained model to results/temp/tr_3_1.pth...
+[INFO] 2025-12-06 20:21:54,974 - main - Model saved successfully.
