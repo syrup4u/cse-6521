@@ -9,34 +9,46 @@ from torch.distributions import Categorical
 import logging
 
 logger = logging.getLogger(__name__)
+# logger.setLevel(logging.DEBUG)
 
-class ActorCritic:
+class ActorCritic(nn.Module):
     def __init__(self, actor: nn.Module, critic: nn.Module, learning_rate: float):
+        super().__init__()
         self.actor = actor
         self.critic = critic
         self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=learning_rate)
         self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=learning_rate)
+        # Additional components
         self.input_encoder = None
+        self.constraint = None
+
+    def get_logits(self, state: torch.Tensor) -> torch.Tensor:
+        if self.input_encoder is not None:
+            state = self.input_encoder(state)
+        return self.actor(state)
 
     def get_action(self, state: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """
         Gets action and log probability of the action.
         - state: (B, ...) tensor
         - returns: (action tensor of shape (B,), log_prob tensor of shape (B,))
+        - B is the number of state machines
 
-        TODO: do we need to implement enforcement for consistent action among agents with same state?
+        v1: implement enforcement for consistent action among agents with same state.
         """
-        if self.input_encoder is not None:
-            state = self.input_encoder(state)
-        logits = self.actor(state)
-        m = Categorical(logits=logits)
-        action = m.sample()
-        return action, m.log_prob(action) # shape: (B,)
+        logits = self.get_logits(state)
+        if self.constraint is None:
+            m = Categorical(logits=logits)
+            action = m.sample()
+            probs = m.log_prob(action)
+        else:
+            action, probs = self.constraint(logits, state)
+        return action, probs # shape: (B,)
 
     def get_value(self, state: torch.Tensor) -> torch.Tensor:
         if self.input_encoder is not None:
             state = self.input_encoder(state)
-        value = self.critic(state)
+        value = self.critic(state) # shape: (B, 1)
         return value.squeeze(-1) # shape: (B,)
 
     def get_greedy_action(self, state: torch.Tensor) -> torch.Tensor:
@@ -45,6 +57,25 @@ class ActorCritic:
         logits = self.actor(state)
         action = torch.argmax(logits, dim=-1)
         return action
+    
+    def update_hyper(self, episode: int):
+        pass
+    
+    def save_model(self, path: str):
+        torch.save({
+            'actor_state_dict': self.actor.state_dict(),
+            'critic_state_dict': self.critic.state_dict(),
+            'actor_optimizer_state_dict': self.actor_optimizer.state_dict(),
+            'critic_optimizer_state_dict': self.critic_optimizer.state_dict(),
+        }, path)
+    
+    def load_model(self, path: str):
+        checkpoint = torch.load(path)
+        self.actor.load_state_dict(checkpoint['actor_state_dict'])
+        self.critic.load_state_dict(checkpoint['critic_state_dict'])
+        self.actor_optimizer.load_state_dict(checkpoint['actor_optimizer_state_dict'])
+        self.critic_optimizer.load_state_dict(checkpoint['critic_optimizer_state_dict'])
+
 
 def build_mlp_model(
         input_size: int,
@@ -70,6 +101,7 @@ def build_mlp_op_model(
     critic = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], 1).to(device)
     model = ActorCritic(actor, critic, config.MLP_CONFIG["learning_rate"])
     model.input_encoder = actor.encode_sequence
+    model.constraint = PolicyConstraint.get_action
     return model
 
 def build_set_transformer_model(
@@ -100,84 +132,116 @@ def build_set_transformer_model(
     ).to(device)
     model = ActorCritic(actor, critic, config.SET_TRANSFORMER_CONFIG["learning_rate"])
     model.input_encoder = actor.tok_emb
+    model.constraint = PolicyConstraint.get_action
     return model
 
-def train_model(model: ActorCritic, trajectories: list, reward: int):
+def train_model(model: ActorCritic, trajectories: dict, rewards: list, others=None):
     """
-    Current implementation: just backpropagate after each episode.
-    - trajectories: list of (state_tensor, actions, log_probs, values) tuples, length = R (number of rounds)
+    - traj_states: (B) batch of trajectories of states, each trajectory is a list of (R, N, ...) tensors
+    - traj_actions: (B) batch of trajectories of actions, each trajectory is a list of (R, N) tensors
+    - traj_log_probs: (B) batch of trajectories of log_probs, each trajectory is a list of (R, N) tensors
+    - rewards: list of rewards corresponding to each trajectory in batch, which is of length B (batch size)
 
-    - state_tensor: (B, N, D=1) tensor
-    - actions: (B,) tensor
-    - log_probs: (B,) tensor
-    - values: (B,) tensor
+    B: batch size,
+    R: number of rounds,
+    N: number of nodes
     """
-    # Compute returns and advantages
-    all_log_probs = torch.stack([t[2] for t in trajectories], dim=0) # (R, B)
-    all_values = torch.stack([t[3] for t in trajectories], dim=0) # (R, B)
-    R = torch.full_like(all_values, fill_value=reward).detach() # (R, B), No discounting
-    advantages = R - all_values # (R, B)
+    traj_state = trajectories["states"]
+    traj_log_probs = trajectories["log_probs"]
+    traj_actions = trajectories["actions"]
+    B = len(traj_state) # batch size
+    R = len(traj_state[0]) # number of rounds
+    N = traj_state[0][0].shape[0] # number of nodes (TODO: N may vary)
 
-    # Update actor and critic
-    actor_loss = 0
-    critic_loss = 0
-    actor_loss += -torch.mean(all_log_probs * advantages.detach()) # Policy gradient loss
-    critic_loss += nn.functional.mse_loss(all_values, R) # Value function loss
+    all_states = torch.stack(traj_state, dim=0) # (batch_size, R, N, ...)
+    all_actions = torch.stack(traj_actions, dim=0) # (batch_size, R, N)
+    all_values = model.get_value(all_states.reshape(-1, all_states.shape[-1])) # (batch_size * R,)
+    all_values = all_values.reshape(B, R, N) # (batch_size, R, N)
+    all_log_probs = torch.stack(traj_log_probs, dim=0) # (batch_size, R, N)
+    all_R = torch.tensor(rewards, device=all_values.device, dtype=all_values.dtype)\
+        .unsqueeze(1).unsqueeze(2).expand(-1, R, N) # (batch_size, R, N)
 
-    # Backpropagation for actor
-    model.actor_optimizer.zero_grad()
-    actor_loss.backward()
-    model.actor_optimizer.step()
-
-    # Backpropagation for critic
-    model.critic_optimizer.zero_grad()
-    critic_loss.backward()
-    model.critic_optimizer.step()
-
-    logger.debug(f"Actor loss: {actor_loss.item()}, Critic loss: {critic_loss.item()}")
-
-def train_model_batch(model: ActorCritic, batch_trajectories: list, rewards: list):
-    """
-    - batch_trajectories: list of trajectories, each trajectory is a list of (state_tensor, actions, log_probs, values) tuples
-    - rewards: list of rewards corresponding to each trajectory
-    """
-    all_log_probs = []
-    all_values = []
-    all_R = []
-
-    for traj, reward in zip(batch_trajectories, rewards):
-        log_probs = torch.stack([t[2] for t in traj], dim=0) # (R, B)
-        values = torch.stack([t[3] for t in traj], dim=0) # (R, B)
-        R = torch.full_like(values, fill_value=reward).detach() # (R, B)
-
-        all_log_probs.append(log_probs)
-        all_values.append(values)
-        all_R.append(R)
-
-    all_log_probs = torch.cat(all_log_probs, dim=1) # (R, total_B)
-    all_values = torch.cat(all_values, dim=1) # (R, total_B)
-    all_R = torch.cat(all_R, dim=1) # (R, total_B)
-
-    advantages = all_R - all_values # (R, total_B)
+    advantages = compute_advantages(all_R, all_values, gamma=1.0) # (batch_size, R, N)
+    returns = advantages + all_values # (batch_size, R, N)
     # oversampling non-zero reward
-    non_zero_mask = (all_R != 0)
-    oversampling_weight = 5
-    advantages = oversampling_weight * advantages * non_zero_mask + advantages * (~non_zero_mask)
+    # oversampling_weight = 2 ** torch.abs(all_R)
+    # advantages = oversampling_weight * advantages
+    advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
 
-    # Update actor and critic
-    actor_loss = 0
-    critic_loss = 0
-    actor_loss += -torch.mean(all_log_probs * advantages.detach()) # Policy gradient loss
-    critic_loss += nn.functional.mse_loss(all_values, all_R) # Value function loss
+    all_log_probs = all_log_probs.detach()
+    returns = returns.detach()
+    advantages = advantages.detach()
 
-    # Backpropagation for actor
-    model.actor_optimizer.zero_grad()
-    actor_loss.backward()
-    model.actor_optimizer.step()
+    # PPO updates
+    EPS_CLIP = 0.1
+    entropy_gamma = 0.1
+    ppo_epochs = 1
+    if others is not None:
+        ppo_epochs = others.get("ppo_epochs", 1)
+    for _ in range(ppo_epochs):
+        # new log probs
+        new_logits = model.get_logits(all_states.reshape(-1, all_states.shape[-1])) # (batch_size * R * N, num_actions)
+        m = Categorical(logits=new_logits)
+        new_log_probs = m.log_prob(all_actions.reshape(-1)) # (batch_size * R * N,)
+        new_log_probs = new_log_probs.reshape(B, R, N) # (batch_size, R, N)
+        # new values
+        new_values = model.get_value(all_states.reshape(-1, all_states.shape[-1])) # (batch_size * R,)
+        new_values = new_values.reshape(B, R, N) # (batch_size, R, N)
 
-    # Backpropagation for critic
-    model.critic_optimizer.zero_grad()
-    critic_loss.backward()
-    model.critic_optimizer.step()
+        ratio = torch.exp(new_log_probs - all_log_probs) # (batch_size, R, N)
+        surr1 = ratio * advantages
+        surr2 = torch.clamp(ratio, 1.0 - EPS_CLIP, 1.0 + EPS_CLIP) * advantages
 
+        # Update actor and critic
+        entropy_bonus = entropy_gamma * m.entropy().mean() # Entropy bonus
+        actor_loss = -torch.mean(torch.min(surr1, surr2)) - entropy_bonus # PPO clipped objective
+        critic_loss = nn.functional.mse_loss(new_values, returns) # Value function loss
+
+        # Backpropagation for actor
+        model.actor_optimizer.zero_grad()
+        actor_loss.backward()
+        model.actor_optimizer.step()
+        # Backpropagation for critic
+        model.critic_optimizer.zero_grad()
+        critic_loss.backward()
+        model.critic_optimizer.step()
+
+    logger.debug(f"ratio mean: {torch.mean(ratio).item()}")
     logger.debug(f"Batch Actor loss: {actor_loss.item()}, Batch Critic loss: {critic_loss.item()}")
+    logger.debug(f"Entropy bonus: {entropy_bonus.item()}")
+    logger.debug(f"Probs: {torch.exp(new_log_probs).mean().item()}")
+
+def compute_advantages(rewards: torch.Tensor, values: torch.Tensor, gamma=0.99, lam=0.95) -> torch.Tensor:
+    """
+    Compute Generalized Advantage Estimation (GAE).
+    - rewards & values: (B, R, N) tensor, where B is batch size, R is number of rounds, N is number of nodes
+    """
+    B, R, N = rewards.shape
+    advantages = torch.zeros((B, R, N), device=rewards.device)
+
+    for t in reversed(range(R)):
+        delta = rewards[:, t, :] + gamma * (values[:, t + 1, :] if t + 1 < R else 0) - values[:, t, :]
+        advantages[:, t, :] = delta + gamma * lam * (advantages[:, t + 1, :] if t + 1 < R else 0)
+
+    return advantages
+
+def update_trajectories(
+        trajectories: dict,
+        state: torch.Tensor = None,
+        action: torch.Tensor = None,
+        others: list = None
+    ):
+    if "one_episode" not in trajectories:
+        trajectories["one_episode"] = dict()
+    if state is not None:
+        trajectories["one_episode"].setdefault("states", []).append(state)
+        trajectories["one_episode"].setdefault("actions", []).append(action)
+        trajectories["one_episode"].setdefault("log_probs", []).append(others[0])
+    else:
+        states_v = torch.stack(trajectories["one_episode"]["states"], dim=0) # TODO: N may vary thus cannot stack
+        actions_v = torch.stack(trajectories["one_episode"]["actions"], dim=0)
+        log_probs_v = torch.stack(trajectories["one_episode"]["log_probs"], dim=0)
+        trajectories.setdefault("states", []).append(states_v)
+        trajectories.setdefault("actions", []).append(actions_v)
+        trajectories.setdefault("log_probs", []).append(log_probs_v)
+        trajectories["one_episode"] = dict()

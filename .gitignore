@@ -5,3 +5,4 @@ __pycache__
 # for test output
 *.txt
 *.log
+*.pkl

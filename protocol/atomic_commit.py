@@ -7,6 +7,7 @@ import logging
 PROTOCOL_NAME = config.SUPPORT_PROTOCOLS[1]
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class State(AbstractState):
     """
@@ -64,7 +65,7 @@ class AtomicCommitProtocol:
     REWARD = {
         "bonus": 2,
         "good": 1,
-        "bad": -1
+        "bad": -4
     }
 
     @classmethod

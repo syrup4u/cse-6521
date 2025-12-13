@@ -1,5 +1,5 @@
 from simulator.state_machine import StateMachine, StateMachineManager
-from simulator.generator import ReadableInputGenerator, get_sender_idx_from_input
+from simulator.generator import get_sender_idx_from_input
 
 from typing import Protocol
 import logging
@@ -17,21 +17,11 @@ def verify(protocol: SupportProtocol, global_state: list[StateMachine]) -> bool:
         return True
     return False
 
-def evaluate_model(args, smm: StateMachineManager, protocol_related: dict, get_actions: callable):
-    logger.info("Generating all possible input patterns...")
-    rig = ReadableInputGenerator(
-        num_nodes=args.players, 
-        rounds=args.rounds, 
-        legal_initial_state=protocol_related["state"].get_initial_states(), 
-        last_round_work=protocol_related["last_round_work"]
-    )
-    rig.generate_all_inputs()
-    logger.info("Input patterns generated.")
-
+def evaluate_model(args, smm: StateMachineManager, protocol_related: dict, get_actions: callable, target_inputs: list, print_failed: bool = False) -> list:
     # Run evaluation for each input pattern
     failed_cases = []
     accumulate_reward = 0
-    for input_pattern in rig.all_inputs:
+    for input_pattern in target_inputs:
         logger.debug(f"Evaluating input pattern: {input_pattern}")
 
         # Init state
@@ -61,19 +51,24 @@ def evaluate_model(args, smm: StateMachineManager, protocol_related: dict, get_a
             for i, node_idx in enumerate(active_idx):
                 smm.state_machines[node_idx].transition(actions[i], msgs_list[i])
 
-        logger.info(f"Final global state: {[sm.get_final_state() for sm in smm.state_machines]}")
+        logger.debug(f"Final global state: {[sm.get_final_state() for sm in smm.state_machines]}")
 
         # Perform verification
         if not verify(protocol_related["protocol_class"], smm.state_machines):
-            failed_cases.append((input_pattern, [(sm.history_state, sm.history_message) for sm in smm.state_machines]))
-            logger.error(f"Verification failed for input pattern: {input_pattern}")
+            failed_cases.append(input_pattern)
+            logger.debug(f"Verification failed for input pattern: {input_pattern}")
+            logger.debug(f"Final global state: {[sm.get_final_state() for sm in smm.state_machines]}")
+            if print_failed:
+                for node_idx, sm in enumerate(smm.state_machines):
+                    logger.debug(f"Node {node_idx} history states: {sm.history_state}")
+                    logger.debug(f"Node {node_idx} history messages: {sm.history_message}")
         # optional: accumulate reward
         accumulate_reward += protocol_related["protocol_class"].get_reward(smm.state_machines)
 
     # Log evaluation results
     logger.info(f"Evaluation for protocol <{args.protocol}> completed.")
     logger.info(f"Setting: players={args.players}, rounds={args.rounds}")
-    logger.info(f"Result: {len(failed_cases)} failed cases out of {len(rig.all_inputs)} total cases.")
+    logger.info(f"Result: {len(failed_cases)} failed cases out of {len(target_inputs)} total cases.")
     logger.info(f"Accumulated reward: {accumulate_reward}")
 
     return failed_cases

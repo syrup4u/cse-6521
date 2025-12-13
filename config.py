@@ -3,8 +3,6 @@ SUPPORT_PROTOCOLS = [
     "atomic_commit"
 ]
 
-EPISODE_REPETITIONS = 1000 # TODO: may be computed based on rounds and players
-
 MLP_CONFIG = {
     "hidden_sizes": [128, 64, 32],
     "learning_rate": 1e-3
@@ -18,3 +16,19 @@ SET_TRANSFORMER_CONFIG = {
     "num_outputs": 1,
     "learning_rate": 1e-3
 }
+
+DQN_CONFIG = {
+    "learning_rate": 1e-3,
+    "loss": "SmoothL1Loss",
+    "buffer_size": 10000,
+    "batch_size": 64,
+    "target_update_freq": 200,
+    "eps_start": 1.0,
+    "eps_end": 0.2,
+    "eps_decay": 10000
+}
+
+EPISODE_REPETITIONS = 20 # TODO: may be computed based on rounds and players
+SAMPLE_SIZE = 100
+INPUT_INVARIANCE_LEVEL = 3
+SAMPLE_PROBABILITY = 0.3

@@ -1,5 +1,6 @@
 from protocol.state import AbstractState
 from protocol.simple_majority import State
+from lib.matrix import canonicalize_array, to_hashable_key
 
 from itertools import combinations, product
 import numpy as np
@@ -46,7 +47,7 @@ class CrashNodeGenerator:
 
         def dfs(round_idx: int, remaining_nodes: list, crash_so_far: list, crash_pattern: list):
             if round_idx == self.rounds:
-                self.all_crash_patterns.append([round_crash for round_crash in crash_pattern])
+                self.all_crash_patterns.append(crash_pattern)
                 return
             if len(crash_so_far) == most_crash:
                 dfs(round_idx + 1, remaining_nodes, crash_so_far, crash_pattern + [list()])
@@ -181,6 +182,7 @@ class ReadableInputGenerator:
         self.gen_crash = CrashNodeGenerator(num_nodes=num_nodes, rounds=rounds, last_round_work=last_round_work)
         self.gen_initial = InitialStateGenerator(num_nodes=num_nodes, legal_initial_state=legal_initial_state)
         self.all_inputs = None
+        self.last_round_work = last_round_work
 
     def generate_all_inputs(self):
         self.all_inputs = []
@@ -207,6 +209,119 @@ class ReadableInputGenerator:
                         crash_pattern=crash_pattern,
                         message_pattern=msg_pattern_combination
                     )
+    
+    def generate_filtered_inputs(self, level=3):
+        """
+        Generates inputs filtered by certain criteria of invariance.
+
+        Key idea: we can change the order (index) of nodes
+
+        Level 1: (easy - initial state invariant)
+        - Filtered by same initial states (with order permutations).
+        - No requirement.
+
+        Level 2: (medium - lv1 + crash pattern invariant)
+        - Additionally filtered by same crash patterns.
+        - Requirement of the crash node: 
+            same initial states, same rounds, same combo list.
+
+        Level 3: (hard - lv2 + message pattern invariant)
+        - Additionally filtered by same message patterns.
+        - Requirement: receivers with same initial states, no crash before.
+        - Limit: only works when transitions are completely same with same input.
+
+        TODO: level 3 can be improved to cover more cases.
+        """
+        assert level in [1, 2, 3], "Level must be 1, 2, or 3."
+
+        self.all_inputs = []
+
+        if level >= 1:
+            # lv1: filtered by initial states
+            seen_initial_states = set()
+            filtered_states = []
+            for initial_states in self.gen_initial.all_initial_states:
+                key = [state.value for state in initial_states]
+                key = tuple(sorted(key))
+                if key in seen_initial_states:
+                    continue
+                seen_initial_states.add(key)
+                filtered_states.append(initial_states)
+            # generate input patterns based on filtered initial states
+            for initial_states in filtered_states:
+                seen_crash_patterns = set()
+                for crash_idx, crash_pattern in enumerate(self.gen_crash.all_crash_patterns):
+                    # lv2: filtered by crash patterns
+                    if level >= 2:
+                        filter_key = []
+                        for i, round_crash in enumerate(crash_pattern):
+                            for node in round_crash:
+                                filter_key.append((initial_states[node].value, i))
+                        filter_key = tuple(sorted(filter_key))
+                        if filter_key in seen_crash_patterns:
+                            continue
+                        seen_crash_patterns.add(filter_key)
+                    # generate message patterns
+                    message_patterns = self.gen_crash.all_message_patterns[crash_idx]
+                    # lv3: filtered by message patterns
+                    if level >= 3:
+                        message_patterns = self._level3_filter(message_patterns, crash_pattern, initial_states, self.last_round_work)
+                    for msg_pattern_combination in product(*message_patterns):
+                        ri = ReadableInput(
+                            initial_states=initial_states,
+                            crash_pattern=crash_pattern,
+                            message_pattern=msg_pattern_combination
+                        )
+                        self.all_inputs.append(ri)
+
+    @staticmethod
+    def _level3_filter(message_patterns: list[list[np.ndarray]], crash_pattern: list[list[int]], initial_states: list[AbstractState], last_round_work: bool):
+        """
+        Filters message patterns by level 3 criteria.
+
+        message_patterns: [each round: list of np.ndarray message masks in this round]
+        """
+
+        # Check preconditions of crash pattern
+        # print(f"Crash Pattern: {crash_pattern}")
+        # print(f"Initial States: {initial_states}")
+        crash_rounds = sum(len(c) > 0 for c in crash_pattern)
+        if crash_rounds != 1:
+            return message_patterns
+        
+        # Only one round of crash
+        first_round = crash_pattern[0]
+        last_round_crash = crash_pattern[-1] if last_round_work else []
+
+        # Start filtering
+        can_sort_cols = True
+        if len(first_round) > 1: # if it is first round with multiple crashes
+            # check if all crashed nodes have same initial state
+            first_states = [initial_states[node] for node in first_round]
+            if len(set(first_states)) != 1:
+                can_sort_cols = False
+        last_round_crash = [] if can_sort_cols else last_round_crash # we can loosen the restriction
+        
+        filter_key = set()
+        new_message_patterns = []
+        for round_msg_patterns in message_patterns:
+            if len(round_msg_patterns) > 1:
+                this_round_filtered = []
+                for msg_mask in round_msg_patterns:
+                    cano_mask = canonicalize_array(
+                        msg_mask,
+                        fixed_rows_indices=last_round_crash,
+                        enable_sort_col=can_sort_cols
+                    )
+                    key = to_hashable_key(cano_mask)
+                    if key in filter_key:
+                        continue
+                    filter_key.add(key)
+                    this_round_filtered.append(msg_mask)
+                new_message_patterns.append(this_round_filtered)
+            else:
+                new_message_patterns.append(round_msg_patterns)
+        return new_message_patterns
 
 
 def get_sender_idx_from_input(input_pattern: ReadableInput, round_idx: int, last_round_work: bool) -> list[list[int]]:
@@ -239,29 +354,12 @@ def get_sender_idx_from_input(input_pattern: ReadableInput, round_idx: int, last
 
 
 if __name__ == "__main__":
-    # gen = CrashNodeGenerator(num_nodes=3, rounds=2, last_round_work=True)
-    # for pattern in gen.all_crash_patterns:
-    #     print(pattern)
-    # print(len(gen.all_crash_patterns))
-    # cnt = 0
-    # for msg_patterns in gen.all_message_patterns:
-    #     cnt_for_this_patterns = 1
-    #     for round_idx, round_patterns in enumerate(msg_patterns):
-    #         cnt_for_this_patterns *= len(round_patterns)
-    #     cnt += cnt_for_this_patterns
-    # print(cnt)
-    gen = ReadableInputGenerator(num_nodes=3, rounds=1, legal_initial_state=[State.NO, State.YES], last_round_work=False)
-    cnt = 0
-    for input_pattern in gen.generate_yield_inputs():
-        print(input_pattern)
-        print("-----")
-        cnt += 1
-        # for round_idx in range(3):
-        #     if len(input_pattern.crash_pattern[round_idx]) >= 2:
-        #         print(input_pattern)
-        #         senders = get_sender_idx_from_input(input_pattern, round_idx, last_round_work=True)
-        #         print(f"Round {round_idx + 1} senders: {senders}")
-        #         cnt += 1
-        # if cnt > 2:
-        #     break
-    print(f"Total input patterns: {cnt}")
+    gen = ReadableInputGenerator(num_nodes=6, rounds=3, legal_initial_state=[State.NO, State.YES], last_round_work=True)
+    gen.generate_all_inputs()
+    print(len(gen.all_inputs))
+    gen.generate_filtered_inputs(level=1)
+    print(len(gen.all_inputs))
+    gen.generate_filtered_inputs(level=2)
+    print(len(gen.all_inputs))
+    gen.generate_filtered_inputs(level=3)
+    print(len(gen.all_inputs))
