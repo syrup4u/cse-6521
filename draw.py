@@ -1,8 +1,11 @@
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import numpy as np
 import pickle
 
-my_dataset = [
+mpl.rcParams["font.size"] = 16
+
+dataset1 = [
     [
         "setting1",
         10,
@@ -77,12 +80,13 @@ def plot_bar(group_data, group_labels, x_labels, title, ylabel, filename, error_
     plt.tight_layout()
     plt.savefig(filename)
 
-def draw_my_dataset():
-    offset = [0, 3, 6]
+def draw_my_dataset(my_dataset):
+    offset = [0, 3, 6, 9, 12]
+    tmp_labels = ["sm", "sm", "sm", "ac", "ac"]
     n_groups = 3
     group_data = []
     group_labels = []
-    x_labels = [str(my_dataset[i][3][1]) + "-" + str(my_dataset[i][3][2]) for i in offset]
+    x_labels = [tmp_labels[ii] + "-" + str(my_dataset[i][3][1]) + "-" + str(my_dataset[i][3][2]) for ii, i in enumerate(offset)]
     group_data_success = []
     for i in range(n_groups):
         group_data.append([my_dataset[offset_idx + i][2] for offset_idx in offset])
@@ -135,5 +139,8 @@ def draw_from_pkl(fpath: str):
     plot_bar(group_data_success, group_labels, x_labels, title, ylabel, filename_2)
 
 if __name__ == "__main__":
-    # draw_my_dataset()
-    draw_from_pkl("benchmark_ac.pkl")
+    with open("./results/logs/benchmark/benchmark_ac.pkl", "rb") as f:
+        dataset = pickle.load(f)
+    dataset1.extend(dataset)
+    draw_my_dataset(dataset1)
+    # draw_from_pkl("benchmark_ac.pkl")

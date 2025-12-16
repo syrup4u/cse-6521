@@ -2,7 +2,7 @@
 
 ## Environment
 
-Python: 3.11+ (Exact match: 3.12.7)
+Python: 3.10+ (Exact match: 3.12.7)
 
 Remember to pull the submodule:
 
@@ -29,6 +29,10 @@ Most commands I use are listed in a [shell script](./run.sh)
 You can check the usage and all supported options by `python main.py --help`.
 
 **If you want to save the model into a directory, make sure the directory exists.**
+
+## Hyper Parameters
+
+Hyper parameters for training are defined in [`config.py`](./config.py).
 
 ## Example
 

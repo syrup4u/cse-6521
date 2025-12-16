@@ -22,7 +22,7 @@ DQN_CONFIG = {
     "loss": "SmoothL1Loss",
     "buffer_size": 10000,
     "batch_size": 64,
-    "target_update_freq": 200,
+    "target_update_freq": 100,
     "eps_start": 1.0,
     "eps_end": 0.2,
     "eps_decay": 10000

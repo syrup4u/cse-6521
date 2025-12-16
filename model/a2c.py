@@ -149,15 +149,50 @@ def train_model(model: ActorCritic, trajectories: dict, rewards: list, others=No
     traj_state = trajectories["states"]
     traj_log_probs = trajectories["log_probs"]
     traj_actions = trajectories["actions"]
+    traj_dones = trajectories["done"]
     B = len(traj_state) # batch size
     R = len(traj_state[0]) # number of rounds
-    N = traj_state[0][0].shape[0] # number of nodes (TODO: N may vary)
+    N = traj_state[0][R-1].shape[0] # number of valid nodes (may vary among trajectories)
 
-    all_states = torch.stack(traj_state, dim=0) # (batch_size, R, N, ...)
-    all_actions = torch.stack(traj_actions, dim=0) # (batch_size, R, N)
+    # preprocess trajectories
+    B_states = []
+    B_actions = []
+    B_log_probs = []
+    for b in range(B):
+        b_states = None
+        b_actions = None
+        b_log_probs = None
+        for r in range(R):
+            if r < R - 2:
+                mask = ~traj_dones[b][r]
+                reduced_states = traj_state[b][r][mask]
+                reduced_actions = traj_actions[b][r][mask]
+                reduced_log_probs = traj_log_probs[b][r][mask]
+                if b_states is not None:
+                    b_states = b_states[:, mask, ...]
+                    b_actions = b_actions[:, mask, ...]
+                    b_log_probs = b_log_probs[:, mask, ...]
+            else:
+                reduced_states = traj_state[b][r]
+                reduced_actions = traj_actions[b][r]
+                reduced_log_probs = traj_log_probs[b][r]
+            if b_states is None:
+                b_states = reduced_states.unsqueeze(0)
+                b_actions = reduced_actions.unsqueeze(0)
+                b_log_probs = reduced_log_probs.unsqueeze(0)
+            else:
+                b_states = torch.cat((b_states, reduced_states.unsqueeze(0)), dim=0)
+                b_actions = torch.cat((b_actions, reduced_actions.unsqueeze(0)), dim=0)
+                b_log_probs = torch.cat((b_log_probs, reduced_log_probs.unsqueeze(0)), dim=0)
+        B_states.append(b_states)
+        B_actions.append(b_actions)
+        B_log_probs.append(b_log_probs)
+
+    all_states = torch.stack(B_states, dim=0) # (batch_size, R, N, ...)
+    all_actions = torch.stack(B_actions, dim=0) # (batch_size, R, N)
+    all_log_probs = torch.stack(B_log_probs, dim=0) # (batch_size, R, N)
     all_values = model.get_value(all_states.reshape(-1, all_states.shape[-1])) # (batch_size * R,)
     all_values = all_values.reshape(B, R, N) # (batch_size, R, N)
-    all_log_probs = torch.stack(traj_log_probs, dim=0) # (batch_size, R, N)
     all_R = torch.tensor(rewards, device=all_values.device, dtype=all_values.dtype)\
         .unsqueeze(1).unsqueeze(2).expand(-1, R, N) # (batch_size, R, N)
 
@@ -237,11 +272,10 @@ def update_trajectories(
         trajectories["one_episode"].setdefault("states", []).append(state)
         trajectories["one_episode"].setdefault("actions", []).append(action)
         trajectories["one_episode"].setdefault("log_probs", []).append(others[0])
+        trajectories["one_episode"].setdefault("done", []).append(torch.tensor(others[1], device=state.device))
     else:
-        states_v = torch.stack(trajectories["one_episode"]["states"], dim=0) # TODO: N may vary thus cannot stack
-        actions_v = torch.stack(trajectories["one_episode"]["actions"], dim=0)
-        log_probs_v = torch.stack(trajectories["one_episode"]["log_probs"], dim=0)
-        trajectories.setdefault("states", []).append(states_v)
-        trajectories.setdefault("actions", []).append(actions_v)
-        trajectories.setdefault("log_probs", []).append(log_probs_v)
+        trajectories.setdefault("states", []).append(trajectories["one_episode"]["states"])
+        trajectories.setdefault("actions", []).append(trajectories["one_episode"]["actions"])
+        trajectories.setdefault("log_probs", []).append(trajectories["one_episode"]["log_probs"])
+        trajectories.setdefault("done", []).append(trajectories["one_episode"]["done"])
         trajectories["one_episode"] = dict()
