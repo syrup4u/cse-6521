@@ -1,7 +1,6 @@
 from .base import *
 import config
 
-import numpy as np
 import torch
 from torch import nn
 from torch import optim
@@ -30,9 +29,9 @@ class ActorCritic(nn.Module):
     def get_action(self, state: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """
         Gets action and log probability of the action.
-        - state: (B, ...) tensor
+        - state: (B, N+1) tensor
         - returns: (action tensor of shape (B,), log_prob tensor of shape (B,))
-        - B is the number of state machines
+        - B is the number of state machines, N+1 is the length of the state sequence (including round number)
 
         v1: implement enforcement for consistent action among agents with same state.
         """
@@ -52,9 +51,7 @@ class ActorCritic(nn.Module):
         return value.squeeze(-1) # shape: (B,)
 
     def get_greedy_action(self, state: torch.Tensor) -> torch.Tensor:
-        if self.input_encoder is not None:
-            state = self.input_encoder(state)
-        logits = self.actor(state)
+        logits = self.get_logits(state)
         action = torch.argmax(logits, dim=-1)
         return action
     
@@ -84,7 +81,7 @@ def build_mlp_model(
     ) -> ActorCritic:
     actor = MLP(input_size, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
     critic = MLP(input_size, config.MLP_CONFIG["hidden_sizes"], 1).to(device)
-    model = ActorCritic(actor, critic, config.MLP_CONFIG["learning_rate"])
+    model = ActorCritic(actor, critic, config.A2C_CONFIG["learning_rate"])
     model.input_encoder = lambda x: x.float()
     return model
 
@@ -99,7 +96,7 @@ def build_mlp_op_model(
     """
     actor = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
     critic = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], 1).to(device)
-    model = ActorCritic(actor, critic, config.MLP_CONFIG["learning_rate"])
+    model = ActorCritic(actor, critic, config.A2C_CONFIG["learning_rate"])
     model.input_encoder = actor.encode_sequence
     model.constraint = PolicyConstraint.get_action
     return model
@@ -118,7 +115,8 @@ def build_set_transformer_model(
         num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
         num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
         num_states=num_states,
-        num_rounds=num_rounds
+        num_rounds=num_rounds,
+        encode_round_number=config.ENCODE_ROUND_NUMBER
     ).to(device)
     critic = SetTransformer(
         dim_input=config.SET_TRANSFORMER_CONFIG["dim_input"],
@@ -128,9 +126,10 @@ def build_set_transformer_model(
         num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
         num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
         num_states=num_states,
-        num_rounds=num_rounds
+        num_rounds=num_rounds,
+        encode_round_number=config.ENCODE_ROUND_NUMBER
     ).to(device)
-    model = ActorCritic(actor, critic, config.SET_TRANSFORMER_CONFIG["learning_rate"])
+    model = ActorCritic(actor, critic, config.A2C_CONFIG["learning_rate"])
     model.input_encoder = actor.tok_emb
     model.constraint = PolicyConstraint.get_action
     return model
@@ -154,7 +153,7 @@ def train_model(model: ActorCritic, trajectories: dict, rewards: list, others=No
     R = len(traj_state[0]) # number of rounds
     N = traj_state[0][R-1].shape[0] # number of valid nodes (may vary among trajectories)
 
-    # preprocess trajectories
+    # Preprocess trajectories
     B_states = []
     B_actions = []
     B_log_probs = []
@@ -208,18 +207,14 @@ def train_model(model: ActorCritic, trajectories: dict, rewards: list, others=No
     advantages = advantages.detach()
 
     # PPO updates
-    EPS_CLIP = 0.1
-    entropy_gamma = 0.1
-    ppo_epochs = 1
-    if others is not None:
-        ppo_epochs = others.get("ppo_epochs", 1)
+    EPS_CLIP = config.A2C_CONFIG["eps_clip"]
+    entropy_gamma = config.A2C_CONFIG["entropy_gamma"]
+    ppo_epochs = config.A2C_CONFIG["ppo_epochs"]
     for _ in range(ppo_epochs):
-        # new log probs
         new_logits = model.get_logits(all_states.reshape(-1, all_states.shape[-1])) # (batch_size * R * N, num_actions)
         m = Categorical(logits=new_logits)
         new_log_probs = m.log_prob(all_actions.reshape(-1)) # (batch_size * R * N,)
         new_log_probs = new_log_probs.reshape(B, R, N) # (batch_size, R, N)
-        # new values
         new_values = model.get_value(all_states.reshape(-1, all_states.shape[-1])) # (batch_size * R,)
         new_values = new_values.reshape(B, R, N) # (batch_size, R, N)
 

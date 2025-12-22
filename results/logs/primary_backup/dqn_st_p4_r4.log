@@ -1,0 +1,760 @@
+[INFO] 2025-12-20 17:09:15,518 - main - ===== Training Mode =====
+[INFO] 2025-12-20 17:09:15,518 - main - Training protocol: primary_backup with 4 players and 4 rounds.
+[INFO] 2025-12-20 17:09:15,518 - main - Initializing the environment and model...
+[INFO] 2025-12-20 17:09:15,755 - main - Generating all possible input patterns...
+[INFO] 2025-12-20 17:09:15,830 - main - Input patterns generated.
+[INFO] 2025-12-20 17:09:15,830 - main - Starting training...
+[INFO] 2025-12-20 17:09:15,830 - main - Epoch 1/200, training on 15191 failed cases from last evaluation.
+[INFO] 2025-12-20 17:09:30,382 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:09:42,967 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:09:42,967 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:09:42,967 - verifier.verifier - Result: 1420 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:09:42,967 - verifier.verifier - Accumulated reward: 8091
+[INFO] 2025-12-20 17:09:42,967 - main - Epoch 2/200, training on 1420 failed cases from last evaluation.
+[INFO] 2025-12-20 17:09:57,685 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:09:58,923 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:09:58,923 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:09:58,923 - verifier.verifier - Result: 1204 failed cases out of 1420 total cases.
+[INFO] 2025-12-20 17:09:58,923 - verifier.verifier - Accumulated reward: -4600
+[INFO] 2025-12-20 17:09:58,924 - main - Epoch 3/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:10:14,029 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:10:15,073 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:10:15,073 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:10:15,073 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:10:15,073 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:10:15,073 - main - Epoch 4/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:10:30,083 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:10:31,123 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:10:31,123 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:10:31,123 - verifier.verifier - Result: 1051 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:10:31,123 - verifier.verifier - Accumulated reward: -4051
+[INFO] 2025-12-20 17:10:31,123 - main - Epoch 5/200, training on 1051 failed cases from last evaluation.
+[INFO] 2025-12-20 17:10:46,417 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:10:47,333 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:10:47,333 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:10:47,333 - verifier.verifier - Result: 1051 failed cases out of 1051 total cases.
+[INFO] 2025-12-20 17:10:47,333 - verifier.verifier - Accumulated reward: -4204
+[INFO] 2025-12-20 17:10:47,333 - main - Epoch 6/200, training on 1051 failed cases from last evaluation.
+[INFO] 2025-12-20 17:11:03,032 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:11:03,952 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:11:03,952 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:11:03,952 - verifier.verifier - Result: 1051 failed cases out of 1051 total cases.
+[INFO] 2025-12-20 17:11:03,952 - verifier.verifier - Accumulated reward: -4204
+[INFO] 2025-12-20 17:11:03,952 - main - Epoch 7/200, training on 1051 failed cases from last evaluation.
+[INFO] 2025-12-20 17:11:19,046 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:11:19,949 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:11:19,949 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:11:19,949 - verifier.verifier - Result: 0 failed cases out of 1051 total cases.
+[INFO] 2025-12-20 17:11:19,949 - verifier.verifier - Accumulated reward: 1051
+[INFO] 2025-12-20 17:11:19,949 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:11:19,949 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:11:32,731 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:11:32,731 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:11:32,731 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:11:32,731 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:11:32,731 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:11:32,731 - main - Epoch 8/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:11:47,837 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:11:48,887 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:11:48,887 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:11:48,887 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:11:48,888 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:11:48,888 - main - Epoch 9/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:12:04,121 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:12:05,170 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:12:05,170 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:12:05,170 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:12:05,170 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:12:05,170 - main - Epoch 10/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:12:20,413 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:12:21,440 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:12:21,440 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:12:21,440 - verifier.verifier - Result: 67 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:12:21,440 - verifier.verifier - Accumulated reward: 869
+[INFO] 2025-12-20 17:12:21,440 - main - Epoch 11/200, training on 67 failed cases from last evaluation.
+[INFO] 2025-12-20 17:12:35,553 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:12:35,603 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:12:35,603 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:12:35,603 - verifier.verifier - Result: 0 failed cases out of 67 total cases.
+[INFO] 2025-12-20 17:12:35,603 - verifier.verifier - Accumulated reward: 67
+[INFO] 2025-12-20 17:12:35,603 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:12:35,603 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:12:48,445 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:12:48,445 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:12:48,445 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:12:48,445 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:12:48,445 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:12:48,445 - main - Epoch 12/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:13:02,280 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:13:03,340 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:13:03,340 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:13:03,340 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:13:03,340 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:13:03,340 - main - Epoch 13/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:13:18,598 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:13:19,658 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:13:19,658 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:13:19,658 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:13:19,658 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:13:19,658 - main - Epoch 14/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:13:35,215 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:13:36,285 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:13:36,285 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:13:36,285 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:13:36,285 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:13:36,285 - main - Epoch 15/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:13:51,534 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:13:52,595 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:13:52,595 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:13:52,595 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:13:52,595 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:13:52,595 - main - Epoch 16/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:14:07,847 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:14:08,895 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:14:08,895 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:14:08,895 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:14:08,895 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:14:08,895 - main - Epoch 17/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:14:24,166 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:14:25,216 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:14:25,217 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:14:25,217 - verifier.verifier - Result: 1174 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:14:25,217 - verifier.verifier - Accumulated reward: -4666
+[INFO] 2025-12-20 17:14:25,217 - main - Epoch 18/200, training on 1174 failed cases from last evaluation.
+[INFO] 2025-12-20 17:14:40,325 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:14:41,350 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:14:41,351 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:14:41,351 - verifier.verifier - Result: 1174 failed cases out of 1174 total cases.
+[INFO] 2025-12-20 17:14:41,351 - verifier.verifier - Accumulated reward: -4696
+[INFO] 2025-12-20 17:14:41,351 - main - Epoch 19/200, training on 1174 failed cases from last evaluation.
+[INFO] 2025-12-20 17:14:56,311 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:14:57,338 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:14:57,338 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:14:57,338 - verifier.verifier - Result: 1174 failed cases out of 1174 total cases.
+[INFO] 2025-12-20 17:14:57,338 - verifier.verifier - Accumulated reward: -4696
+[INFO] 2025-12-20 17:14:57,338 - main - Epoch 20/200, training on 1174 failed cases from last evaluation.
+[INFO] 2025-12-20 17:15:12,368 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:15:13,397 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:15:13,397 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:15:13,397 - verifier.verifier - Result: 1165 failed cases out of 1174 total cases.
+[INFO] 2025-12-20 17:15:13,397 - verifier.verifier - Accumulated reward: -4651
+[INFO] 2025-12-20 17:15:13,398 - main - Epoch 21/200, training on 1165 failed cases from last evaluation.
+[INFO] 2025-12-20 17:15:28,513 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:15:29,522 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:15:29,522 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:15:29,522 - verifier.verifier - Result: 579 failed cases out of 1165 total cases.
+[INFO] 2025-12-20 17:15:29,522 - verifier.verifier - Accumulated reward: -1730
+[INFO] 2025-12-20 17:15:29,523 - main - Epoch 22/200, training on 579 failed cases from last evaluation.
+[INFO] 2025-12-20 17:15:44,524 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:15:45,004 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:15:45,004 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:15:45,004 - verifier.verifier - Result: 153 failed cases out of 579 total cases.
+[INFO] 2025-12-20 17:15:45,004 - verifier.verifier - Accumulated reward: -186
+[INFO] 2025-12-20 17:15:45,004 - main - Epoch 23/200, training on 153 failed cases from last evaluation.
+[INFO] 2025-12-20 17:15:58,888 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:15:59,011 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:15:59,011 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:15:59,011 - verifier.verifier - Result: 153 failed cases out of 153 total cases.
+[INFO] 2025-12-20 17:15:59,011 - verifier.verifier - Accumulated reward: -612
+[INFO] 2025-12-20 17:15:59,011 - main - Epoch 24/200, training on 153 failed cases from last evaluation.
+[INFO] 2025-12-20 17:16:11,898 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:16:12,020 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:16:12,020 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:16:12,020 - verifier.verifier - Result: 45 failed cases out of 153 total cases.
+[INFO] 2025-12-20 17:16:12,020 - verifier.verifier - Accumulated reward: -72
+[INFO] 2025-12-20 17:16:12,020 - main - Epoch 25/200, training on 45 failed cases from last evaluation.
+[INFO] 2025-12-20 17:16:25,151 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:16:25,186 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:16:25,186 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:16:25,186 - verifier.verifier - Result: 1 failed cases out of 45 total cases.
+[INFO] 2025-12-20 17:16:25,186 - verifier.verifier - Accumulated reward: 40
+[INFO] 2025-12-20 17:16:25,186 - main - Epoch 26/200, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-20 17:16:37,743 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:16:37,744 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:16:37,744 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:16:37,744 - verifier.verifier - Result: 0 failed cases out of 1 total cases.
+[INFO] 2025-12-20 17:16:37,744 - verifier.verifier - Accumulated reward: 1
+[INFO] 2025-12-20 17:16:37,744 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:16:37,744 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:16:50,540 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:16:50,540 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:16:50,540 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:16:50,540 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:16:50,540 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:16:50,540 - main - Epoch 27/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:17:04,037 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:17:05,090 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:17:05,090 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:17:05,090 - verifier.verifier - Result: 1193 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:17:05,090 - verifier.verifier - Accumulated reward: -4761
+[INFO] 2025-12-20 17:17:05,090 - main - Epoch 28/200, training on 1193 failed cases from last evaluation.
+[INFO] 2025-12-20 17:17:20,202 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:17:21,220 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:17:21,220 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:17:21,220 - verifier.verifier - Result: 153 failed cases out of 1193 total cases.
+[INFO] 2025-12-20 17:17:21,220 - verifier.verifier - Accumulated reward: 428
+[INFO] 2025-12-20 17:17:21,220 - main - Epoch 29/200, training on 153 failed cases from last evaluation.
+[INFO] 2025-12-20 17:17:35,219 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:17:35,343 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:17:35,343 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:17:35,343 - verifier.verifier - Result: 153 failed cases out of 153 total cases.
+[INFO] 2025-12-20 17:17:35,343 - verifier.verifier - Accumulated reward: -612
+[INFO] 2025-12-20 17:17:35,343 - main - Epoch 30/200, training on 153 failed cases from last evaluation.
+[INFO] 2025-12-20 17:17:48,626 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:17:48,748 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:17:48,748 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:17:48,748 - verifier.verifier - Result: 153 failed cases out of 153 total cases.
+[INFO] 2025-12-20 17:17:48,748 - verifier.verifier - Accumulated reward: -612
+[INFO] 2025-12-20 17:17:48,748 - main - Epoch 31/200, training on 153 failed cases from last evaluation.
+[INFO] 2025-12-20 17:18:01,576 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:18:01,693 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:18:01,693 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:18:01,693 - verifier.verifier - Result: 0 failed cases out of 153 total cases.
+[INFO] 2025-12-20 17:18:01,693 - verifier.verifier - Accumulated reward: 153
+[INFO] 2025-12-20 17:18:01,693 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:18:01,693 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:18:14,551 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:18:14,551 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:18:14,551 - verifier.verifier - Result: 4472 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:18:14,551 - verifier.verifier - Accumulated reward: -7169
+[INFO] 2025-12-20 17:18:14,551 - main - 4472 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:18:14,551 - main - Epoch 32/200, training on 4472 failed cases from last evaluation.
+[INFO] 2025-12-20 17:18:28,615 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:18:32,512 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:18:32,512 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:18:32,512 - verifier.verifier - Result: 3636 failed cases out of 4472 total cases.
+[INFO] 2025-12-20 17:18:32,512 - verifier.verifier - Accumulated reward: -13708
+[INFO] 2025-12-20 17:18:32,512 - main - Epoch 33/200, training on 3636 failed cases from last evaluation.
+[INFO] 2025-12-20 17:18:47,895 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:18:51,009 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:18:51,009 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:18:51,009 - verifier.verifier - Result: 538 failed cases out of 3636 total cases.
+[INFO] 2025-12-20 17:18:51,009 - verifier.verifier - Accumulated reward: 946
+[INFO] 2025-12-20 17:18:51,010 - main - Epoch 34/200, training on 538 failed cases from last evaluation.
+[INFO] 2025-12-20 17:19:06,073 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:19:06,532 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:19:06,532 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:19:06,532 - verifier.verifier - Result: 481 failed cases out of 538 total cases.
+[INFO] 2025-12-20 17:19:06,532 - verifier.verifier - Accumulated reward: -1867
+[INFO] 2025-12-20 17:19:06,532 - main - Epoch 35/200, training on 481 failed cases from last evaluation.
+[INFO] 2025-12-20 17:19:20,969 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:19:21,370 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:19:21,370 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:19:21,370 - verifier.verifier - Result: 192 failed cases out of 481 total cases.
+[INFO] 2025-12-20 17:19:21,370 - verifier.verifier - Accumulated reward: -479
+[INFO] 2025-12-20 17:19:21,370 - main - Epoch 36/200, training on 192 failed cases from last evaluation.
+[INFO] 2025-12-20 17:19:36,516 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:19:36,685 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:19:36,685 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:19:36,685 - verifier.verifier - Result: 0 failed cases out of 192 total cases.
+[INFO] 2025-12-20 17:19:36,685 - verifier.verifier - Accumulated reward: 192
+[INFO] 2025-12-20 17:19:36,685 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:19:36,685 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:19:49,414 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:19:49,414 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:19:49,414 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:19:49,414 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:19:49,414 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:19:49,414 - main - Epoch 37/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:20:05,034 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:20:06,092 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:20:06,092 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:20:06,092 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:20:06,092 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:20:06,092 - main - Epoch 38/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:20:21,352 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:20:22,405 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:20:22,405 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:20:22,405 - verifier.verifier - Result: 964 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:20:22,405 - verifier.verifier - Accumulated reward: -3616
+[INFO] 2025-12-20 17:20:22,405 - main - Epoch 39/200, training on 964 failed cases from last evaluation.
+[INFO] 2025-12-20 17:20:37,561 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:20:38,426 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:20:38,426 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:20:38,426 - verifier.verifier - Result: 941 failed cases out of 964 total cases.
+[INFO] 2025-12-20 17:20:38,426 - verifier.verifier - Accumulated reward: -3741
+[INFO] 2025-12-20 17:20:38,426 - main - Epoch 40/200, training on 941 failed cases from last evaluation.
+[INFO] 2025-12-20 17:20:54,290 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:20:55,135 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:20:55,135 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:20:55,135 - verifier.verifier - Result: 876 failed cases out of 941 total cases.
+[INFO] 2025-12-20 17:20:55,135 - verifier.verifier - Accumulated reward: -3439
+[INFO] 2025-12-20 17:20:55,135 - main - Epoch 41/200, training on 876 failed cases from last evaluation.
+[INFO] 2025-12-20 17:21:11,213 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:21:11,972 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:21:11,972 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:21:11,972 - verifier.verifier - Result: 0 failed cases out of 876 total cases.
+[INFO] 2025-12-20 17:21:11,972 - verifier.verifier - Accumulated reward: 876
+[INFO] 2025-12-20 17:21:11,972 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:21:11,972 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:21:24,774 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:21:24,774 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:21:24,774 - verifier.verifier - Result: 1543 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:21:24,774 - verifier.verifier - Accumulated reward: 7476
+[INFO] 2025-12-20 17:21:24,774 - main - 1543 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:21:24,774 - main - Epoch 42/200, training on 1543 failed cases from last evaluation.
+[INFO] 2025-12-20 17:21:40,360 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:21:41,699 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:21:41,699 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:21:41,699 - verifier.verifier - Result: 1014 failed cases out of 1543 total cases.
+[INFO] 2025-12-20 17:21:41,699 - verifier.verifier - Accumulated reward: -3527
+[INFO] 2025-12-20 17:21:41,699 - main - Epoch 43/200, training on 1014 failed cases from last evaluation.
+[INFO] 2025-12-20 17:21:57,032 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:21:57,928 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:21:57,928 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:21:57,928 - verifier.verifier - Result: 1014 failed cases out of 1014 total cases.
+[INFO] 2025-12-20 17:21:57,928 - verifier.verifier - Accumulated reward: -4056
+[INFO] 2025-12-20 17:21:57,928 - main - Epoch 44/200, training on 1014 failed cases from last evaluation.
+[INFO] 2025-12-20 17:22:13,416 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:22:14,316 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:22:14,316 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:22:14,316 - verifier.verifier - Result: 1010 failed cases out of 1014 total cases.
+[INFO] 2025-12-20 17:22:14,316 - verifier.verifier - Accumulated reward: -4036
+[INFO] 2025-12-20 17:22:14,316 - main - Epoch 45/200, training on 1010 failed cases from last evaluation.
+[INFO] 2025-12-20 17:22:29,778 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:22:30,678 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:22:30,678 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:22:30,678 - verifier.verifier - Result: 1010 failed cases out of 1010 total cases.
+[INFO] 2025-12-20 17:22:30,678 - verifier.verifier - Accumulated reward: -4040
+[INFO] 2025-12-20 17:22:30,678 - main - Epoch 46/200, training on 1010 failed cases from last evaluation.
+[INFO] 2025-12-20 17:22:46,277 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:22:47,141 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:22:47,141 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:22:47,141 - verifier.verifier - Result: 19 failed cases out of 1010 total cases.
+[INFO] 2025-12-20 17:22:47,141 - verifier.verifier - Accumulated reward: 915
+[INFO] 2025-12-20 17:22:47,141 - main - Epoch 47/200, training on 19 failed cases from last evaluation.
+[INFO] 2025-12-20 17:23:02,525 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:23:02,541 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:23:02,541 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:23:02,541 - verifier.verifier - Result: 0 failed cases out of 19 total cases.
+[INFO] 2025-12-20 17:23:02,541 - verifier.verifier - Accumulated reward: 19
+[INFO] 2025-12-20 17:23:02,541 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:23:02,541 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:23:15,323 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:23:15,323 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:23:15,324 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:23:15,324 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:23:15,324 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:23:15,324 - main - Epoch 48/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:23:29,686 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:23:30,728 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:23:30,728 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:23:30,728 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:23:30,728 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:23:30,728 - main - Epoch 49/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:23:46,033 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:23:47,076 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:23:47,076 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:23:47,076 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:23:47,076 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:23:47,076 - main - Epoch 50/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:24:02,214 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:24:03,256 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:24:03,256 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:24:03,256 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:24:03,256 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:24:03,256 - main - Epoch 51/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:24:18,503 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:24:19,542 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:24:19,542 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:24:19,542 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:24:19,542 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:24:19,542 - main - Epoch 52/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:24:35,019 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:24:36,061 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:24:36,061 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:24:36,061 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:24:36,061 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:24:36,061 - main - Epoch 53/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:24:51,450 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:24:52,489 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:24:52,489 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:24:52,489 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:24:52,489 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:24:52,489 - main - Epoch 54/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:25:07,791 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:25:08,833 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:25:08,833 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:25:08,833 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:25:08,833 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:25:08,833 - main - Epoch 55/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:25:24,086 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:25:25,120 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:25:25,120 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:25:25,120 - verifier.verifier - Result: 1173 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:25:25,120 - verifier.verifier - Accumulated reward: -4661
+[INFO] 2025-12-20 17:25:25,120 - main - Epoch 56/200, training on 1173 failed cases from last evaluation.
+[INFO] 2025-12-20 17:25:40,620 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:25:41,634 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:25:41,634 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:25:41,634 - verifier.verifier - Result: 1173 failed cases out of 1173 total cases.
+[INFO] 2025-12-20 17:25:41,634 - verifier.verifier - Accumulated reward: -4692
+[INFO] 2025-12-20 17:25:41,634 - main - Epoch 57/200, training on 1173 failed cases from last evaluation.
+[INFO] 2025-12-20 17:25:57,034 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:25:58,042 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:25:58,042 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:25:58,042 - verifier.verifier - Result: 1173 failed cases out of 1173 total cases.
+[INFO] 2025-12-20 17:25:58,042 - verifier.verifier - Accumulated reward: -4692
+[INFO] 2025-12-20 17:25:58,042 - main - Epoch 58/200, training on 1173 failed cases from last evaluation.
+[INFO] 2025-12-20 17:26:13,342 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:26:14,354 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:26:14,354 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:26:14,354 - verifier.verifier - Result: 1173 failed cases out of 1173 total cases.
+[INFO] 2025-12-20 17:26:14,354 - verifier.verifier - Accumulated reward: -4692
+[INFO] 2025-12-20 17:26:14,354 - main - Epoch 59/200, training on 1173 failed cases from last evaluation.
+[INFO] 2025-12-20 17:26:29,224 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:26:30,248 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:26:30,248 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:26:30,248 - verifier.verifier - Result: 1173 failed cases out of 1173 total cases.
+[INFO] 2025-12-20 17:26:30,248 - verifier.verifier - Accumulated reward: -4692
+[INFO] 2025-12-20 17:26:30,248 - main - Epoch 60/200, training on 1173 failed cases from last evaluation.
+[INFO] 2025-12-20 17:26:45,407 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:26:46,423 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:26:46,423 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:26:46,423 - verifier.verifier - Result: 1173 failed cases out of 1173 total cases.
+[INFO] 2025-12-20 17:26:46,423 - verifier.verifier - Accumulated reward: -4692
+[INFO] 2025-12-20 17:26:46,423 - main - Epoch 61/200, training on 1173 failed cases from last evaluation.
+[INFO] 2025-12-20 17:27:01,714 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:27:02,735 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:27:02,735 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:27:02,735 - verifier.verifier - Result: 1173 failed cases out of 1173 total cases.
+[INFO] 2025-12-20 17:27:02,735 - verifier.verifier - Accumulated reward: -4692
+[INFO] 2025-12-20 17:27:02,735 - main - Epoch 62/200, training on 1173 failed cases from last evaluation.
+[INFO] 2025-12-20 17:27:18,089 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:27:19,070 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:27:19,070 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:27:19,070 - verifier.verifier - Result: 264 failed cases out of 1173 total cases.
+[INFO] 2025-12-20 17:27:19,070 - verifier.verifier - Accumulated reward: -147
+[INFO] 2025-12-20 17:27:19,070 - main - Epoch 63/200, training on 264 failed cases from last evaluation.
+[INFO] 2025-12-20 17:27:34,246 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:27:34,461 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:27:34,461 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:27:34,461 - verifier.verifier - Result: 30 failed cases out of 264 total cases.
+[INFO] 2025-12-20 17:27:34,461 - verifier.verifier - Accumulated reward: 114
+[INFO] 2025-12-20 17:27:34,461 - main - Epoch 64/200, training on 30 failed cases from last evaluation.
+[INFO] 2025-12-20 17:27:50,866 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:27:50,895 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:27:50,895 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:27:50,895 - verifier.verifier - Result: 0 failed cases out of 30 total cases.
+[INFO] 2025-12-20 17:27:50,895 - verifier.verifier - Accumulated reward: 30
+[INFO] 2025-12-20 17:27:50,895 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:27:50,895 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:28:03,651 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:28:03,651 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:28:03,651 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:28:03,651 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:28:03,651 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:28:03,652 - main - Epoch 65/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:28:20,626 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:28:21,664 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:28:21,664 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:28:21,664 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:28:21,664 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:28:21,664 - main - Epoch 66/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:28:37,483 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:28:38,493 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:28:38,493 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:28:38,493 - verifier.verifier - Result: 52 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:28:38,493 - verifier.verifier - Accumulated reward: 944
+[INFO] 2025-12-20 17:28:38,493 - main - Epoch 67/200, training on 52 failed cases from last evaluation.
+[INFO] 2025-12-20 17:28:54,828 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:28:54,875 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:28:54,875 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:28:54,875 - verifier.verifier - Result: 0 failed cases out of 52 total cases.
+[INFO] 2025-12-20 17:28:54,875 - verifier.verifier - Accumulated reward: 52
+[INFO] 2025-12-20 17:28:54,875 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:28:54,875 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:29:07,588 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:29:07,588 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:29:07,588 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:29:07,588 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:29:07,588 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:29:07,588 - main - Epoch 68/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:29:23,941 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:29:24,985 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:29:24,985 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:29:24,985 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:29:24,985 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:29:24,985 - main - Epoch 69/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:29:40,821 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:29:41,859 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:29:41,859 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:29:41,859 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:29:41,859 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:29:41,860 - main - Epoch 70/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:29:57,579 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:29:58,611 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:29:58,611 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:29:58,611 - verifier.verifier - Result: 861 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:29:58,611 - verifier.verifier - Accumulated reward: -3101
+[INFO] 2025-12-20 17:29:58,611 - main - Epoch 71/200, training on 861 failed cases from last evaluation.
+[INFO] 2025-12-20 17:30:13,632 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:30:14,351 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:30:14,351 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:30:14,351 - verifier.verifier - Result: 580 failed cases out of 861 total cases.
+[INFO] 2025-12-20 17:30:14,351 - verifier.verifier - Accumulated reward: -2039
+[INFO] 2025-12-20 17:30:14,351 - main - Epoch 72/200, training on 580 failed cases from last evaluation.
+[INFO] 2025-12-20 17:30:29,135 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:30:29,606 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:30:29,606 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:30:29,606 - verifier.verifier - Result: 1 failed cases out of 580 total cases.
+[INFO] 2025-12-20 17:30:29,606 - verifier.verifier - Accumulated reward: 575
+[INFO] 2025-12-20 17:30:29,606 - main - Epoch 73/200, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-20 17:30:42,881 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:30:42,882 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:30:42,882 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:30:42,882 - verifier.verifier - Result: 0 failed cases out of 1 total cases.
+[INFO] 2025-12-20 17:30:42,882 - verifier.verifier - Accumulated reward: 1
+[INFO] 2025-12-20 17:30:42,882 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:30:42,882 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:30:55,634 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:30:55,634 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:30:55,634 - verifier.verifier - Result: 1344 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:30:55,634 - verifier.verifier - Accumulated reward: 8471
+[INFO] 2025-12-20 17:30:55,634 - main - 1344 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:30:55,634 - main - Epoch 74/200, training on 1344 failed cases from last evaluation.
+[INFO] 2025-12-20 17:31:08,964 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:31:10,111 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:31:10,111 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:31:10,111 - verifier.verifier - Result: 1256 failed cases out of 1344 total cases.
+[INFO] 2025-12-20 17:31:10,111 - verifier.verifier - Accumulated reward: -4936
+[INFO] 2025-12-20 17:31:10,112 - main - Epoch 75/200, training on 1256 failed cases from last evaluation.
+[INFO] 2025-12-20 17:31:25,205 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:31:26,293 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:31:26,293 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:31:26,293 - verifier.verifier - Result: 1204 failed cases out of 1256 total cases.
+[INFO] 2025-12-20 17:31:26,293 - verifier.verifier - Accumulated reward: -4764
+[INFO] 2025-12-20 17:31:26,293 - main - Epoch 76/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:31:41,630 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:31:42,673 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:31:42,673 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:31:42,673 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:31:42,673 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:31:42,673 - main - Epoch 77/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:31:58,165 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:31:59,216 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:31:59,216 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:31:59,216 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:31:59,216 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:31:59,216 - main - Epoch 78/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:32:14,768 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:32:15,785 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:32:15,785 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:32:15,785 - verifier.verifier - Result: 46 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:32:15,785 - verifier.verifier - Accumulated reward: 974
+[INFO] 2025-12-20 17:32:15,785 - main - Epoch 79/200, training on 46 failed cases from last evaluation.
+[INFO] 2025-12-20 17:32:30,202 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:32:30,238 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:32:30,238 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:32:30,238 - verifier.verifier - Result: 0 failed cases out of 46 total cases.
+[INFO] 2025-12-20 17:32:30,238 - verifier.verifier - Accumulated reward: 46
+[INFO] 2025-12-20 17:32:30,238 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:32:30,238 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:32:42,820 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:32:42,820 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:32:42,820 - verifier.verifier - Result: 1118 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:32:42,820 - verifier.verifier - Accumulated reward: 9601
+[INFO] 2025-12-20 17:32:42,820 - main - 1118 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:32:42,820 - main - Epoch 80/200, training on 1118 failed cases from last evaluation.
+[INFO] 2025-12-20 17:32:56,898 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:32:57,864 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:32:57,864 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:32:57,864 - verifier.verifier - Result: 1118 failed cases out of 1118 total cases.
+[INFO] 2025-12-20 17:32:57,864 - verifier.verifier - Accumulated reward: -4472
+[INFO] 2025-12-20 17:32:57,864 - main - Epoch 81/200, training on 1118 failed cases from last evaluation.
+[INFO] 2025-12-20 17:33:13,435 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:33:14,378 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:33:14,378 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:33:14,378 - verifier.verifier - Result: 101 failed cases out of 1118 total cases.
+[INFO] 2025-12-20 17:33:14,378 - verifier.verifier - Accumulated reward: 613
+[INFO] 2025-12-20 17:33:14,378 - main - Epoch 82/200, training on 101 failed cases from last evaluation.
+[INFO] 2025-12-20 17:33:30,862 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:33:30,955 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:33:30,955 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:33:30,955 - verifier.verifier - Result: 0 failed cases out of 101 total cases.
+[INFO] 2025-12-20 17:33:30,955 - verifier.verifier - Accumulated reward: 101
+[INFO] 2025-12-20 17:33:30,955 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:33:30,955 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:33:43,680 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:33:43,680 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:33:43,680 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:33:43,680 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:33:43,680 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:33:43,680 - main - Epoch 83/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:34:00,510 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:34:01,559 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:34:01,559 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:34:01,559 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:34:01,559 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:34:01,559 - main - Epoch 84/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:34:17,144 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:34:18,157 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:34:18,157 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:34:18,158 - verifier.verifier - Result: 30 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:34:18,158 - verifier.verifier - Accumulated reward: 1054
+[INFO] 2025-12-20 17:34:18,158 - main - Epoch 85/200, training on 30 failed cases from last evaluation.
+[INFO] 2025-12-20 17:34:34,646 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:34:34,675 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:34:34,675 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:34:34,675 - verifier.verifier - Result: 0 failed cases out of 30 total cases.
+[INFO] 2025-12-20 17:34:34,675 - verifier.verifier - Accumulated reward: 30
+[INFO] 2025-12-20 17:34:34,675 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:34:34,675 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:34:47,414 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:34:47,414 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:34:47,414 - verifier.verifier - Result: 1358 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:34:47,414 - verifier.verifier - Accumulated reward: 8401
+[INFO] 2025-12-20 17:34:47,414 - main - 1358 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:34:47,414 - main - Epoch 86/200, training on 1358 failed cases from last evaluation.
+[INFO] 2025-12-20 17:35:04,691 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:35:05,877 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:35:05,877 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:35:05,877 - verifier.verifier - Result: 1204 failed cases out of 1358 total cases.
+[INFO] 2025-12-20 17:35:05,877 - verifier.verifier - Accumulated reward: -4662
+[INFO] 2025-12-20 17:35:05,877 - main - Epoch 87/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:35:21,260 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:35:22,295 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:35:22,295 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:35:22,295 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:35:22,295 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:35:22,295 - main - Epoch 88/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:35:37,699 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:35:38,743 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:35:38,743 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:35:38,743 - verifier.verifier - Result: 1163 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:35:38,743 - verifier.verifier - Accumulated reward: -4611
+[INFO] 2025-12-20 17:35:38,743 - main - Epoch 89/200, training on 1163 failed cases from last evaluation.
+[INFO] 2025-12-20 17:35:54,134 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:35:55,121 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:35:55,121 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:35:55,121 - verifier.verifier - Result: 29 failed cases out of 1163 total cases.
+[INFO] 2025-12-20 17:35:55,121 - verifier.verifier - Accumulated reward: 1018
+[INFO] 2025-12-20 17:35:55,121 - main - Epoch 90/200, training on 29 failed cases from last evaluation.
+[INFO] 2025-12-20 17:36:09,005 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:36:09,027 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:36:09,027 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:36:09,027 - verifier.verifier - Result: 0 failed cases out of 29 total cases.
+[INFO] 2025-12-20 17:36:09,027 - verifier.verifier - Accumulated reward: 29
+[INFO] 2025-12-20 17:36:09,027 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:36:09,027 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:36:21,818 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:36:21,818 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:36:21,818 - verifier.verifier - Result: 1204 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:36:21,818 - verifier.verifier - Accumulated reward: 9171
+[INFO] 2025-12-20 17:36:21,818 - main - 1204 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:36:21,818 - main - Epoch 91/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:36:35,414 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:36:36,470 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:36:36,470 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:36:36,470 - verifier.verifier - Result: 1204 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:36:36,470 - verifier.verifier - Accumulated reward: -4816
+[INFO] 2025-12-20 17:36:36,470 - main - Epoch 92/200, training on 1204 failed cases from last evaluation.
+[INFO] 2025-12-20 17:36:52,015 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:36:53,058 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:36:53,059 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:36:53,059 - verifier.verifier - Result: 836 failed cases out of 1204 total cases.
+[INFO] 2025-12-20 17:36:53,059 - verifier.verifier - Accumulated reward: -2976
+[INFO] 2025-12-20 17:36:53,059 - main - Epoch 93/200, training on 836 failed cases from last evaluation.
+[INFO] 2025-12-20 17:37:08,925 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:37:09,647 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:37:09,647 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:37:09,647 - verifier.verifier - Result: 0 failed cases out of 836 total cases.
+[INFO] 2025-12-20 17:37:09,647 - verifier.verifier - Accumulated reward: 836
+[INFO] 2025-12-20 17:37:09,647 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:37:09,647 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:37:22,527 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:37:22,527 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:37:22,527 - verifier.verifier - Result: 1692 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:37:22,527 - verifier.verifier - Accumulated reward: 6731
+[INFO] 2025-12-20 17:37:22,527 - main - 1692 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:37:22,527 - main - Epoch 94/200, training on 1692 failed cases from last evaluation.
+[INFO] 2025-12-20 17:37:38,316 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:37:39,778 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:37:39,778 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:37:39,778 - verifier.verifier - Result: 1210 failed cases out of 1692 total cases.
+[INFO] 2025-12-20 17:37:39,778 - verifier.verifier - Accumulated reward: -4358
+[INFO] 2025-12-20 17:37:39,778 - main - Epoch 95/200, training on 1210 failed cases from last evaluation.
+[INFO] 2025-12-20 17:37:55,641 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:37:56,719 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:37:56,719 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:37:56,719 - verifier.verifier - Result: 30 failed cases out of 1210 total cases.
+[INFO] 2025-12-20 17:37:56,719 - verifier.verifier - Accumulated reward: 1060
+[INFO] 2025-12-20 17:37:56,719 - main - Epoch 96/200, training on 30 failed cases from last evaluation.
+[INFO] 2025-12-20 17:38:12,994 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:38:13,024 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:38:13,024 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:38:13,024 - verifier.verifier - Result: 0 failed cases out of 30 total cases.
+[INFO] 2025-12-20 17:38:13,024 - verifier.verifier - Accumulated reward: 30
+[INFO] 2025-12-20 17:38:13,024 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:38:13,024 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:38:25,840 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:38:25,840 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:38:25,840 - verifier.verifier - Result: 245 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:38:25,840 - verifier.verifier - Accumulated reward: 13966
+[INFO] 2025-12-20 17:38:25,840 - main - 245 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:38:25,840 - main - Epoch 97/200, training on 245 failed cases from last evaluation.
+[INFO] 2025-12-20 17:38:43,569 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:38:43,797 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:38:43,798 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:38:43,798 - verifier.verifier - Result: 0 failed cases out of 245 total cases.
+[INFO] 2025-12-20 17:38:43,798 - verifier.verifier - Accumulated reward: 245
+[INFO] 2025-12-20 17:38:43,798 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:38:43,798 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:38:56,664 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:38:56,664 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:38:56,664 - verifier.verifier - Result: 1297 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:38:56,664 - verifier.verifier - Accumulated reward: 8706
+[INFO] 2025-12-20 17:38:56,664 - main - 1297 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:38:56,664 - main - Epoch 98/200, training on 1297 failed cases from last evaluation.
+[INFO] 2025-12-20 17:39:13,489 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:39:14,596 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:39:14,596 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:39:14,596 - verifier.verifier - Result: 1 failed cases out of 1297 total cases.
+[INFO] 2025-12-20 17:39:14,596 - verifier.verifier - Accumulated reward: 1292
+[INFO] 2025-12-20 17:39:14,596 - main - Epoch 99/200, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-20 17:39:28,809 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:39:28,810 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:39:28,810 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:39:28,810 - verifier.verifier - Result: 0 failed cases out of 1 total cases.
+[INFO] 2025-12-20 17:39:28,810 - verifier.verifier - Accumulated reward: 1
+[INFO] 2025-12-20 17:39:28,810 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:39:28,810 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:39:41,614 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:39:41,614 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:39:41,614 - verifier.verifier - Result: 29 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:39:41,614 - verifier.verifier - Accumulated reward: 15046
+[INFO] 2025-12-20 17:39:41,615 - main - 29 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:39:41,615 - main - Epoch 100/200, training on 29 failed cases from last evaluation.
+[INFO] 2025-12-20 17:39:53,541 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:39:53,563 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:39:53,563 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:39:53,563 - verifier.verifier - Result: 1 failed cases out of 29 total cases.
+[INFO] 2025-12-20 17:39:53,563 - verifier.verifier - Accumulated reward: 24
+[INFO] 2025-12-20 17:39:53,563 - main - Epoch 101/200, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-20 17:40:05,594 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:40:05,595 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:40:05,595 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:40:05,595 - verifier.verifier - Result: 0 failed cases out of 1 total cases.
+[INFO] 2025-12-20 17:40:05,595 - verifier.verifier - Accumulated reward: 1
+[INFO] 2025-12-20 17:40:05,595 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:40:05,595 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:40:18,459 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:40:18,460 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:40:18,460 - verifier.verifier - Result: 464 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:40:18,460 - verifier.verifier - Accumulated reward: 12871
+[INFO] 2025-12-20 17:40:18,460 - main - 464 failed cases remain after final evaluation.
+[INFO] 2025-12-20 17:40:18,460 - main - Epoch 102/200, training on 464 failed cases from last evaluation.
+[INFO] 2025-12-20 17:40:32,563 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-20 17:40:32,970 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:40:32,970 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:40:32,970 - verifier.verifier - Result: 0 failed cases out of 464 total cases.
+[INFO] 2025-12-20 17:40:32,970 - verifier.verifier - Accumulated reward: 464
+[INFO] 2025-12-20 17:40:32,970 - main - All failed cases passed verification!
+[INFO] 2025-12-20 17:40:32,970 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-20 17:40:45,782 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-20 17:40:45,782 - verifier.verifier - Setting: players=4, rounds=4
+[INFO] 2025-12-20 17:40:45,782 - verifier.verifier - Result: 0 failed cases out of 15191 total cases.
+[INFO] 2025-12-20 17:40:45,782 - verifier.verifier - Accumulated reward: 15191
+[INFO] 2025-12-20 17:40:45,782 - main - All cases passed verification! Training successful.
+[INFO] 2025-12-20 17:40:45,782 - main - Saving trained model to results/temp/dqn_st_4_4.pth...
+[INFO] 2025-12-20 17:40:45,785 - main - Model saved successfully.

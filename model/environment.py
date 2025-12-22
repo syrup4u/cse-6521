@@ -25,7 +25,7 @@ class Environment:
         Returns the current global state as a tensor.
         - Tensor shape: (num_state_machines, num_state_machines+1),
         where the first dimension can be seen as the batch size (N),
-        the second dimension represents the sequence set (N+1), including round number
+        the second dimension represents the sequence set (N+1), including round number (or is_last_round flag)
         """
         msg_tensor = torch.tensor(
             [[msg.value for msg in msgs] for msgs in msgs_list],

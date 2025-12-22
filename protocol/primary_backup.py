@@ -4,7 +4,7 @@ import config
 
 import logging
 
-PROTOCOL_NAME = config.SUPPORT_PROTOCOLS[1]
+PROTOCOL_NAME = config.SUPPORT_PROTOCOLS[2]
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -14,40 +14,40 @@ class State(AbstractState):
     Enumeration representing the possible states in an atomic commit protocol.
     """
 
-    Abort = 0
-    Commit = 1
+    Zero = 0
+    One = 1
     DoNothing_Zero = 2
     DoNothing_One = 3
     # below are not reachable during transition
     Lost = 4 # to represent crashed node
-    LocalAbort = 5
-    LocalCommit = 6
+    LocalZero = 5
+    LocalOne = 6
 
     @property
     def meaning(self) -> str:
         if self is State.Abort:
-            return "Final Abort"
+            return "Final Zero"
         if self is State.Commit:
-            return "Final Commit"
+            return "Final One"
         if self is State.DoNothing_Zero:
-            return "May Abort"
+            return "Intermediate state: Likely Zero"
         if self is State.DoNothing_One:
-            return "Likely Commit"
+            return "Intermediate state: Likely One"
         if self is State.Lost:
             return "Lost"
         if self is State.LocalAbort:
-            return "Local Abort"
+            return "Local Zero"
         if self is State.LocalCommit:
-            return "Local Commit"
+            return "Local One"
         return "Unknown state"
     
     @property
     def is_initial(self) -> bool:
-        return self in {State.LocalAbort, State.LocalCommit}
+        return self in {State.LocalZero, State.LocalOne}
     
     @property
     def is_final(self) -> bool:
-        return self in {State.Abort, State.Commit}
+        return self in {State.Zero, State.One}
 
     @classmethod
     def get_lost_state(cls) -> 'State':
@@ -55,16 +55,15 @@ class State(AbstractState):
     
     @classmethod
     def get_initial_states(cls) -> list['State']:
-        return [State.LocalAbort, State.LocalCommit]
+        return [State.LocalZero, State.LocalOne]
 
 
-class AtomicCommitProtocol:
+class PrimaryBackupProtocol:
     """
     Atomic Commit Protocol
     """
 
     REWARD = {
-        "bonus": 2,
         "good": 1,
         "bad": -4
     }
@@ -89,42 +88,27 @@ class AtomicCommitProtocol:
         # Rule 2: only make decision at the end
         for i, sm in enumerate(global_state):
             all_intermediate_state = sm.history_state[:-1]
-            if State.Abort in all_intermediate_state or State.Commit in all_intermediate_state:
+            if State.Zero in all_intermediate_state or State.One in all_intermediate_state:
                 logger.debug(f"Node {i} made a final decision before the end.")
                 logger.debug(f"Node {i} history states: {all_intermediate_state}")
                 return cls.REWARD["bad"]
         
         # Rule 3: No decision contradicts any other decision
-        if State.Abort in final_states and State.Commit in final_states:
+        if State.Zero in final_states and State.One in final_states:
             logger.debug("Conflicting final decisions detected: both Abort and Commit present.")
             return cls.REWARD["bad"]
 
-        # Rule 4: If all initial states are LocalCommit and there is no crash, then all final states must be Commit
+        # Rule 4: Final decision must have corresponding initial states
         common_final_state = final_states[0]
-        all_initial_commit = all(sm.get_initial_state() is State.LocalCommit for sm in global_state)
-        no_crash = all(not sm.crashed for sm in global_state)
-        if all_initial_commit and no_crash:
-            # if any(sm.get_final_state() is not State.Commit for sm in global_state):
-            if common_final_state is not State.Commit:
-                logger.debug("All initial states are LocalCommit with no crashes, but not all final states are Commit.")
-                return cls.REWARD["bad"]
-            
-        # Rule 5: If any initial state is LocalAbort, then all final states must be Abort
-        if any(sm.get_initial_state() is State.LocalAbort for sm in global_state):
-            # if any(sm.get_final_state() is not State.Abort for sm in reach_final_nodes):
-            if common_final_state is not State.Abort:
-                logger.debug("At least one initial state is LocalAbort, but not all valid final states are Abort.")
-                return cls.REWARD["bad"]
+        all_initial = sum(sm.get_initial_state().value for sm in global_state)
+        all_initial_zero = all_initial == State.LocalZero.value * len(global_state)
+        all_initial_one = all_initial == State.LocalOne.value * len(global_state)
+        if all_initial_zero and common_final_state == State.One:
+            logger.debug("All initial states are LocalZero but final decision is One.")
+            return cls.REWARD["bad"]
+        if all_initial_one and common_final_state == State.Zero:
+            logger.debug("All initial states are LocalOne but final decision is Zero.")
+            return cls.REWARD["bad"]
 
         # Acceptable cases
-        """
-        Encourage Commit if possible for liveness, but may lead to aggressive behavior 
-        which is bad for generalization.
-        """
-        # if common_final_state is State.Commit:
-        #     logger.info("Bonus for:")
-        #     for sm in global_state:
-        #         logger.info(sm.history_state)
-        #     return cls.REWARD["bonus"]
-
         return cls.REWARD["good"]

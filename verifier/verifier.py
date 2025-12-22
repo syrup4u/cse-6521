@@ -1,5 +1,6 @@
 from simulator.state_machine import StateMachine, StateMachineManager
 from simulator.generator import get_sender_idx_from_input
+from lib.utils import get_round_info
 
 from typing import Protocol
 import logging
@@ -22,7 +23,7 @@ def evaluate_model(args, smm: StateMachineManager, protocol_related: dict, get_a
     failed_cases = []
     accumulate_reward = 0
     for input_pattern in target_inputs:
-        logger.debug(f"Evaluating input pattern: {input_pattern}")
+        # logger.debug(f"Evaluating input pattern: {input_pattern}")
 
         # Init state
         smm.initialize(args.protocol, input_pattern.initial_states)
@@ -41,17 +42,17 @@ def evaluate_model(args, smm: StateMachineManager, protocol_related: dict, get_a
                     sm.set_crashed()
                 if senders_this_round[node_idx]:
                     msgs = smm.apply_mask(global_state_this_round, senders_this_round[node_idx])
-                    logger.debug(f"Node {node_idx} received messages: {msgs}")
+                    # logger.debug(f"Node {node_idx} received messages: {msgs}")
                     msgs_list.append(msgs)
                     active_idx.append(node_idx)
                 else:
                     sm.transition(protocol_related["state"].get_lost_state(), None)
 
-            actions = get_actions(msgs_list, round_idx)
+            actions = get_actions(msgs_list, get_round_info(round_idx, args.rounds))
             for i, node_idx in enumerate(active_idx):
                 smm.state_machines[node_idx].transition(actions[i], msgs_list[i])
 
-        logger.debug(f"Final global state: {[sm.get_final_state() for sm in smm.state_machines]}")
+        # logger.debug(f"Final global state: {[sm.get_final_state() for sm in smm.state_machines]}")
 
         # Perform verification
         if not verify(protocol_related["protocol_class"], smm.state_machines):

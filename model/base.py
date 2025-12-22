@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from lib.set_transformer.modules import ISAB, PMA, SAB
 
 class MLP(nn.Module):
-    def __init__(self, input_size, hidden_sizes, output_size):
+    def __init__(self, input_size, hidden_sizes, output_size, encode_round_number=False):
         """
         - input_size: Input feature size
         - hidden_sizes: List of hidden layer sizes
@@ -24,7 +24,6 @@ class MLP(nn.Module):
             in_size = hidden_size
 
         layers.append(nn.Linear(in_size, output_size))
-
         self.network = nn.Sequential(*layers)
 
     def forward(self, x):
@@ -61,6 +60,7 @@ class SetTransformer(nn.Module):
         num_states=4,
         num_rounds=1,
         ln=False,
+        encode_round_number=False,
     ):
         """
         - num_inds: Number of inducing points (learnable points to condense information from the set)
@@ -86,7 +86,10 @@ class SetTransformer(nn.Module):
             nn.Linear(dim_hidden, dim_output),
         )
 
-        self.tok_emb = nn.Embedding(num_states + num_rounds, dim_input) # B x (N+1) -> x D
+        if encode_round_number:
+            self.tok_emb = nn.Embedding(num_states + num_rounds, dim_input) # B x (N+1) -> x D
+        else: # only encode states + is_last_round
+            self.tok_emb = nn.Embedding(num_states + 2, dim_input) # B x (N+1) -> x D
 
         # Mark: do we need to tie the embedding weights with the output layer weights? No.
         # self.dec[-1].weight = self.tok_emb.weight
@@ -109,11 +112,11 @@ class PolicyConstraint:
     @classmethod
     def get_action(cls, logits: torch.Tensor, states: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """
-        - states: (B, N+1) tensor, where B is the batch size or number of state machines
+        - states: (B, N+1) tensor, where B is the number of state machines, N+1 is the length of the state sequence
         - logits: (B, num_actions) tensor
+
+        Note that the states are not yet encoded, they are raw state indices.
         """
-        # states = states.reshape((states.shape[0], -1))
-        # logits = logits.reshape((-1, logits.shape[-1]))
 
         # get unique states and their logits
         sorted_states, _ = torch.sort(states, dim=-1)
@@ -138,8 +141,10 @@ class PolicyConstraint:
     @classmethod
     def force_same_action(cls, actions: torch.Tensor, states: torch.Tensor) -> torch.Tensor:
         """
-        - states: (B, ...) tensor, where B is the number of state machines
-        - actions: (B,) tensor
+        - states: (B, N+1) tensor, where B is the number of state machines, N+1 is the length of the state sequence
+        - logits: (B, num_actions) tensor
+
+        Note that the states are not yet encoded, they are raw state indices.
         """
         sorted_states, _ = torch.sort(states, dim=-1)
         _, inverse_indices, counts = torch.unique(sorted_states, dim=0, return_inverse=True, return_counts=True)

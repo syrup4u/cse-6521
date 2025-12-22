@@ -1,13 +1,11 @@
 from .base import *
 import config
 
-import numpy as np
 import torch
 from torch import nn
 from torch import optim
-from torch.distributions import Categorical
 import logging
-from typing import Optional, Tuple
+from typing import Optional
 import collections
 import random
 
@@ -66,13 +64,14 @@ class DeepQNetwork(nn.Module):
         - returns: (action tensor of shape (B,), Q-value tensor of shape (B,))
         - B is the number of state machines or stacked states
 
-        TODO: v1: implement enforcement for consistent action among agents with same state.
+        v1: implement enforcement for consistent action among agents with same state.
         """
-        if random.random() < self.eps_cfg["current"]:
-            # Explore
+        if random.random() < self.eps_cfg["current"]: # Explore
             action = torch.randint(0, self.n_actions, (state.shape[0],), device=state.device)
         q_values = self.q_net(self.input_encoder(state)) # (B, n_actions)
         action = torch.argmax(q_values, dim=-1)
+        if self.constraint is not None:
+            action = self.constraint(action, state)
         # q_value = q_values.gather(1, action.unsqueeze(-1)).squeeze(-1)
         return action, None # (B,), (B,)
 
@@ -107,10 +106,11 @@ class DeepQNetwork(nn.Module):
 
         # Compute target Q
         with torch.no_grad():
-            next_q_online = self.q_net(self.input_encoder(next_states))  # (B, n_actions)
-            next_actions = torch.argmax(next_q_online, dim=-1)  # (B,)
-            next_q_target = self.target_net(self.input_encoder(next_states)).gather(1, next_actions.unsqueeze(-1)).squeeze(-1)  # (B,)
-            q_values_target = rewards + (1 - dones.float()) * next_q_target  # (B,)
+            # next_q_online = self.q_net(self.input_encoder(next_states))  # (B, n_actions)
+            # next_actions = torch.argmax(next_q_online, dim=-1)  # (B,)
+            # next_q_target = self.target_net(self.input_encoder(next_states)).gather(1, next_actions.unsqueeze(-1)).squeeze(-1)  # (B,)
+            # q_values_target = rewards + (1 - dones.float()) * next_q_target  # (B,)
+            q_values_target = rewards # Only related to the final reward (degrade to Monte Carlo)
         
         # Compute loss
         loss = self.loss_fn(q_values, q_values_target)
@@ -168,7 +168,7 @@ def build_mlp_op_model(
     target_net = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
     model = DeepQNetwork(output_size, q_net, target_net)
     model.input_encoder = q_net.encode_sequence
-    model.constraint = PolicyConstraint.get_action
+    model.constraint = PolicyConstraint.force_same_action
     return model
 
 def build_set_transformer_model(
@@ -185,7 +185,8 @@ def build_set_transformer_model(
         num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
         num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
         num_states=num_states,
-        num_rounds=num_rounds
+        num_rounds=num_rounds,
+        encode_round_number=config.ENCODE_ROUND_NUMBER
     ).to(device)
     target_net = SetTransformer(
         dim_input=config.SET_TRANSFORMER_CONFIG["dim_input"],
@@ -195,11 +196,12 @@ def build_set_transformer_model(
         num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
         num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
         num_states=num_states,
-        num_rounds=num_rounds
+        num_rounds=num_rounds,
+        encode_round_number=config.ENCODE_ROUND_NUMBER
     ).to(device)
     model = DeepQNetwork(dim_output, q_net, target_net)
     model.input_encoder = q_net.tok_emb
-    model.constraint = PolicyConstraint.get_action
+    model.constraint = PolicyConstraint.force_same_action
     return model
 
 def train_model(model: DeepQNetwork, trajectories: dict, rewards: list, others=None):
@@ -251,8 +253,6 @@ def update_trajectories(
         trajectories["one_episode"].setdefault("actions", []).append(action)
         trajectories["one_episode"].setdefault("done", []).append(torch.tensor(others[1], device=state.device)) # done flag
     else:
-        # states_v = torch.stack(trajectories["one_episode"]["states"], dim=0)
-        # actions_v = torch.stack(trajectories["one_episode"]["actions"], dim=0)
         trajectories.setdefault("states", []).append(trajectories["one_episode"]["states"]) # add B dimension
         trajectories.setdefault("actions", []).append(trajectories["one_episode"]["actions"])
         trajectories.setdefault("done", []).append(trajectories["one_episode"]["done"])

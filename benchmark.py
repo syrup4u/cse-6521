@@ -8,7 +8,7 @@ from protocol.atomic_commit import AtomicCommitProtocol, State as AtomicCommitSt
 from simulator.generator import ReadableInputGenerator, get_sender_idx_from_input
 from model.environment import Environment
 from simulator.state_machine import StateMachineManager
-from lib.sample import sample_from_two_lists
+from lib.utils import sample_from_two_lists
 from verifier import verifier
 import config
 
@@ -186,12 +186,19 @@ def train_one_case(protocol, rounds, algo, protocol_related, smm: StateMachineMa
             state_tensor = env.get_state_all(msgs_list, round_idx)
             actions, extra = model.get_action(state_tensor)
             next_states = env.step_all(actions)
+            if round_idx < rounds - 1:
+                done = [False] * len(active_idx)
+                crashed_next_round = input_pattern.crash_pattern[round_idx + 1]
+                for crashed_node in crashed_next_round:
+                    done[active_idx.index(crashed_node)] = True
+            else:
+                done = [True] * len(active_idx)
 
             # Transition each state machine
             for i, node_idx in enumerate(active_idx):
                 smm.state_machines[node_idx].transition(next_states[i], msgs_list[i])
 
-            algo.update_trajectories(trajectories, state_tensor, actions, extra)
+            algo.update_trajectories(trajectories, state_tensor, actions, [extra, done])
 
         # Compute reward
         reward = protocol_related["protocol_class"].get_reward(smm.state_machines)
@@ -199,7 +206,7 @@ def train_one_case(protocol, rounds, algo, protocol_related, smm: StateMachineMa
         reward_list.append(reward)
 
     # Backpropagation
-    algo.train_model(model, trajectories=trajectories, rewards=reward_list, others={"ppo_epochs": 10})
+    algo.train_model(model, trajectories=trajectories, rewards=reward_list, others={"ppo_epochs": 10, "episodes": repetition})
 
 
 def run_benchmark_simple_majority(file_path: str = None):
@@ -260,9 +267,11 @@ def run_benchmark_simple_majority(file_path: str = None):
 def run_benchmark_atomic_commit(file_path: str = None):
     # Benchmark configuration
     repeat_times = 10
-    nodes = [3, 4]
+    # nodes = [3, 4]
+    nodes = [3]
     rounds = [2]
-    model_and_invariance = [("mlp", 0), ("mlp_op", 3), ("set_transformer", 3)]
+    # model_and_invariance = [("mlp", 0), ("mlp_op", 3), ("set_transformer", 3)]
+    model_and_invariance = [("set_transformer", 3)]
     training_params = {
         "epochs": 100,
         "samples": 100,
@@ -341,13 +350,30 @@ def run_benchmark_dataset():
             len(rig.all_inputs), protocol, p, r, inv
         ))
 
+def run_benchmark_dataset_custom():
+    protocol = "atomic_commit"
+    players = [7]
+    rounds = [2]
+    invariance = [0, 3]
+    for p, r, inv in product(players, rounds, invariance):
+        rig = initialize_input_generator(p, r, PROTOCOL_TABLE[protocol])
+        if inv == 0:
+            rig.generate_all_inputs()
+        else:
+            rig.generate_filtered_inputs(inv)
+        logger.info("Generated {} inputs for protocol {}, players {}, rounds {}, invariance {}".format(
+            len(rig.all_inputs), protocol, p, r, inv
+        ))
+
 
 if __name__ == "__main__":
     import sys
-    option = int(sys.argv[1]) if len(sys.argv) > 1 else 3
+    option = int(sys.argv[1]) if len(sys.argv) > 1 else 4
     if option == 1:
         run_benchmark_simple_majority(file_path="benchmark_sm.pkl")
     elif option == 2:
         run_benchmark_atomic_commit(file_path="benchmark_ac.pkl")
     elif option == 3:
         run_benchmark_dataset()
+    elif option == 4:
+        run_benchmark_dataset_custom()

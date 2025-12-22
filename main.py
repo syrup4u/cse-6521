@@ -1,13 +1,15 @@
 import config
 from groundtruth.simple_majority_human import SimpleMajorityHuman
 from groundtruth.atomic_commit_human import AtomicCommitHuman
+from groundtruth.primary_backup_human import PrimaryBackupHuman
 from simulator.generator import ReadableInputGenerator, get_sender_idx_from_input
 from simulator.state_machine import StateMachineManager
 from protocol.simple_majority import SimpleMajorityProtocol, State as SimpleMajorityState
 from protocol.atomic_commit import AtomicCommitProtocol, State as AtomicCommitState
+from protocol.primary_backup import PrimaryBackupProtocol, State as PrimaryBackupState
 import verifier.verifier as verifier
 from model.environment import Environment
-from lib.sample import sample_from_two_lists
+from lib.utils import sample_from_two_lists, get_round_info
 
 import argparse
 import logging
@@ -32,6 +34,13 @@ PROTOCOL_TABLE = {
         "last_round_work": True,
         "state": AtomicCommitState,
         "state_offset": -3
+    },
+    "primary_backup": {
+        "protocol_class": PrimaryBackupProtocol,
+        "groundtruth_class": PrimaryBackupHuman,
+        "last_round_work": True,
+        "state": PrimaryBackupState,
+        "state_offset": -3
     }
 }
 
@@ -43,10 +52,10 @@ def parse_args():
     parser.add_argument("--groundtruth", "-gt", action='store_true', help="use ground truth (human designed) for evaluation")
     parser.add_argument("--evaluate", action='store_true', help="evaluate the protocol")
     parser.add_argument("--log_level", type=str, default="info", help="logging level", choices=["debug", "info", "warning", "error", "critical"])
-    parser.add_argument("--model", type=str, default="mlp", help="path to the trained model", choices=["mlp", "mlp_op", "set_transformer"])
+    parser.add_argument("--model", type=str, default="mlp", help="path to the trained model", choices=config.SUPPORT_MODELS)
     parser.add_argument("--model_load", type=str, default="", help="load path to the trained model file")
     parser.add_argument("--model_save", type=str, default="", help="save path of the trained model file")
-    parser.add_argument("--algorithm", type=str, default="a2c", help="training algorithm", choices=["a2c", "dqn"])
+    parser.add_argument("--algorithm", type=str, default="a2c", help="training algorithm", choices=config.SUPPORT_ALGORITHMS)
     parser.add_argument("--device", type=str, default="cpu", help="device to use for training/evaluation", choices=["cpu", "cuda", "mps"])
     parser.add_argument("--epochs", type=int, default=100, help="number of training epochs as a limit")
     parser.add_argument("--extend_players", "-ep", type=int, default=0, help="number of extra players to extend")
@@ -82,8 +91,12 @@ def initialize_model(args, protocol_related: dict):
             device = args.device
         )
     elif args.model == "mlp_op":
+        if config.ENCODE_ROUND_NUMBER:
+            one_hot_length = len(protocol_related["state"]) + args.rounds
+        else: # Only encode states + is_last_round
+            one_hot_length = len(protocol_related["state"]) + 2
         model = algo.build_mlp_op_model(
-            one_hot_length = len(protocol_related["state"]) + args.rounds,
+            one_hot_length = one_hot_length,
             output_size = len(protocol_related["state"]) - abs(protocol_related["state_offset"]),
             device = args.device
         )
@@ -241,7 +254,7 @@ def train_one_case(args, algo, protocol_related, smm: StateMachineManager, env: 
                     sm.transition(protocol_related["state"].get_lost_state(), None)
 
             # Rollout
-            state_tensor = env.get_state_all(msgs_list, round_idx)
+            state_tensor = env.get_state_all(msgs_list, get_round_info(round_idx, args.rounds))
             actions, extra = model.get_action(state_tensor)
             next_states = env.step_all(actions)
             if round_idx < args.rounds - 1:
@@ -266,7 +279,7 @@ def train_one_case(args, algo, protocol_related, smm: StateMachineManager, env: 
         reward_list.append(reward)
 
     # Backpropagation
-    algo.train_model(model, trajectories=trajectories, rewards=reward_list, others={"ppo_epochs": 10, "episodes": repetition})
+    algo.train_model(model, trajectories=trajectories, rewards=reward_list, others={"episodes": repetition})
 
 
 def main():
