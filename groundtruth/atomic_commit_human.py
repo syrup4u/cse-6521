@@ -30,8 +30,13 @@ class AtomicCommitHuman:
         if any(msg.is_final for msg in messages):
             raise ValueError("Should not have final states in the middle of the protocol.")
 
-        should_abort = any(msg is State.LocalAbort or msg is State.DoNothing_Zero for msg in messages)
         first_round = any(msg.is_initial for msg in messages)
+        # implement 1: any local abort should lead to global abort, any intermediate zero should abort (passive)
+        # should_abort = any(msg is State.LocalAbort or msg is State.DoNothing_Zero for msg in messages)
+        # implement 2: any local abort should lead to global abort, any intermediate one should commit (active)
+        should_abort = any(msg is State.LocalAbort for msg in messages) \
+            or (not first_round and not any(msg is State.DoNothing_One for msg in messages))
+
         if not should_abort and first_round:
             should_abort = any(msg is State.Lost for msg in messages)
         if should_abort:

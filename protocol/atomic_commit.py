@@ -57,6 +57,10 @@ class State(AbstractState):
     def get_initial_states(cls) -> list['State']:
         return [State.LocalAbort, State.LocalCommit]
 
+    @classmethod
+    def get_final_states(cls) -> list['State']:
+        return [State.Abort, State.Commit]
+
 
 class AtomicCommitProtocol:
     """

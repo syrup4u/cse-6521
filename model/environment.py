@@ -36,24 +36,46 @@ class Environment:
         state_tensor = torch.cat([round_tensor, msg_tensor], dim=-1) # (N, N+1)
         return state_tensor
 
-    def get_state_individual(self, msgs: list[AbstractState], round: int) -> torch.Tensor:
-        """
-        Returns the current state of the one state machine as a tensor.
-        - Tensor shape: (num_state_machines+1,),
-        refer to get_state_all().
-        """
-        pass
-
     def step_all(self, actions: torch.Tensor) -> list[AbstractState]:
         """
         actions: (num_state_machines,) tensor
         """
         next_states = []
+        actions = actions + self.state_offset
         for action in actions:
-            state_value = action.item() + self.state_offset
-            next_state = self.state_class(state_value)
+            next_state = self.state_class(action.item())
             next_states.append(next_state)
         return next_states
 
-    def step_one(self, action: torch.Tensor) -> AbstractState:
-        pass
+
+class L2Transformer:
+    """
+    Transform basic types to tensor and vice versa for L2.
+    Map L2's output back to true final states.
+    """
+
+    def __init__(self, state_class: type[AbstractState], offset: int = 0, device='cpu'):
+        self.state_class = state_class
+        self.state_offset = offset
+        self.device = device
+
+    def get_state_all(self, msgs_list: list[list[AbstractState]]) -> torch.Tensor:
+        """
+        No round encoding version of get_state_all.
+
+        msgs_list: shape len(subsets) * subset_size x subset_size
+        """
+        msg_tensor = torch.tensor(
+            [[msg.value for msg in msgs] for msgs in msgs_list],
+            dtype=torch.long,
+            device=self.device
+        ) # (N, N)
+        return msg_tensor
+
+    def step_all(self, actions: torch.Tensor) -> list[AbstractState]:
+        next_states = []
+        actions = actions + self.state_offset
+        for action in actions:
+            next_state = self.state_class(action.item())
+            next_states.append(next_state)
+        return next_states

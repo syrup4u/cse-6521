@@ -1,15 +1,10 @@
 import config
-from groundtruth.simple_majority_human import SimpleMajorityHuman
-from groundtruth.atomic_commit_human import AtomicCommitHuman
-from groundtruth.primary_backup_human import PrimaryBackupHuman
-from simulator.generator import ReadableInputGenerator, get_sender_idx_from_input
+from simulator.generator import get_sender_idx_from_input
 from simulator.state_machine import StateMachineManager
-from protocol.simple_majority import SimpleMajorityProtocol, State as SimpleMajorityState
-from protocol.atomic_commit import AtomicCommitProtocol, State as AtomicCommitState
-from protocol.primary_backup import PrimaryBackupProtocol, State as PrimaryBackupState
 import verifier.verifier as verifier
 from model.environment import Environment
 from lib.utils import sample_from_two_lists, get_round_info
+import common
 
 import argparse
 import logging
@@ -18,69 +13,34 @@ import torch
 
 # Set up logging configuration
 logging.basicConfig(format='[%(levelname)s] %(asctime)s - %(name)s - %(message)s', level=logging.INFO)
-
 logger = logging.getLogger("main")
-PROTOCOL_TABLE = {
-    "simple_majority": {
-        "protocol_class": SimpleMajorityProtocol,
-        "groundtruth_class": SimpleMajorityHuman,
-        "last_round_work": False,
-        "state": SimpleMajorityState,
-        "state_offset": 2 # offset for action space alignment (positive: 0+offset, negative: length-offset)
-    },
-    "atomic_commit": {
-        "protocol_class": AtomicCommitProtocol,
-        "groundtruth_class": AtomicCommitHuman,
-        "last_round_work": True,
-        "state": AtomicCommitState,
-        "state_offset": -3
-    },
-    "primary_backup": {
-        "protocol_class": PrimaryBackupProtocol,
-        "groundtruth_class": PrimaryBackupHuman,
-        "last_round_work": True,
-        "state": PrimaryBackupState,
-        "state_offset": -3
-    }
-}
 
 def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--players", "-p", type=int, required=True, help="number of players")
-    parser.add_argument("--rounds", "-r", type=int, required=True, help="number of rounds")
-    parser.add_argument("--protocol", "-P", type=str, required=True, help="protocol type", choices=config.SUPPORT_PROTOCOLS)
-    parser.add_argument("--groundtruth", "-gt", action='store_true', help="use ground truth (human designed) for evaluation")
-    parser.add_argument("--evaluate", action='store_true', help="evaluate the protocol")
-    parser.add_argument("--log_level", type=str, default="info", help="logging level", choices=["debug", "info", "warning", "error", "critical"])
-    parser.add_argument("--model", type=str, default="mlp", help="path to the trained model", choices=config.SUPPORT_MODELS)
-    parser.add_argument("--model_load", type=str, default="", help="load path to the trained model file")
-    parser.add_argument("--model_save", type=str, default="", help="save path of the trained model file")
-    parser.add_argument("--algorithm", type=str, default="a2c", help="training algorithm", choices=config.SUPPORT_ALGORITHMS)
-    parser.add_argument("--device", type=str, default="cpu", help="device to use for training/evaluation", choices=["cpu", "cuda", "mps"])
-    parser.add_argument("--epochs", type=int, default=100, help="number of training epochs as a limit")
-    parser.add_argument("--extend_players", "-ep", type=int, default=0, help="number of extra players to extend")
+    parser = argparse.ArgumentParser(prog="Learn Protocols")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    parent_parser = argparse.ArgumentParser(add_help=False)
+    parent_parser.add_argument("--players", "-p", type=int, required=True, help="number of players")
+    parent_parser.add_argument("--rounds", "-r", type=int, required=True, help="number of rounds")
+    parent_parser.add_argument("--protocol", "-P", type=str, required=True, help="protocol type", choices=config.SUPPORT_PROTOCOLS)
+    parent_parser.add_argument("--log_level", type=str, default="info", help="logging level", choices=["debug", "info", "warning", "error", "critical"])
+    parent_parser.add_argument("--model", type=str, default="mlp", help="underlying neural network", choices=config.SUPPORT_MODELS)
+    parent_parser.add_argument("--model_load", type=str, default="", help="load path to the trained model file")
+    parent_parser.add_argument("--algorithm", type=str, default="a2c", help="training algorithm", choices=config.SUPPORT_ALGORITHMS)
+    parent_parser.add_argument("--device", type=str, default="cpu", help="device to use for training/evaluation", choices=["cpu", "cuda", "mps"])
+
+    parser_train = subparsers.add_parser("train", help="train the model to learn a protocol", parents=[parent_parser])
+    parser_train.add_argument("--model_save", type=str, default="", help="save path of the trained model file")
+    parser_train.add_argument("--epochs", type=int, default=100, help="number of training epochs as a limit") # TODO: move to config
+    parser_train.set_defaults(func=train)
+
+    parser_evaluate = subparsers.add_parser("evaluate", help="evaluate the trained model on a protocol", parents=[parent_parser])
+    parser_evaluate.add_argument("--groundtruth", "-gt", action='store_true', help="use ground truth (human designed) for evaluation")
+    parser_evaluate.add_argument("--invariance", type=int, default=0, help="input invariance level for filtering input patterns (0-3)")
+    parser_evaluate.set_defaults(func=evaluate)
+
     args = parser.parse_args()
     return args
-
-def enable_extend_players(args, is_training: bool):
-    """ Determine whether to extend the number of players based on the arguments and mode."""
-    if args.extend_players > 0:
-        if is_training:
-            if args.model_load:
-                return args.players + args.extend_players
-        else:
-            return args.players + args.extend_players
-    return args.players
-
-def initialize_input_generator(players, rounds, protocol_related: dict) -> ReadableInputGenerator:
-    logger.info("Generating all possible input patterns...")
-    rig = ReadableInputGenerator(
-        num_nodes=players,
-        rounds=rounds, 
-        legal_initial_state=protocol_related["state"].get_initial_states(), 
-        last_round_work=protocol_related["last_round_work"]
-    )
-    return rig
 
 def initialize_model(args, protocol_related: dict):
     algo = importlib.import_module(f"model.{args.algorithm}")
@@ -116,14 +76,10 @@ def initialize_model(args, protocol_related: dict):
 def evaluate(args, smm: StateMachineManager):
     logger.info("===== Evaluation Mode =====")
 
-    effective_players = enable_extend_players(args, is_training=False)
+    logger.info(f"Evaluating protocol: {args.protocol} with {args.players} players and {args.rounds} rounds.")
+    protocol_related = common.PROTOCOL_TABLE.get(args.protocol)
 
-    logger.info(f"Evaluating protocol: {args.protocol} with {effective_players} players and {args.rounds} rounds.")
-    protocol_related = PROTOCOL_TABLE.get(args.protocol)
-
-    rig = initialize_input_generator(effective_players, args.rounds, protocol_related)
-    rig.generate_all_inputs()
-    logger.info("Input patterns generated.")
+    rig = common.initialize_input_generator(args.players, args.rounds, protocol_related, args.invariance)
 
     if args.groundtruth:
         logger.info("Using ground truth for evaluation.")
@@ -132,7 +88,7 @@ def evaluate(args, smm: StateMachineManager):
 
         action_func = protocol_related["groundtruth_class"].get_actions
         if protocol_related["last_round_work"]:
-            action_func = lambda msgs_list, round_idx: protocol_related["groundtruth_class"].get_actions(msgs_list, 1 if round_idx == args.rounds - 1 else 0)
+            action_func = lambda msgs_list, round_idx: protocol_related["groundtruth_class"].get_actions(msgs_list, get_round_info(round_idx, args.rounds, False))
 
         verifier.evaluate_model(args, smm, protocol_related, action_func, rig.all_inputs)
     else:
@@ -162,7 +118,7 @@ def train(args, smm: StateMachineManager):
     logger.info(f"Training protocol: {args.protocol} with {args.players} players and {args.rounds} rounds.")
 
     logger.info("Initializing the environment and model...")
-    protocol_related = PROTOCOL_TABLE.get(args.protocol)
+    protocol_related = common.PROTOCOL_TABLE.get(args.protocol)
     env = Environment(
         state_class = protocol_related["state"],
         offset = protocol_related["state_offset"],
@@ -171,12 +127,7 @@ def train(args, smm: StateMachineManager):
     model = initialize_model(args, protocol_related)
     algo = importlib.import_module(f"model.{args.algorithm}")
 
-    rig = initialize_input_generator(args.players, args.rounds, protocol_related)
-    if config.INPUT_INVARIANCE_LEVEL == 0:
-        rig.generate_all_inputs()
-    else:
-        rig.generate_filtered_inputs(config.INPUT_INVARIANCE_LEVEL)
-    logger.info("Input patterns generated.")
+    rig = common.initialize_input_generator(args.players, args.rounds, protocol_related, config.INPUT_INVARIANCE_LEVEL)
 
     logger.info("Starting training...")
     # Training parameters
@@ -254,7 +205,7 @@ def train_one_case(args, algo, protocol_related, smm: StateMachineManager, env: 
                     sm.transition(protocol_related["state"].get_lost_state(), None)
 
             # Rollout
-            state_tensor = env.get_state_all(msgs_list, get_round_info(round_idx, args.rounds))
+            state_tensor = env.get_state_all(msgs_list, get_round_info(round_idx, args.rounds, config.ENCODE_ROUND_NUMBER))
             actions, extra = model.get_action(state_tensor)
             next_states = env.step_all(actions)
             if round_idx < args.rounds - 1:
@@ -287,13 +238,9 @@ def main():
     logging.getLogger().setLevel(args.log_level.upper())
 
     # Build state machine manager for simulation
-    effective_players = enable_extend_players(args, is_training=not args.evaluate)
-    smm = StateMachineManager(num_state_machines=effective_players)
+    smm = StateMachineManager(num_state_machines=args.players)
 
-    if args.evaluate:
-        evaluate(args, smm)
-    else:
-        train(args, smm)
+    args.func(args, smm)
 
 if __name__ == "__main__":
     main()

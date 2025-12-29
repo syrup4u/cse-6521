@@ -1,5 +1,4 @@
 import random
-import config
 
 def sample_from_two_lists(list1, list2, probability=0.1):
     """
@@ -12,11 +11,11 @@ def sample_from_two_lists(list1, list2, probability=0.1):
     else:
         return random.choice(list2)
 
-def get_round_info(current_round: int, total_rounds: int) -> int:
+def get_round_info(current_round: int, total_rounds: int, return_round_number: bool=True) -> int:
     """
-    Returns the current round number and whether it's the last round.
+    Returns the current round number or whether it's the last round.
     """
-    if config.ENCODE_ROUND_NUMBER:
+    if return_round_number:
         return current_round
     else:
         return int(current_round == total_rounds - 1)

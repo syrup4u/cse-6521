@@ -57,6 +57,10 @@ class State(AbstractState):
     def get_initial_states(cls) -> list['State']:
         return [State.LocalZero, State.LocalOne]
 
+    @classmethod
+    def get_final_states(cls) -> list['State']:
+        return [State.Zero, State.One]
+
 
 class PrimaryBackupProtocol:
     """

@@ -42,7 +42,7 @@ To test:
 
 To train a model:
 
-`python -u main.py -p 4 -r 1 -P simple_majority --algorithm dqn --model mlp_op --model_save temp.pth --log_level info > temp.log 2>&1`
+`python -u main.py train -p 4 -r 1 -P simple_majority --algorithm dqn --model mlp_op --model_save temp.pth --log_level info > temp.log 2>&1`
 
 - `-p`: the number of players.
 - `-r`: the number of rounds.
@@ -52,16 +52,14 @@ To train a model:
 
 To evaluate the results:
 
-`python main.py -p 3 -r 1 -P simple_majority --evaluate --algorithm dqn --model set_transformer --model_load results/models/simple_majority/dqn_st_3_1.pth > eva_ext_dqn_st_p3_1_r1.log 2>&1`
+`python main.py evaluate -p 3 -r 1 -P simple_majority --algorithm dqn --model set_transformer --model_load results/models/simple_majority/dqn_st_3_1.pth > eva_ext_dqn_st_p3_1_r1.log 2>&1`
 
 - `--model_load`: make sure you use `-gt` or `--model_load` to provide a policy to choose actions.
 - **You should ensure that the model you loaded fits `-p`, `-r`, `--algorithm` and `--model`.**
 
-To evaluate if the model is generalizable:
+To evaluate if the model is generalizable, just set higher number of `-p` or `-r`:
 
-`python main.py -p 3 -r 1 -ep 1 -P simple_majority --evaluate --algorithm dqn --model set_transformer --model_load results/models/simple_majority/dqn_st_3_1.pth > eva_ext_dqn_st_p3_1_r1.log 2>&1`
-
-- `-ep`: extended players. Ensure `-p` and `-r` are same as the model setting, you can extend it to any number of players. But too large may cause a long verification.
+`python main.py evaluate -p 4 -r 1 -P simple_majority --algorithm dqn --model set_transformer --model_load results/models/simple_majority/dqn_st_3_1.pth > eva_ext_dqn_st_p3_1_r1.log 2>&1`
 
 ## Benchmark
 

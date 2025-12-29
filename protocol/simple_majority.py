@@ -43,6 +43,10 @@ class State(AbstractState):
     def get_initial_states(cls) -> list['State']:
         return [State.NO, State.YES]
 
+    @classmethod
+    def get_final_states(cls) -> list['State']:
+        return [State.FAIL, State.PASS]
+
 class SimpleMajorityProtocol:
     """
     This is not a practical protocol but enough for demonstration purposes.

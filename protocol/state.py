@@ -34,3 +34,47 @@ class AbstractState(ABC, Enum, metaclass=AbstractStateMeta):
     def get_initial_states(cls) -> list['AbstractState']:
         """Returns a list of all possible initial states."""
         pass
+
+    @classmethod
+    @abstractmethod
+    def get_final_states(cls) -> list['AbstractState']:
+        """Returns a list of all possible final states."""
+        pass
+
+class DummyState(AbstractState):
+    """
+    A dummy implementation of AbstractState for testing purposes.
+    """
+
+    Initial = 0
+    Intermediate = 1
+    Final = 2
+    Lost = 3
+
+    @property
+    def meaning(self) -> str:
+        if self is DummyState.Initial:
+            return "Initial State"
+        elif self is DummyState.Intermediate:
+            return "Intermediate State"
+        elif self is DummyState.Final:
+            return "Final State"
+        elif self is DummyState.Lost:
+            return "Lost State"
+        return "Unknown State"
+
+    @property
+    def is_initial(self) -> bool:
+        return self is DummyState.Initial
+
+    @property
+    def is_final(self) -> bool:
+        return self is DummyState.Final
+
+    @classmethod
+    def get_lost_state(cls) -> 'DummyState':
+        return DummyState.Lost
+
+    @classmethod
+    def get_initial_states(cls) -> list['DummyState']:
+        return [DummyState.Initial]

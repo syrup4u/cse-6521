@@ -17,10 +17,7 @@ And there are two research works that might be helpful for this research project
 
 ## Future Work
 
-Currently I don't have enough time to do the following:
-
-1. How to do the verification when scaling up? For 7 nodes, with 6 crashed allowed, only one round will create more than 40 million input patterns, which makes it harder to verify all possible cases.
-2. A new idea: invariance not only lies in the input, but also the output. After collecting all states from self and other nodes, there's no more information to collect and we should make an unchanged decision of next state, no matter what the inputs of other nodes are. If the protocol is correct, the node should get a correct decision based on what it has collected. However, in training, because the reward is computed by the global state, even a node can make a correct decision, it may be punished due to other nodes' wrong decision. In this case, it will "diverge" instead of fixing, which makes the model hard to converge. **Freezing converged policies may help**. A thought is that maybe we can start from a deterministic result.
+Check [TODO](./TODO.md)
 
 ## Run the Code
 
