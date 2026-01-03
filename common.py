@@ -5,8 +5,11 @@ from groundtruth.simple_majority_human import SimpleMajorityHuman
 from groundtruth.atomic_commit_human import AtomicCommitHuman
 from groundtruth.primary_backup_human import PrimaryBackupHuman
 from simulator.generator import ReadableInputGenerator
+import config
 
 import logging
+import importlib
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +49,7 @@ PROTOCOL_TABLE = {
     }
 }
 
-def initialize_input_generator(players, rounds, protocol_related: dict, invariance: int) -> ReadableInputGenerator:
+def initialize_input_generator(protocol_related: dict, players: int, rounds: int, invariance: int) -> ReadableInputGenerator:
     logger.info("Generating all possible input patterns...")
     rig = ReadableInputGenerator(
         num_nodes=players,
@@ -60,3 +63,38 @@ def initialize_input_generator(players, rounds, protocol_related: dict, invarian
         rig.generate_filtered_inputs(invariance)
     logger.info("Input patterns generated.")
     return rig
+
+def initialize_model(cfg: config.Config, players: int, rounds: int, model_path: str="") :
+    algo = importlib.import_module(f"model.{cfg.algorithm.name}")
+    state = PROTOCOL_TABLE[cfg.protocol]["state"]
+    state_offset = PROTOCOL_TABLE[cfg.protocol]["state_offset"]
+    if cfg.model.name == "mlp":
+        model = algo.build_mlp_model(
+            cfg,
+            input_size = players + 1,
+            output_size = len(list(state)) - abs(state_offset),
+            device = cfg.train.device
+        )
+    elif cfg.model.name == "mlp_op":
+        if cfg.model.encode_round_number:
+            one_hot_length = len(state) + rounds
+        else: # Only encode states + is_last_round
+            one_hot_length = len(state) + 2
+        model = algo.build_mlp_op_model(
+            cfg,
+            one_hot_length = one_hot_length,
+            output_size = len(state) - abs(state_offset),
+            device = cfg.train.device
+        )
+    elif cfg.model.name == "set_transformer":
+        model = algo.build_set_transformer_model(
+            cfg,
+            dim_output = len(state) - abs(state_offset),
+            num_states = len(state),
+            num_rounds = rounds,
+            device = cfg.train.device
+        )
+    if model_path and os.path.exists(model_path):
+        model.load_model(model_path)
+        logger.info(f"Loaded trained model from {model_path}.")
+    return model

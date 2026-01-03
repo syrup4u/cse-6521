@@ -3,29 +3,18 @@
 # pytest
 # python -m pytest -s
 
+# must initialize a workdir at first
+# python main.py init --workdir results/temp/test
+
 ################ evaluation test groundtruth
-# python main.py evaluate -p 3 -r 1 -P simple_majority -gt > gt.log 2>&1
-# python main.py evaluate -p 4 -r 3 -P atomic_commit -gt --invariance 3 --log_level debug > gt.log 2>&1
-# python main.py evaluate -p 5 -r 3 -P primary_backup -gt --log_level info > gt.log 2>&1
+## --invariance 3 --log_level debug
+# python main.py evaluate -p 4 -r 2 -gt --workdir results/temp/test2
 
 ################ evaluation test trained models
-# python main.py evaluate -p 4 -r 1 -P simple_majority --algorithm dqn --model set_transformer --model_load results/models/simple_majority/dqn_st_3_1.pth > evaluate.log 2>&1
-# python main.py evaluate -p 3 -r 3 -P atomic_commit --algorithm dqn --model set_transformer --model_load results/models/atomic_commit/dqn_st_3_3.pth --log_level info > evaluate.log 2>&1
-# python main.py evaluate -p 4 -r 4 -P primary_backup --algorithm dqn --model set_transformer --model_load results/temp/dqn_st_3_3.pth > evaluate.log 2>&1
-# python main.py evaluate -p 5 -r 2 -P primary_backup --algorithm dqn --model set_transformer --model_load results/models/primary_backup/dqn_st_4_2.pth --invariance 3 > evaluate.log 2>&1
+# python main.py evaluate -p 11 -r 2 --invariance 3 --workdir results/temp/test2
 
-################ train test simple majority
-# python -u main.py train -p 3 -r 1 -P simple_majority --algorithm a2c --model set_transformer --model_save results/temp/temp.pth --log_level info > temp.log 2>&1
-# python -u main.py train -p 5 -r 1 -P simple_majority --algorithm dqn --model set_transformer --model_save results/temp/st_5_1.pth --log_level info > temp.log 2>&1
-
-################ train test atomic commit
-# python -u main.py train -p 3 -r 3 -P atomic_commit --algorithm a2c --model mlp_op --model_save results/temp/temp.pth --epochs 100 --log_level info > temp.log 2>&1
-# python -u main.py train -p 4 -r 2 -P atomic_commit --algorithm dqn --model set_transformer --model_save results/temp/dqn_st_4_3.pth --epochs 200 --log_level info > dqn_st_p4_r3.log 2>&1
-
-################ train test primary backup
-# python -u main.py train -p 3 -r 3 -P primary_backup --algorithm a2c --model mlp_op --model_save results/temp/temp.pth --epochs 100 --log_level info > temp.log 2>&1
-# python -u main.py train -p 3 -r 3 -P primary_backup --algorithm dqn --model set_transformer --model_save results/temp/dqn_st_3_3.pth --epochs 200 --log_level info > dqn_st_p3_r3.log 2>&1
+################ training
+# python -u main.py train -p 3 -r 2 --workdir results/temp/test2
 
 ################ generalization test (evaluate groundtruth and human pooling)
-# python generalize.py evaluate -p 4 -r 1 -P simple_majority --gt_l1 --human_l2 --log_level debug > gt.log 2>&1
-python generalize.py evaluate -p 4 -r 3 -P atomic_commit --gt_l1 --human_l2 --log_level debug > gt.log 2>&1
+# python generalize.py evaluate -p 4 -r 3 -P atomic_commit --gt_l1 --human_l2 --log_level debug > gt.log 2>&1

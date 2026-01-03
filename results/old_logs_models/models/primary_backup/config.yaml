@@ -1,0 +1,37 @@
+protocol: primary_backup
+model:
+  name: set_transformer
+  encode_round_number: true
+  mlp:
+    hidden_sizes:
+    - 128
+    - 64
+    - 32
+  st:
+    dim_input: 3
+    num_inds: 4
+    dim_hidden: 64
+    num_heads: 2
+    num_outputs: 1
+algorithm:
+  name: dqn
+  a2c:
+    ppo_epochs: 10
+    entropy_gamma: 0.1
+    clip_epsilon: 0.1
+  dqn:
+    loss: SmoothL1Loss
+    buffer_size: 10000
+    batch_size: 64
+    target_update_freq: 200
+    eps_start: 1.0
+    eps_end: 0.2
+    eps_decay: 10000
+  learning_rate: 0.001
+train:
+  epochs: 100
+  episode_repetition: 20
+  sample_size: 100
+  sample_ratio: 0.4
+  invariance_level: 3
+  device: cpu

@@ -1,9 +1,9 @@
 # Todo List
 
-- Save Training Config (structure -> torch.save as dict, hyperparameters for training by using `from omegaconf import OmegaConf`), build default `config.yaml`.
 - Decouple main process (normal train/evaluation, generalization)
 - Z3
-- Generalization Architecture (has some problems, cannot be fully isolated group, maybe should finalize every round)
+- Generalization Architecture (has some problems, cannot be fully isolated group, may try exchange at the last round)
+- maintain `__init__.py`
 - Evaluate: multi-process to accelerate the evaluation in large dataset.
 - Baysian Optimizer
 

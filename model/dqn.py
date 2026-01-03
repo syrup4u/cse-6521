@@ -32,27 +32,27 @@ class ReplayBuffer:
 
 
 class DeepQNetwork(nn.Module):
-    def __init__(self, n_actions, q_net: nn.Module, target: Optional[nn.Module] = None):
+    def __init__(self, cfg: config.Config, n_actions: int, q_net: nn.Module, target: Optional[nn.Module] = None):
         super().__init__()
         self.n_actions = n_actions
         self.q_net = q_net
         self.target_net = target if target is not None else q_net
         self.target_net.load_state_dict(self.q_net.state_dict())
         self.double_q = target is not None
-        self.optimizer = optim.Adam(self.q_net.parameters(), lr=config.DQN_CONFIG["learning_rate"])
-        self.loss_fn = getattr(nn, config.DQN_CONFIG["loss"])()
-        self.target_update_freq = config.DQN_CONFIG["target_update_freq"]
+        self.optimizer = optim.Adam(self.q_net.parameters(), lr=cfg.algorithm.learning_rate)
+        self.loss_fn = getattr(nn, cfg.algorithm.dqn.loss)()
+        self.target_update_freq = cfg.algorithm.dqn.target_update_freq
         self.eps_cfg = {
-            "start": config.DQN_CONFIG["eps_start"],
-            "end": config.DQN_CONFIG["eps_end"],
-            "decay": config.DQN_CONFIG["eps_decay"],
-            "current": config.DQN_CONFIG["eps_start"]
+            "start": cfg.algorithm.dqn.eps_start,
+            "end": cfg.algorithm.dqn.eps_end,
+            "decay": cfg.algorithm.dqn.eps_decay,
+            "current": cfg.algorithm.dqn.eps_start
         }
         self.episode = 0
         self.learn_step = 0
         # Replay buffer
-        self.replay = ReplayBuffer(config.DQN_CONFIG["buffer_size"])
-        self.batch_size = config.DQN_CONFIG["batch_size"]
+        self.replay = ReplayBuffer(cfg.algorithm.dqn.buffer_size)
+        self.batch_size = cfg.algorithm.dqn.batch_size
         # Additional components
         self.input_encoder = None
         self.constraint = None
@@ -145,17 +145,19 @@ class DeepQNetwork(nn.Module):
         self.target_net.load_state_dict(checkpoint)
 
 def build_mlp_model(
+        cfg: config.Config,
         input_size: int,
         output_size: int,
         device: str = 'cpu'
     ) -> DeepQNetwork:
-    q_net = MLP(input_size, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
-    target_net = MLP(input_size, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
-    model = DeepQNetwork(output_size, q_net, target_net)
+    q_net = MLP(input_size, cfg.model.mlp.hidden_sizes, output_size).to(device)
+    target_net = MLP(input_size, cfg.model.mlp.hidden_sizes, output_size).to(device)
+    model = DeepQNetwork(cfg, output_size, q_net, target_net)
     model.input_encoder = lambda x: x.float()
     return model
 
 def build_mlp_op_model(
+        cfg: config.Config,
         one_hot_length: int,
         output_size: int,
         device: str = 'cpu'
@@ -164,47 +166,48 @@ def build_mlp_op_model(
     - one_hot_length: length of one-hot encoded state representation, which is equal to
         (state space size + num_rounds)
     """
-    q_net = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
-    target_net = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
-    model = DeepQNetwork(output_size, q_net, target_net)
+    q_net = MLP(one_hot_length, cfg.model.mlp.hidden_sizes, output_size).to(device)
+    target_net = MLP(one_hot_length, cfg.model.mlp.hidden_sizes, output_size).to(device)
+    model = DeepQNetwork(cfg, output_size, q_net, target_net)
     model.input_encoder = q_net.encode_sequence
     model.constraint = PolicyConstraint.force_same_action
     return model
 
 def build_set_transformer_model(
+        cfg: config.Config,
         dim_output: int,
         num_states: int,
         num_rounds: int,
         device: str = 'cpu'
     ) -> DeepQNetwork:
     q_net = SetTransformer(
-        dim_input=config.SET_TRANSFORMER_CONFIG["dim_input"],
+        dim_input=cfg.model.st.dim_input,
         dim_output=dim_output,
-        num_inds=config.SET_TRANSFORMER_CONFIG["num_inds"],
-        dim_hidden=config.SET_TRANSFORMER_CONFIG["dim_hidden"],
-        num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
-        num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
+        num_inds=cfg.model.st.num_inds,
+        dim_hidden=cfg.model.st.dim_hidden,
+        num_heads=cfg.model.st.num_heads,
+        num_outputs=cfg.model.st.num_outputs,
         num_states=num_states,
         num_rounds=num_rounds,
-        encode_round_number=config.ENCODE_ROUND_NUMBER
+        encode_round_number=cfg.model.encode_round_number
     ).to(device)
     target_net = SetTransformer(
-        dim_input=config.SET_TRANSFORMER_CONFIG["dim_input"],
+        dim_input=cfg.model.st.dim_input,
         dim_output=dim_output,
-        num_inds=config.SET_TRANSFORMER_CONFIG["num_inds"],
-        dim_hidden=config.SET_TRANSFORMER_CONFIG["dim_hidden"],
-        num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
-        num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
+        num_inds=cfg.model.st.num_inds,
+        dim_hidden=cfg.model.st.dim_hidden,
+        num_heads=cfg.model.st.num_heads,
+        num_outputs=cfg.model.st.num_outputs,
         num_states=num_states,
         num_rounds=num_rounds,
-        encode_round_number=config.ENCODE_ROUND_NUMBER
+        encode_round_number=cfg.model.encode_round_number
     ).to(device)
-    model = DeepQNetwork(dim_output, q_net, target_net)
+    model = DeepQNetwork(cfg, dim_output, q_net, target_net)
     model.input_encoder = q_net.tok_emb
     model.constraint = PolicyConstraint.force_same_action
     return model
 
-def train_model(model: DeepQNetwork, trajectories: dict, rewards: list, others=None):
+def train_model(cfg: config.Config, model: DeepQNetwork, trajectories: dict, rewards: list, others=None):
     """
     - traj_states: (B) batch of trajectories of states, each trajectory is a list of (R, N, ...) tensors
     - traj_actions: (B) batch of trajectories of actions, each trajectory is a list of (R, N) tensors

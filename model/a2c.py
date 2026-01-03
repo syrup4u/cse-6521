@@ -75,17 +75,19 @@ class ActorCritic(nn.Module):
 
 
 def build_mlp_model(
+        cfg: config.Config,
         input_size: int,
         output_size: int,
         device: str = 'cpu'
     ) -> ActorCritic:
-    actor = MLP(input_size, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
-    critic = MLP(input_size, config.MLP_CONFIG["hidden_sizes"], 1).to(device)
-    model = ActorCritic(actor, critic, config.A2C_CONFIG["learning_rate"])
+    actor = MLP(input_size, cfg.model.mlp.hidden_sizes, output_size).to(device)
+    critic = MLP(input_size, cfg.model.mlp.hidden_sizes, 1).to(device)
+    model = ActorCritic(actor, critic, cfg.algorithm.learning_rate)
     model.input_encoder = lambda x: x.float()
     return model
 
 def build_mlp_op_model(
+        cfg: config.Config,
         one_hot_length: int,
         output_size: int,
         device: str = 'cpu'
@@ -94,47 +96,48 @@ def build_mlp_op_model(
     - one_hot_length: length of one-hot encoded state representation, which is equal to
         (state space size + num_rounds)
     """
-    actor = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], output_size).to(device)
-    critic = MLP(one_hot_length, config.MLP_CONFIG["hidden_sizes"], 1).to(device)
-    model = ActorCritic(actor, critic, config.A2C_CONFIG["learning_rate"])
+    actor = MLP(one_hot_length, cfg.model.mlp.hidden_sizes, output_size).to(device)
+    critic = MLP(one_hot_length, cfg.model.mlp.hidden_sizes, 1).to(device)
+    model = ActorCritic(actor, critic, cfg.algorithm.learning_rate)
     model.input_encoder = actor.encode_sequence
     model.constraint = PolicyConstraint.get_action
     return model
 
 def build_set_transformer_model(
+        cfg: config.Config,
         dim_output: int,
         num_states: int,
         num_rounds: int,
         device: str = 'cpu'
     ) -> ActorCritic:
     actor = SetTransformer(
-        dim_input=config.SET_TRANSFORMER_CONFIG["dim_input"],
+        dim_input=cfg.model.st.dim_input,
         dim_output=dim_output,
-        num_inds=config.SET_TRANSFORMER_CONFIG["num_inds"],
-        dim_hidden=config.SET_TRANSFORMER_CONFIG["dim_hidden"],
-        num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
-        num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
+        num_inds=cfg.model.st.num_inds,
+        dim_hidden=cfg.model.st.dim_hidden,
+        num_heads=cfg.model.st.num_heads,
+        num_outputs=cfg.model.st.num_outputs,
         num_states=num_states,
         num_rounds=num_rounds,
-        encode_round_number=config.ENCODE_ROUND_NUMBER
+        encode_round_number=cfg.model.encode_round_number
     ).to(device)
     critic = SetTransformer(
-        dim_input=config.SET_TRANSFORMER_CONFIG["dim_input"],
+        dim_input=cfg.model.st.dim_input,
         dim_output=1,
-        num_inds=config.SET_TRANSFORMER_CONFIG["num_inds"],
-        dim_hidden=config.SET_TRANSFORMER_CONFIG["dim_hidden"],
-        num_heads=config.SET_TRANSFORMER_CONFIG["num_heads"],
-        num_outputs=config.SET_TRANSFORMER_CONFIG["num_outputs"],
+        num_inds=cfg.model.st.num_inds,
+        dim_hidden=cfg.model.st.dim_hidden,
+        num_heads=cfg.model.st.num_heads,
+        num_outputs=cfg.model.st.num_outputs,
         num_states=num_states,
         num_rounds=num_rounds,
-        encode_round_number=config.ENCODE_ROUND_NUMBER
+        encode_round_number=cfg.model.encode_round_number
     ).to(device)
-    model = ActorCritic(actor, critic, config.A2C_CONFIG["learning_rate"])
+    model = ActorCritic(actor, critic, cfg.algorithm.learning_rate)
     model.input_encoder = actor.tok_emb
     model.constraint = PolicyConstraint.get_action
     return model
 
-def train_model(model: ActorCritic, trajectories: dict, rewards: list, others=None):
+def train_model(cfg: config.Config, model: ActorCritic, trajectories: dict, rewards: list, others=None):
     """
     - traj_states: (B) batch of trajectories of states, each trajectory is a list of (R, N, ...) tensors
     - traj_actions: (B) batch of trajectories of actions, each trajectory is a list of (R, N) tensors
@@ -207,9 +210,9 @@ def train_model(model: ActorCritic, trajectories: dict, rewards: list, others=No
     advantages = advantages.detach()
 
     # PPO updates
-    EPS_CLIP = config.A2C_CONFIG["eps_clip"]
-    entropy_gamma = config.A2C_CONFIG["entropy_gamma"]
-    ppo_epochs = config.A2C_CONFIG["ppo_epochs"]
+    EPS_CLIP = cfg.algorithm.a2c.clip_epsilon
+    entropy_gamma = cfg.algorithm.a2c.entropy_gamma
+    ppo_epochs = cfg.algorithm.a2c.ppo_epochs
     for _ in range(ppo_epochs):
         new_logits = model.get_logits(all_states.reshape(-1, all_states.shape[-1])) # (batch_size * R * N, num_actions)
         m = Categorical(logits=new_logits)
