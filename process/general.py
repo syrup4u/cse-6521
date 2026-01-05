@@ -4,7 +4,7 @@ from lib.utils import sample_from_two_lists, get_round_info
 from model.environment import Environment
 from simulator.generator import get_sender_idx_from_input
 from simulator.state_machine import StateMachineManager
-import verifier.verifier as verifier
+import verifier
 
 import importlib
 import logging

@@ -8,7 +8,7 @@
 
 ################ evaluation test groundtruth
 ## --invariance 3 --log_level debug
-# python main.py evaluate -p 4 -r 2 -gt --workdir results/temp/test2
+python main.py evaluate -p 4 -r 2 -gt --workdir results/temp/test2
 
 ################ evaluation test trained models
 # python main.py evaluate -p 11 -r 2 --invariance 3 --workdir results/temp/test2

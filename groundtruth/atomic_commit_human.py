@@ -1,4 +1,4 @@
-from protocol.atomic_commit import State
+from protocol import AtomicCommitState as State
 
 class AtomicCommitHuman:
     """

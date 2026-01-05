@@ -1,4 +1,4 @@
-from protocol.simple_majority import State
+from protocol import SimpleMajorityState as State
 
 class SimpleMajorityHuman:
     """

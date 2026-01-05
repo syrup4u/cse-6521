@@ -1,9 +1,5 @@
-from protocol.simple_majority import SimpleMajorityProtocol, State as SimpleMajorityState
-from protocol.atomic_commit import AtomicCommitProtocol, State as AtomicCommitState
-from protocol.primary_backup import PrimaryBackupProtocol, State as PrimaryBackupState
-from groundtruth.simple_majority_human import SimpleMajorityHuman
-from groundtruth.atomic_commit_human import AtomicCommitHuman
-from groundtruth.primary_backup_human import PrimaryBackupHuman
+from protocol import *
+from groundtruth import *
 from simulator.generator import ReadableInputGenerator
 import config
 

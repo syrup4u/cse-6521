@@ -1,4 +1,4 @@
-from protocol.primary_backup import State
+from protocol import PrimaryBackupState as State
 
 class PrimaryBackupHuman:
     """

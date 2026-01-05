@@ -1,5 +1,4 @@
 from protocol.state import AbstractState
-from protocol.simple_majority import State
 from lib.matrix import canonicalize_array, to_hashable_key
 
 from itertools import combinations, product
@@ -351,15 +350,3 @@ def get_sender_idx_from_input(input_pattern: ReadableInput, round_idx: int, last
         mailboxes[receiver] = [sender for sender in senders if sender not in lost_senders]
 
     return mailboxes
-
-
-if __name__ == "__main__":
-    gen = ReadableInputGenerator(num_nodes=6, rounds=3, legal_initial_state=[State.NO, State.YES], last_round_work=True)
-    gen.generate_all_inputs()
-    print(len(gen.all_inputs))
-    gen.generate_filtered_inputs(level=1)
-    print(len(gen.all_inputs))
-    gen.generate_filtered_inputs(level=2)
-    print(len(gen.all_inputs))
-    gen.generate_filtered_inputs(level=3)
-    print(len(gen.all_inputs))
