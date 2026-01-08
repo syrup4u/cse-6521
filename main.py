@@ -30,6 +30,7 @@ def parse_args():
     parser_evaluate = subparsers.add_parser("evaluate", help="evaluate the trained model on a protocol", parents=[parent_parser])
     parser_evaluate.add_argument("--groundtruth", "-gt", action='store_true', help="use ground truth (human designed) for evaluation")
     parser_evaluate.add_argument("--invariance", type=int, default=0, help="input invariance level for filtering input patterns (0-3)")
+    parser_evaluate.add_argument("--z3", action='store_true', help="use z3 verifier for evaluation")
     parser_evaluate.set_defaults(func=evaluate)
 
     args = parser.parse_args()
@@ -59,7 +60,8 @@ def evaluate(args):
     general.evaluate(cfg, args.rounds, args.players, others={
         "use_groundtruth": args.groundtruth,
         "invariance_level": args.invariance,
-        "model_path": os.path.join(args.workdir, config.MODEL_PATH)
+        "model_path": os.path.join(args.workdir, config.MODEL_PATH),
+        "use_z3": args.z3
     })
 
 def train(args):

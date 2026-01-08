@@ -1,7 +1,9 @@
-from simulator.state_machine import StateMachine
+from __future__ import annotations
 
-from typing import Protocol
 import logging
+from typing import Protocol, TYPE_CHECKING
+if TYPE_CHECKING:
+    from simulator.state_machine import StateMachine
 
 logger = logging.getLogger(__name__)
 

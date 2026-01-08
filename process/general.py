@@ -5,6 +5,7 @@ from model.environment import Environment
 from simulator.generator import get_sender_idx_from_input
 from simulator.state_machine import StateMachineManager
 import verifier
+from verifier import z3_verifier
 
 import importlib
 import logging
@@ -17,7 +18,8 @@ def _evaluate_model(
         smm: StateMachineManager,
         protocol_related: dict,
         get_actions: callable,
-        target_inputs: list
+        target_inputs: list,
+        encode_round_number: bool
     ) -> list:
     assert len(target_inputs) > 0, "No input patterns to evaluate."
 
@@ -52,7 +54,7 @@ def _evaluate_model(
                 else:
                     sm.transition(protocol_related["state"].get_lost_state(), None)
 
-            actions = get_actions(msgs_list, get_round_info(round_idx, rounds, cfg.model.encode_round_number))
+            actions = get_actions(msgs_list, get_round_info(round_idx, rounds, encode_round_number))
             for i, node_idx in enumerate(active_idx):
                 smm.state_machines[node_idx].transition(actions[i], msgs_list[i])
 
@@ -78,7 +80,16 @@ def _evaluate_model(
     return failed_cases
 
 
-def _train_one_case(cfg: config.Config, rounds: int, algo, protocol_related: dict, smm: StateMachineManager, env: Environment, model, input_pattern):
+def _train_one_case(
+        cfg: config.Config,
+        rounds: int,
+        algo,
+        protocol_related: dict,
+        smm: StateMachineManager,
+        env: Environment,
+        model,
+        input_pattern
+):
     reward_list = []
     trajectories = dict()
 
@@ -149,6 +160,7 @@ def evaluate(
     - use_groundtruth: bool
     - invariance_level: int
     - model_path: str
+    - use_z3: bool
     """
     logger.info("===== Evaluation Mode =====")
     logger.info(f"Evaluating protocol: {cfg.protocol} with {players} players and {rounds} rounds.")
@@ -157,18 +169,28 @@ def evaluate(
 
     smm = StateMachineManager(num_state_machines=players)
     protocol_related = common.PROTOCOL_TABLE.get(cfg.protocol)
-    rig = common.initialize_input_generator(protocol_related, players, rounds, others.get("invariance_level", 0))
+    use_z3 = others.get("use_z3", False)
+    if use_z3:
+        logger.info("Using Z3 verifier for evaluation.")
+    else:
+        rig = common.initialize_input_generator(protocol_related, players, rounds, others.get("invariance_level", 0))
 
     if others.get("use_groundtruth", False):
         logger.info("Using ground truth for evaluation.")
         protocol_related["groundtruth_class"].check_rounds(rounds)
         logger.info("Ground truth protocol check passed.")
-
         action_func = protocol_related["groundtruth_class"].get_actions
-        if protocol_related["last_round_work"]:
-            action_func = lambda msgs_list, round_idx: protocol_related["groundtruth_class"].get_actions(msgs_list, get_round_info(round_idx, rounds, False))
-
-        _evaluate_model(cfg, smm, protocol_related, action_func, rig.all_inputs)
+        if use_z3:
+            z3_verifier.verify_model_protocol(
+                cfg.protocol,
+                protocol_related['state'],
+                action_func,
+                players,
+                rounds,
+                False
+            )
+        else:
+            _evaluate_model(cfg, smm, protocol_related, action_func, rig.all_inputs, False)
     else:
         logger.info("Using trained model for evaluation.")
         env = Environment(
@@ -178,15 +200,25 @@ def evaluate(
         )
         model = common.initialize_model(cfg, players, rounds, others.get("model_path", None))
 
-        def _get_actions(msgs_list: list, round_idx: int) -> list:
-            state_tensor = env.get_state_all(msgs_list, round_idx)
+        def _get_actions(msgs_list: list, round_info: int) -> list:
+            state_tensor = env.get_state_all(msgs_list, round_info)
             actions = model.get_greedy_action(state_tensor)
             next_states = env.step_all(actions)
             return next_states
 
         model.eval()
         with torch.inference_mode():
-            _evaluate_model(cfg, smm, protocol_related, _get_actions, rig.all_inputs)
+            if others.get("use_z3", False):
+                z3_verifier.verify_model_protocol(
+                    cfg.protocol,
+                    protocol_related['state'],
+                    _get_actions,
+                    players,
+                    rounds,
+                    cfg.model.encode_round_number
+                )
+            else:
+                _evaluate_model(cfg, smm, protocol_related, _get_actions, rig.all_inputs, cfg.model.encode_round_number)
 
     logger.info("Evaluation completed successfully.")
 
@@ -239,19 +271,19 @@ def train(
         
         logger.info("Training completed. Move to evaluation phase.")
 
-        def _get_actions(msgs_list: list, round_idx: int) -> list:
-            state_tensor = env.get_state_all(msgs_list, round_idx)
+        def _get_actions(msgs_list: list, round_info: int) -> list:
+            state_tensor = env.get_state_all(msgs_list, round_info)
             actions = model.get_greedy_action(state_tensor)
             next_states = env.step_all(actions)
             return next_states
         
         model.eval()
         with torch.inference_mode():
-            failed_inputs = _evaluate_model(cfg, smm, protocol_related, _get_actions, failed_inputs)
+            failed_inputs = _evaluate_model(cfg, smm, protocol_related, _get_actions, failed_inputs, cfg.model.encode_round_number)
             if len(failed_inputs) == 0:
                 logger.info("All failed cases passed verification!")
                 logger.info("Move to final evaluation on all inputs.")
-                failed_inputs = _evaluate_model(cfg, smm, protocol_related, _get_actions, rig.all_inputs)
+                failed_inputs = _evaluate_model(cfg, smm, protocol_related, _get_actions, rig.all_inputs, cfg.model.encode_round_number)
                 if len(failed_inputs) == 0:
                     logger.info("All cases passed verification! Training successful.")
                     success = True
