@@ -1,4 +1,8 @@
-from protocol.state import AbstractState
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from protocol import AbstractState
 
 class StateMachineManager:
     """ Manages all state machines as the global state. """

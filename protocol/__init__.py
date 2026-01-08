@@ -1,6 +1,7 @@
 from .atomic_commit import State as AtomicCommitState, AtomicCommitProtocol
 from .primary_backup import State as PrimaryBackupState, PrimaryBackupProtocol
 from .simple_majority import State as SimpleMajorityState, SimpleMajorityProtocol
+from .state import AbstractState
 
 __all__ = [
     "AtomicCommitState",
@@ -9,4 +10,5 @@ __all__ = [
     "PrimaryBackupProtocol",
     "SimpleMajorityState",
     "SimpleMajorityProtocol",
+    "AbstractState",
 ]

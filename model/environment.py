@@ -1,4 +1,4 @@
-from protocol.state import AbstractState
+from protocol import AbstractState
 
 import torch
 

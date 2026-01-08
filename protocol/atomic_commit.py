@@ -1,8 +1,12 @@
+from __future__ import annotations
+
 from .state import AbstractState
-from simulator.state_machine import StateMachine
 import config
 
 import logging
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from simulator.state_machine import StateMachine
 
 PROTOCOL_NAME = config.SUPPORT_PROTOCOLS[1]
 

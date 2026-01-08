@@ -1,8 +1,12 @@
+from __future__ import annotations
+
 from .state import AbstractState
-from simulator.state_machine import StateMachine
 import config
 
 import logging
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from simulator.state_machine import StateMachine
 
 PROTOCOL_NAME = config.SUPPORT_PROTOCOLS[2]
 
@@ -99,7 +103,7 @@ class PrimaryBackupProtocol:
         
         # Rule 3: No decision contradicts any other decision
         if State.Zero in final_states and State.One in final_states:
-            logger.debug("Conflicting final decisions detected: both Abort and Commit present.")
+            logger.debug("Conflicting final decisions detected: both Zero and One present.")
             return cls.REWARD["bad"]
 
         # Rule 4: Final decision must have corresponding initial states

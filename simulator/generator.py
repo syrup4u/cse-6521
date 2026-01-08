@@ -1,4 +1,4 @@
-from protocol.state import AbstractState
+from protocol import AbstractState
 from lib.matrix import canonicalize_array, to_hashable_key
 
 from itertools import combinations, product
