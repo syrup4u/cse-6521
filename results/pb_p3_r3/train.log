@@ -1,0 +1,33 @@
+[INFO] 2025-12-21 15:15:19,144 - main - ===== Training Mode =====
+[INFO] 2025-12-21 15:15:19,144 - main - Training protocol: primary_backup with 3 players and 3 rounds.
+[INFO] 2025-12-21 15:15:19,144 - main - Initializing the environment and model...
+[INFO] 2025-12-21 15:15:19,505 - main - Generating all possible input patterns...
+[INFO] 2025-12-21 15:15:19,507 - main - Input patterns generated.
+[INFO] 2025-12-21 15:15:19,507 - main - Starting training...
+[INFO] 2025-12-21 15:15:19,507 - main - Epoch 1/200, training on 330 failed cases from last evaluation.
+[INFO] 2025-12-21 15:15:30,385 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-21 15:15:30,573 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-21 15:15:30,573 - verifier.verifier - Setting: players=3, rounds=3
+[INFO] 2025-12-21 15:15:30,573 - verifier.verifier - Result: 47 failed cases out of 330 total cases.
+[INFO] 2025-12-21 15:15:30,573 - verifier.verifier - Accumulated reward: 95
+[INFO] 2025-12-21 15:15:30,573 - main - Epoch 2/200, training on 47 failed cases from last evaluation.
+[INFO] 2025-12-21 15:15:40,924 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-21 15:15:40,952 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-21 15:15:40,952 - verifier.verifier - Setting: players=3, rounds=3
+[INFO] 2025-12-21 15:15:40,952 - verifier.verifier - Result: 1 failed cases out of 47 total cases.
+[INFO] 2025-12-21 15:15:40,952 - verifier.verifier - Accumulated reward: 42
+[INFO] 2025-12-21 15:15:40,952 - main - Epoch 3/200, training on 1 failed cases from last evaluation.
+[INFO] 2025-12-21 15:15:50,393 - main - Training completed. Move to evaluation phase.
+[INFO] 2025-12-21 15:15:50,394 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-21 15:15:50,394 - verifier.verifier - Setting: players=3, rounds=3
+[INFO] 2025-12-21 15:15:50,394 - verifier.verifier - Result: 0 failed cases out of 1 total cases.
+[INFO] 2025-12-21 15:15:50,394 - verifier.verifier - Accumulated reward: 1
+[INFO] 2025-12-21 15:15:50,394 - main - All failed cases passed verification!
+[INFO] 2025-12-21 15:15:50,394 - main - Move to final evaluation on all inputs.
+[INFO] 2025-12-21 15:15:50,581 - verifier.verifier - Evaluation for protocol <primary_backup> completed.
+[INFO] 2025-12-21 15:15:50,581 - verifier.verifier - Setting: players=3, rounds=3
+[INFO] 2025-12-21 15:15:50,581 - verifier.verifier - Result: 0 failed cases out of 330 total cases.
+[INFO] 2025-12-21 15:15:50,581 - verifier.verifier - Accumulated reward: 330
+[INFO] 2025-12-21 15:15:50,581 - main - All cases passed verification! Training successful.
+[INFO] 2025-12-21 15:15:50,581 - main - Saving trained model to results/temp/dqn_st_3_3.pth...
+[INFO] 2025-12-21 15:15:50,585 - main - Model saved successfully.

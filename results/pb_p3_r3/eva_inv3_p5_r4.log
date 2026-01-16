@@ -1,0 +1,13 @@
+[INFO] 2026-01-07 23:18:58,651 - process.general - ===== Evaluation Mode =====
+[INFO] 2026-01-07 23:18:58,651 - process.general - Evaluating protocol: primary_backup with 5 players and 4 rounds.
+[INFO] 2026-01-07 23:18:58,651 - process.general - Algorithm: dqn, Model: set_transformer
+[INFO] 2026-01-07 23:18:58,651 - process.general - ===========================
+[INFO] 2026-01-07 23:18:58,651 - common - Generating all possible input patterns...
+[INFO] 2026-01-07 23:18:59,261 - common - Input patterns generated.
+[INFO] 2026-01-07 23:18:59,261 - process.general - Using trained model for evaluation.
+[INFO] 2026-01-07 23:18:59,646 - common - Loaded trained model from results/temp/test3/model.pth.
+[INFO] 2026-01-07 23:21:39,268 - process.general - Evaluation for protocol <primary_backup> completed.
+[INFO] 2026-01-07 23:21:39,268 - process.general - Setting: players=5, rounds=4
+[INFO] 2026-01-07 23:21:39,268 - process.general - Result: 0 failed cases out of 160098 total cases.
+[INFO] 2026-01-07 23:21:39,268 - process.general - Accumulated reward: 160098
+[INFO] 2026-01-07 23:21:39,268 - process.general - Evaluation completed successfully.

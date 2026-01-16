@@ -11,7 +11,7 @@ Remember to pull the submodule:
 Set virtual environment:
 
 ```bash
-python3.11 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 ```
@@ -28,11 +28,17 @@ Most commands I use are listed in a [shell script](./run.sh)
 
 You can check the usage and all supported options by `python main.py --help`.
 
-**If you want to save the model into a directory, make sure the directory exists.**
+**Remember to initialize a workdir first by `python main.py init --workdir <your_work_dir>`**
 
 ## Hyper Parameters
 
-Hyper parameters for training are defined in [`config.py`](./config.py).
+Hyper parameters for training are defined in the config file in workdir. For reference: [default config](./default_config.yaml).
+
+## Model Saving
+
+The model will be saved automatically in workdir named `model.pth` when training is complete. If you want to start training a model from scratch rather than continuing from the checkpoint, make sure to remove or rename the file `model.pth`.
+
+For evaluation, make sure the `model.pth` exists or you use `-gt` for groundtruth.
 
 ## Example
 
@@ -40,26 +46,25 @@ To test:
 
 `python -m pytest -s`
 
+To initialize a new workflow:
+
+`python main.py init --workdir results/temp/ac_p3_r3`
+
 To train a model:
 
-`python -u main.py train -p 4 -r 1 -P simple_majority --algorithm dqn --model mlp_op --model_save temp.pth --log_level info > temp.log 2>&1`
+`python -u main.py train -p 3 -r 3 --workdir results/temp/ac_p3_r3`
 
 - `-p`: the number of players.
 - `-r`: the number of rounds.
-- `-P`: the name of the protocol.
-- `--algorithm`: RL algorithm.
-- `--model`: underlying model.
 
-To evaluate the results:
+To evaluate the model (2 ways):
 
-`python main.py evaluate -p 3 -r 1 -P simple_majority --algorithm dqn --model set_transformer --model_load results/models/simple_majority/dqn_st_3_1.pth > eva_ext_dqn_st_p3_1_r1.log 2>&1`
+`python main.py evaluate -p 8 -r 8 --z3 --workdir results/temp/ac_p3_r3`
+`python main.py evaluate -p 5 -r 4 --workdir results/temp/ac_p3_r3`
 
-- `--model_load`: make sure you use `-gt` or `--model_load` to provide a policy to choose actions.
-- **You should ensure that the model you loaded fits `-p`, `-r`, `--algorithm` and `--model`.**
-
-To evaluate if the model is generalizable, just set higher number of `-p` or `-r`:
-
-`python main.py evaluate -p 4 -r 1 -P simple_majority --algorithm dqn --model set_transformer --model_load results/models/simple_majority/dqn_st_3_1.pth > eva_ext_dqn_st_p3_1_r1.log 2>&1`
+- Recommended: enable `--z3` which will use z3 verifier to find counter examples. This is much faster than the default method.
+- Default: exhaust all possible input patterns. `--invariance 3` can reduce the size. If not using `--invariance 3`, never exceed 5 players and 5 rounds, it will explode.
+- You don't need to set `-p` and `-r` same as when for training, which is helpful for verifying if the model is generalizable.
 
 ## Benchmark
 
@@ -72,5 +77,6 @@ option:
 - 1: train on simple majority protocol with 3-5 nodes, 1 round, 3 models, a2c algorithm. Repeat 10 times.
 - 2: train on atomic commit protocol with 3-4 nodes, 2 round, 3 models, dqn algorithm. Repeat 10 times.
 - 3: statistics of size of datasets, 3-6 nodes 1 round for simple majority, 3-6 nodes 2-3 rounds for atomic commit.
+- 4: a custom setting for quick test.
 
 Invariance level are set to 0 (full size) and 3 (highest reduced).

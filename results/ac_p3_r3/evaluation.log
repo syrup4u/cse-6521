@@ -1,0 +1,9 @@
+[INFO] 2026-01-14 10:12:07,659 - process.general - ===== Evaluation Mode =====
+[INFO] 2026-01-14 10:12:07,659 - process.general - Evaluating protocol: atomic_commit with 8 players and 8 rounds.
+[INFO] 2026-01-14 10:12:07,659 - process.general - Algorithm: dqn, Model: set_transformer
+[INFO] 2026-01-14 10:12:07,660 - process.general - ===========================
+[INFO] 2026-01-14 10:12:07,660 - process.general - Using Z3 verifier for evaluation.
+[INFO] 2026-01-14 10:12:07,660 - process.general - Using trained model for evaluation.
+[INFO] 2026-01-14 10:12:07,929 - common - Loaded trained model from results/temp/ac_p3_r3_train/model.pth.
+[INFO] 2026-01-14 10:14:16,833 - verifier.z3_verifier - Constraints are unsatisfiable.
+[INFO] 2026-01-14 10:14:16,924 - process.general - Evaluation completed successfully.

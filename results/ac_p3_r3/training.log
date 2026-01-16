@@ -1,0 +1,193 @@
+[INFO] 2026-01-14 10:01:41,707 - process.general - ===== Training Mode =====
+[INFO] 2026-01-14 10:01:41,707 - process.general - Training protocol: atomic_commit with 3 players and 3 rounds.
+[INFO] 2026-01-14 10:01:41,707 - process.general - Algorithm: dqn, Model: set_transformer
+[INFO] 2026-01-14 10:01:41,707 - process.general - =========================
+[INFO] 2026-01-14 10:01:41,707 - process.general - Initializing the environment and model...
+[INFO] 2026-01-14 10:01:42,330 - common - Generating all possible input patterns...
+[INFO] 2026-01-14 10:01:42,333 - common - Input patterns generated.
+[INFO] 2026-01-14 10:01:42,333 - process.general - Starting training...
+[INFO] 2026-01-14 10:01:42,333 - process.general - Epoch 1/100, training on 330 failed cases from last evaluation.
+[INFO] 2026-01-14 10:01:53,017 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:01:53,205 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:01:53,206 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:01:53,206 - process.general - Result: 1 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:01:53,206 - process.general - Accumulated reward: 325
+[INFO] 2026-01-14 10:01:53,206 - process.general - Epoch 2/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:02:04,386 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:02:04,386 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:02:04,387 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:02:04,387 - process.general - Result: 1 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:02:04,387 - process.general - Accumulated reward: -4
+[INFO] 2026-01-14 10:02:04,387 - process.general - Epoch 3/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:02:16,390 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:02:16,391 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:02:16,391 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:02:16,391 - process.general - Result: 1 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:02:16,391 - process.general - Accumulated reward: -4
+[INFO] 2026-01-14 10:02:16,391 - process.general - Epoch 4/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:02:28,612 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:02:28,613 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:02:28,613 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:02:28,613 - process.general - Result: 0 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:02:28,613 - process.general - Accumulated reward: 1
+[INFO] 2026-01-14 10:02:28,613 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:02:28,613 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:02:28,804 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:02:28,804 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:02:28,804 - process.general - Result: 85 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:02:28,804 - process.general - Accumulated reward: -95
+[INFO] 2026-01-14 10:02:28,804 - process.general - 85 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:02:28,804 - process.general - Epoch 5/100, training on 85 failed cases from last evaluation.
+[INFO] 2026-01-14 10:02:40,703 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:02:40,756 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:02:40,756 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:02:40,756 - process.general - Result: 43 failed cases out of 85 total cases.
+[INFO] 2026-01-14 10:02:40,756 - process.general - Accumulated reward: -130
+[INFO] 2026-01-14 10:02:40,756 - process.general - Epoch 6/100, training on 43 failed cases from last evaluation.
+[INFO] 2026-01-14 10:02:52,571 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:02:52,597 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:02:52,598 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:02:52,598 - process.general - Result: 0 failed cases out of 43 total cases.
+[INFO] 2026-01-14 10:02:52,598 - process.general - Accumulated reward: 43
+[INFO] 2026-01-14 10:02:52,598 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:02:52,598 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:02:52,787 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:02:52,787 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:02:52,787 - process.general - Result: 1 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:02:52,787 - process.general - Accumulated reward: 325
+[INFO] 2026-01-14 10:02:52,787 - process.general - 1 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:02:52,787 - process.general - Epoch 7/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:03:04,670 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:03:04,671 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:03:04,671 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:03:04,671 - process.general - Result: 1 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:03:04,671 - process.general - Accumulated reward: -4
+[INFO] 2026-01-14 10:03:04,671 - process.general - Epoch 8/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:03:16,663 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:03:16,663 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:03:16,663 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:03:16,663 - process.general - Result: 1 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:03:16,663 - process.general - Accumulated reward: -4
+[INFO] 2026-01-14 10:03:16,664 - process.general - Epoch 9/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:03:28,685 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:03:28,686 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:03:28,686 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:03:28,686 - process.general - Result: 0 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:03:28,686 - process.general - Accumulated reward: 1
+[INFO] 2026-01-14 10:03:28,686 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:03:28,686 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:03:28,878 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:03:28,878 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:03:28,878 - process.general - Result: 49 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:03:28,878 - process.general - Accumulated reward: 85
+[INFO] 2026-01-14 10:03:28,878 - process.general - 49 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:03:28,878 - process.general - Epoch 10/100, training on 49 failed cases from last evaluation.
+[INFO] 2026-01-14 10:03:40,865 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:03:40,897 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:03:40,897 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:03:40,897 - process.general - Result: 49 failed cases out of 49 total cases.
+[INFO] 2026-01-14 10:03:40,897 - process.general - Accumulated reward: -196
+[INFO] 2026-01-14 10:03:40,897 - process.general - Epoch 11/100, training on 49 failed cases from last evaluation.
+[INFO] 2026-01-14 10:03:53,027 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:03:53,059 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:03:53,059 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:03:53,059 - process.general - Result: 43 failed cases out of 49 total cases.
+[INFO] 2026-01-14 10:03:53,059 - process.general - Accumulated reward: -166
+[INFO] 2026-01-14 10:03:53,059 - process.general - Epoch 12/100, training on 43 failed cases from last evaluation.
+[INFO] 2026-01-14 10:04:05,356 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:04:05,383 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:05,383 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:05,383 - process.general - Result: 0 failed cases out of 43 total cases.
+[INFO] 2026-01-14 10:04:05,383 - process.general - Accumulated reward: 43
+[INFO] 2026-01-14 10:04:05,383 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:04:05,383 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:04:05,571 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:05,571 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:05,571 - process.general - Result: 1 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:04:05,571 - process.general - Accumulated reward: 325
+[INFO] 2026-01-14 10:04:05,571 - process.general - 1 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:04:05,571 - process.general - Epoch 13/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:04:17,643 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:04:17,644 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:17,644 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:17,644 - process.general - Result: 1 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:04:17,644 - process.general - Accumulated reward: -4
+[INFO] 2026-01-14 10:04:17,644 - process.general - Epoch 14/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:04:29,726 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:04:29,727 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:29,727 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:29,727 - process.general - Result: 0 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:04:29,727 - process.general - Accumulated reward: 1
+[INFO] 2026-01-14 10:04:29,727 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:04:29,727 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:04:29,916 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:29,917 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:29,917 - process.general - Result: 6 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:04:29,917 - process.general - Accumulated reward: 300
+[INFO] 2026-01-14 10:04:29,917 - process.general - 6 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:04:29,917 - process.general - Epoch 15/100, training on 6 failed cases from last evaluation.
+[INFO] 2026-01-14 10:04:42,036 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:04:42,040 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:42,040 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:42,041 - process.general - Result: 2 failed cases out of 6 total cases.
+[INFO] 2026-01-14 10:04:42,041 - process.general - Accumulated reward: -4
+[INFO] 2026-01-14 10:04:42,041 - process.general - Epoch 16/100, training on 2 failed cases from last evaluation.
+[INFO] 2026-01-14 10:04:54,299 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:04:54,301 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:54,301 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:54,301 - process.general - Result: 0 failed cases out of 2 total cases.
+[INFO] 2026-01-14 10:04:54,301 - process.general - Accumulated reward: 2
+[INFO] 2026-01-14 10:04:54,301 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:04:54,301 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:04:54,491 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:04:54,491 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:04:54,491 - process.general - Result: 44 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:04:54,491 - process.general - Accumulated reward: 110
+[INFO] 2026-01-14 10:04:54,491 - process.general - 44 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:04:54,491 - process.general - Epoch 17/100, training on 44 failed cases from last evaluation.
+[INFO] 2026-01-14 10:05:06,119 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:05:06,143 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:05:06,143 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:05:06,143 - process.general - Result: 1 failed cases out of 44 total cases.
+[INFO] 2026-01-14 10:05:06,143 - process.general - Accumulated reward: 39
+[INFO] 2026-01-14 10:05:06,143 - process.general - Epoch 18/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:05:17,203 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:05:17,204 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:05:17,204 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:05:17,204 - process.general - Result: 0 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:05:17,204 - process.general - Accumulated reward: 1
+[INFO] 2026-01-14 10:05:17,204 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:05:17,204 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:05:17,394 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:05:17,394 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:05:17,394 - process.general - Result: 44 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:05:17,394 - process.general - Accumulated reward: 110
+[INFO] 2026-01-14 10:05:17,394 - process.general - 44 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:05:17,394 - process.general - Epoch 19/100, training on 44 failed cases from last evaluation.
+[INFO] 2026-01-14 10:05:29,329 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:05:29,356 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:05:29,356 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:05:29,356 - process.general - Result: 0 failed cases out of 44 total cases.
+[INFO] 2026-01-14 10:05:29,356 - process.general - Accumulated reward: 44
+[INFO] 2026-01-14 10:05:29,356 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:05:29,356 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:05:29,545 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:05:29,545 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:05:29,545 - process.general - Result: 1 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:05:29,545 - process.general - Accumulated reward: 325
+[INFO] 2026-01-14 10:05:29,545 - process.general - 1 failed cases remain after final evaluation.
+[INFO] 2026-01-14 10:05:29,545 - process.general - Epoch 20/100, training on 1 failed cases from last evaluation.
+[INFO] 2026-01-14 10:05:41,398 - process.general - Training completed. Move to evaluation phase.
+[INFO] 2026-01-14 10:05:41,399 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:05:41,399 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:05:41,399 - process.general - Result: 0 failed cases out of 1 total cases.
+[INFO] 2026-01-14 10:05:41,399 - process.general - Accumulated reward: 1
+[INFO] 2026-01-14 10:05:41,399 - process.general - All failed cases passed verification!
+[INFO] 2026-01-14 10:05:41,399 - process.general - Move to final evaluation on all inputs.
+[INFO] 2026-01-14 10:05:41,589 - process.general - Evaluation for protocol <atomic_commit> completed.
+[INFO] 2026-01-14 10:05:41,589 - process.general - Setting: players=3, rounds=3
+[INFO] 2026-01-14 10:05:41,589 - process.general - Result: 0 failed cases out of 330 total cases.
+[INFO] 2026-01-14 10:05:41,589 - process.general - Accumulated reward: 330
+[INFO] 2026-01-14 10:05:41,589 - process.general - All cases passed verification! Training successful.
+[INFO] 2026-01-14 10:05:41,589 - process.general - Saving trained model to results/temp/ac_p3_r3_train/model.pth...
+[INFO] 2026-01-14 10:05:41,593 - process.general - Model saved successfully.

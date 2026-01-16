@@ -140,17 +140,20 @@ def run_benchmark_dataset():
 def run_benchmark_dataset_custom():
     import time
     protocol = "atomic_commit"
-    players = [7]
-    rounds = [3]
+    players = [6]
+    rounds = [6]
     invariance = [0, 3]
     protocol_related = common.PROTOCOL_TABLE[protocol]
     for p, r, inv in product(players, rounds, invariance):
         rig = common.initialize_input_generator(protocol_related, p, r, inv)
         if inv == 0:
             start = time.perf_counter()
-            rig.generate_all_inputs()
+            cnt = 0
+            for _ in rig.generate_yield_inputs():
+                cnt += 1
             end = time.perf_counter()
             logger.info("Time taken to generate all inputs: {:.2f} seconds".format(end - start))
+            logger.info("Generated {} inputs for protocol {}, players {}, rounds {}, invariance {}".format(cnt, protocol, p, r, inv))
         else:
             start = time.perf_counter()
             rig.generate_filtered_inputs(inv)
