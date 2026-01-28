@@ -11,11 +11,14 @@ class Z3Verifier:
     """
     Z3-based verifier for given protocol specifications and state transitions.
     """
-    def __init__(self, state_class: AbstractState, num_nodes: int, num_rounds: int):
+    def __init__(self, state_class: AbstractState, num_nodes: int, num_rounds: int, unsat_core: bool = False):
         # Avoid interference with other Z3 instances
         self.ctx = z3.Context()
         # Z3 core
         self.solver = z3.Solver(ctx=self.ctx)
+        self.unsat_core = unsat_core
+        if unsat_core:
+            self.solver.set(unsat_core=True)
         self.constraints = []
         # Z3 Variable Definition
         state_names = list(map(lambda x: x.name, state_class))
@@ -82,6 +85,9 @@ class Z3Verifier:
             ) for n in range(self.num_nodes)
         ]
         self.constraints += init_c + mid_c + final_c + s2_c + s3_c
+        if self.unsat_core:
+            self.solver.assert_and_track(z3.And(self.constraints), "State Constraints")
+            self.constraints = []
 
     def _transition_constraints(self):
         # T1: once a node is in lost state, it remains lost
@@ -89,7 +95,7 @@ class Z3Verifier:
             z3.Implies(
                 self.all_states[r][n] == self.lost_state,
                 self.all_states[r+1][n] == self.lost_state
-            ) for r in range(1, self.num_rounds - 1) for n in range(self.num_nodes)
+            ) for r in range(1, self.num_rounds) for n in range(self.num_nodes)
         ]
         # T2: once a node's message is marked lost, this node is lost in the next round,
         # unless it is the last round
@@ -104,6 +110,9 @@ class Z3Verifier:
             ) for r in range(self.num_rounds) for n in range(self.num_nodes) for f in range(self.num_nodes)
         ]
         self.constraints += t1_c + t2_c
+        if self.unsat_core:
+            self.solver.assert_and_track(z3.And(self.constraints), "Transition Constraints")
+            self.constraints = []
 
     def _message_constraints(self):
         # M1: messages should be either from corresponding states or lost
@@ -119,6 +128,9 @@ class Z3Verifier:
             ) for f in range(self.num_nodes) for r in range(self.num_rounds) for n in range(self.num_nodes)
         ]
         self.constraints += m1_c
+        if self.unsat_core:
+            self.solver.assert_and_track(z3.And(self.constraints), "Message Constraints")
+            self.constraints = []
 
     def rule_constraints(self, protocol_name, counter_example=False):
         if protocol_name == "atomic_commit":
@@ -129,6 +141,9 @@ class Z3Verifier:
             self.constraints += [z3.Not(z3.And(target_rules))]
         else:
             self.constraints += target_rules
+        if self.unsat_core:
+            self.solver.assert_and_track(z3.And(self.constraints), "Rule Constraints")
+            self.constraints = []
 
     def add_transition_constraints(self, transitions):
         """
@@ -147,7 +162,7 @@ class Z3Verifier:
                         self.all_messages[r][n][f] == self.type_mapping[transition[0][f].name]
                         for f in range(self.num_nodes)
                     ]
-                    next_state_condition = self.all_states[r+1][n] == self.type_mapping[transition[1].name]
+                    next_state_condition = z3.Or(self.all_states[r+1][n] == self.type_mapping[transition[1].name], self.all_states[r+1][n] == self.lost_state)
                     # matching condition
                     transition_conditions.append(z3.Implies(
                         z3.And(msg_conditions),
@@ -156,10 +171,14 @@ class Z3Verifier:
                 # this node's transition constraint for round r
                 transition_c.append(z3.And(transition_conditions))
         self.constraints += transition_c
+        if self.unsat_core:
+            self.solver.assert_and_track(z3.And(self.constraints), "Model Constraints")
+            self.constraints = []
     
-    def add_state_constraints(self, states: list[AbstractState], round_number):
+    def add_state_constraints_test(self, states: list[AbstractState], round_number):
         """
-        Add constraints for specific states at a given round (for test).
+        (for test)
+        Add constraints for specific states at a given round.
 
         round_number: 0 means initial state before round-0
         """
@@ -229,6 +248,10 @@ class Z3Verifier:
             self.print_messages(m)
         elif res == z3.unsat:
             logger.info("Constraints are unsatisfiable.")
+            if self.unsat_core:
+                logger.info("Unsat Core:")
+                for c in self.solver.unsat_core():
+                    logger.info(c)
         else:
             logger.info("Solver returned unknown result.")
     
@@ -244,8 +267,8 @@ class Z3Verifier:
         for r in range(self.num_rounds):
             logger.info(f"Round {r} Messages:")
             for n in range(self.num_nodes):
-                messages_from_n = [model.evaluate(self.all_messages[r][n][f]) for f in range(self.num_nodes)]
-                logger.info(f"  From Node {n}: " + ", ".join([str(m) for m in messages_from_n]))
+                messages_for_n = [model.evaluate(self.all_messages[r][n][f]) for f in range(self.num_nodes)]
+                logger.info(f"  For Node {n}: " + ", ".join([str(m) for m in messages_for_n]))
         logger.info("==============================")
 
 def add_test_case(z3_verifier: Z3Verifier):
@@ -332,6 +355,33 @@ def verify_gt_protocol():
         z3_verifier.add_transition_constraints(ts)
         z3_verifier.verify()
 
+def test_lost_transition():
+    """
+    Using groundtruth protocol to test transitions with lost states.
+    """
+    num_nodes = 3
+    num_rounds = 2
+    protocol_names = "atomic_commit"
+    z3_verifier = Z3Verifier(common.PROTOCOL_TABLE[protocol_names]['state'], num_nodes, num_rounds, unsat_core=True)
+    z3_verifier.rule_constraints(protocol_names, counter_example=False)
+    ts = verify_protocol(common.PROTOCOL_TABLE[protocol_names]['state'], common.PROTOCOL_TABLE[protocol_names]['groundtruth_class'].get_actions, num_nodes, num_rounds)
+    z3_verifier.add_transition_constraints(ts)
+    test_states = [
+        [ACState.LocalCommit, ACState.LocalCommit, ACState.LocalCommit],
+        0
+    ]
+    z3_verifier.add_state_constraints_test(test_states[0], test_states[1])
+    test_states = [
+        [ACState.Lost, ACState.Commit, ACState.Commit],
+        2
+    ]
+    # test_states = [
+    #     [ACState.Lost, ACState.DoNothing_One, ACState.DoNothing_One],
+    #     1
+    # ]
+    z3_verifier.add_state_constraints_test(test_states[0], test_states[1])
+    z3_verifier.verify()
+
 def verify_model_protocol(protocol_name: str, state_class: AbstractState, get_actions: callable, num_nodes, num_rounds, encode_rn: bool):
     z3_verifier = Z3Verifier(state_class, num_nodes, num_rounds)
     z3_verifier.rule_constraints(protocol_name, counter_example=True)
@@ -344,4 +394,5 @@ def verify_model_protocol(protocol_name: str, state_class: AbstractState, get_ac
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-    verify_gt_protocol()
+    # verify_gt_protocol()
+    test_lost_transition()
