@@ -19,18 +19,6 @@ class State(AbstractState):
     YES = 1
     FAIL = 2
     PASS = 3
-
-    @property
-    def meaning(self) -> str:
-        if self is State.NO:
-            return "Local votes no"
-        if self is State.YES:
-            return "Local votes yes"
-        if self is State.FAIL:
-            return "Final decision fail"
-        if self is State.PASS:
-            return "Final decision pass"
-        return "Unknown state"
     
     @property
     def is_initial(self) -> bool:

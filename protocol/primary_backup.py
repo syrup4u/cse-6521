@@ -15,7 +15,7 @@ logger.setLevel(logging.INFO)
 
 class State(AbstractState):
     """
-    Enumeration representing the possible states in an atomic commit protocol.
+    Enumeration representing the possible states in an primary backup protocol.
     """
 
     Zero = 0
@@ -26,24 +26,6 @@ class State(AbstractState):
     Lost = 4 # to represent crashed node
     LocalZero = 5
     LocalOne = 6
-
-    @property
-    def meaning(self) -> str:
-        if self is State.Abort:
-            return "Final Zero"
-        if self is State.Commit:
-            return "Final One"
-        if self is State.DoNothing_Zero:
-            return "Intermediate state: Likely Zero"
-        if self is State.DoNothing_One:
-            return "Intermediate state: Likely One"
-        if self is State.Lost:
-            return "Lost"
-        if self is State.LocalAbort:
-            return "Local Zero"
-        if self is State.LocalCommit:
-            return "Local One"
-        return "Unknown state"
     
     @property
     def is_initial(self) -> bool:
@@ -68,7 +50,7 @@ class State(AbstractState):
 
 class PrimaryBackupProtocol:
     """
-    Atomic Commit Protocol
+    Primary backup Protocol
     """
 
     REWARD = {
@@ -80,11 +62,11 @@ class PrimaryBackupProtocol:
     def get_reward(cls, global_state: list[StateMachine]) -> int:
         """
         Computes the reward based on the global states of all state machines
-        according to the rules of the atomic commit protocol.
+        according to the rules of the primary backup protocol.
         """
 
         assert global_state is not None and len(global_state) > 0, "Global state must contain at least one state machine."
-        assert all(sm.protocol == PROTOCOL_NAME for sm in global_state), "All state machines must use the atomic commit protocol."
+        assert all(sm.protocol == PROTOCOL_NAME for sm in global_state), "All state machines must use the primary backup protocol."
 
         final_states = [sm.get_final_state() for sm in global_state if sm.get_final_state() is not State.Lost]
 

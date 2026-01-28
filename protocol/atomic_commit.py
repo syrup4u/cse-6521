@@ -26,24 +26,6 @@ class State(AbstractState):
     Lost = 4 # to represent crashed node
     LocalAbort = 5
     LocalCommit = 6
-
-    @property
-    def meaning(self) -> str:
-        if self is State.Abort:
-            return "Final Abort"
-        if self is State.Commit:
-            return "Final Commit"
-        if self is State.DoNothing_Zero:
-            return "May Abort"
-        if self is State.DoNothing_One:
-            return "Likely Commit"
-        if self is State.Lost:
-            return "Lost"
-        if self is State.LocalAbort:
-            return "Local Abort"
-        if self is State.LocalCommit:
-            return "Local Commit"
-        return "Unknown state"
     
     @property
     def is_initial(self) -> bool:
