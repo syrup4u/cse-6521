@@ -174,6 +174,7 @@ def evaluate(
         logger.info("Using Z3 verifier for evaluation.")
     else:
         rig = common.initialize_input_generator(protocol_related, players, rounds, others.get("invariance_level", 0))
+        logger.info(f"Generated {len(rig.all_inputs)} input patterns for evaluation.")
 
     if others.get("use_groundtruth", False):
         logger.info("Using ground truth for evaluation.")

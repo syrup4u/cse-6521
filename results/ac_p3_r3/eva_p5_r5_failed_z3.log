@@ -1,0 +1,49 @@
+[INFO] 2026-01-28 18:54:31,296 - process.general - ===== Evaluation Mode =====
+[INFO] 2026-01-28 18:54:31,297 - process.general - Evaluating protocol: atomic_commit with 5 players and 5 rounds.
+[INFO] 2026-01-28 18:54:31,297 - process.general - Algorithm: dqn, Model: set_transformer
+[INFO] 2026-01-28 18:54:31,297 - process.general - ===========================
+[INFO] 2026-01-28 18:54:31,297 - process.general - Using Z3 verifier for evaluation.
+[INFO] 2026-01-28 18:54:31,297 - process.general - Using trained model for evaluation.
+[INFO] 2026-01-28 18:54:31,590 - common - Loaded trained model from results/ac_p3_r3/model.pth.
+[INFO] 2026-01-28 18:54:32,222 - verifier.z3_verifier - Constraints are satisfiable.
+[INFO] 2026-01-28 18:54:32,222 - verifier.z3_verifier - ===== States per Round =====
+[INFO] 2026-01-28 18:54:32,222 - verifier.z3_verifier - Round 0: LocalCommit, LocalCommit, LocalCommit, LocalCommit, LocalCommit
+[INFO] 2026-01-28 18:54:32,222 - verifier.z3_verifier - Round 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-28 18:54:32,222 - verifier.z3_verifier - Round 2: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,222 - verifier.z3_verifier - Round 3: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,222 - verifier.z3_verifier - Round 4: DoNothing_Zero, Lost, DoNothing_One, Lost, Lost
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier - Round 5: Commit, Lost, Abort, Lost, Lost
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier - ============================
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier - ===== Messages per Round =====
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier - Round 0 Messages:
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 0: LocalCommit, LocalCommit, LocalCommit, LocalCommit, LocalCommit
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 1: LocalCommit, LocalCommit, LocalCommit, LocalCommit, LocalCommit
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 2: LocalCommit, LocalCommit, LocalCommit, LocalCommit, LocalCommit
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 3: LocalCommit, LocalCommit, LocalCommit, LocalCommit, LocalCommit
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 4: LocalCommit, LocalCommit, LocalCommit, LocalCommit, LocalCommit
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier - Round 1 Messages:
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 0: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 2: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 3: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 4: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier - Round 2 Messages:
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 0: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 1: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,223 - verifier.z3_verifier -   For Node 2: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 3: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 4: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier - Round 3 Messages:
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 0: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 1: DoNothing_Zero, Lost, DoNothing_Zero, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 2: DoNothing_Zero, Lost, DoNothing_Zero, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 3: DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 4: DoNothing_Zero, Lost, DoNothing_Zero, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier - Round 4 Messages:
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 0: DoNothing_Zero, Lost, DoNothing_One, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 1: DoNothing_Zero, Lost, DoNothing_One, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 2: Lost, Lost, DoNothing_One, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 3: DoNothing_Zero, Lost, DoNothing_One, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier -   For Node 4: DoNothing_Zero, Lost, DoNothing_One, Lost, Lost
+[INFO] 2026-01-28 18:54:32,224 - verifier.z3_verifier - ==============================
+[INFO] 2026-01-28 18:54:32,226 - process.general - Evaluation completed successfully.

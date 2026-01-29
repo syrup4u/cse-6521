@@ -1,0 +1,9 @@
+[INFO] 2026-01-28 18:54:57,083 - process.general - ===== Evaluation Mode =====
+[INFO] 2026-01-28 18:54:57,083 - process.general - Evaluating protocol: primary_backup with 7 players and 6 rounds.
+[INFO] 2026-01-28 18:54:57,083 - process.general - Algorithm: dqn, Model: set_transformer
+[INFO] 2026-01-28 18:54:57,083 - process.general - ===========================
+[INFO] 2026-01-28 18:54:57,083 - process.general - Using Z3 verifier for evaluation.
+[INFO] 2026-01-28 18:54:57,083 - process.general - Using trained model for evaluation.
+[INFO] 2026-01-28 18:54:57,372 - common - Loaded trained model from results/pb_p3_r3/model.pth.
+[INFO] 2026-01-28 18:56:23,512 - verifier.z3_verifier - Constraints are unsatisfiable.
+[INFO] 2026-01-28 18:56:23,530 - process.general - Evaluation completed successfully.

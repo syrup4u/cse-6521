@@ -4,6 +4,11 @@
 - Evaluate: multi-process to accelerate the verification.
 - Generalization Architecture (has some problems, cannot be fully isolated group, may try exchange at the last round)
 
+Different assumption:
+
+- Instead of fixing round number, fixing crashed nodes.
+- Can make early decision.
+
 ## Potential Optimization
 
 1. encode the initial states (first round messages) into the input.

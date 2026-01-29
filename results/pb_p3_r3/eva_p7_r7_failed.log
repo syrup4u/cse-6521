@@ -1,0 +1,77 @@
+[INFO] 2026-01-16 11:53:18,115 - process.general - ===== Evaluation Mode =====
+[INFO] 2026-01-16 11:53:18,115 - process.general - Evaluating protocol: primary_backup with 7 players and 7 rounds.
+[INFO] 2026-01-16 11:53:18,115 - process.general - Algorithm: dqn, Model: set_transformer
+[INFO] 2026-01-16 11:53:18,115 - process.general - ===========================
+[INFO] 2026-01-16 11:53:18,115 - process.general - Using Z3 verifier for evaluation.
+[INFO] 2026-01-16 11:53:18,115 - process.general - Using trained model for evaluation.
+[INFO] 2026-01-16 11:53:18,581 - common - Loaded trained model from results/pb_p3_r3/model.pth.
+[INFO] 2026-01-16 11:53:30,194 - verifier.z3_verifier - Constraints are satisfiable.
+[INFO] 2026-01-16 11:53:30,194 - verifier.z3_verifier - ===== States per Round =====
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 0: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 2: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 3: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 4: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 5: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 6: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 7: One, Zero, One, One, One, One, One
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - ============================
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - ===== Messages per Round =====
+[INFO] 2026-01-16 11:53:30,195 - verifier.z3_verifier - Round 0 Messages:
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 0: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 1: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 2: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 3: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 4: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 5: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 6: LocalOne, LocalOne, LocalOne, LocalZero, LocalOne, LocalOne, LocalZero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier - Round 1 Messages:
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 0: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 2: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,196 - verifier.z3_verifier -   From Node 3: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 4: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 5: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 6: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier - Round 2 Messages:
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 0: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 2: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 3: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 4: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 5: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier -   From Node 6: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,197 - verifier.z3_verifier - Round 3 Messages:
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 0: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 2: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 3: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 4: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 5: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 6: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier - Round 4 Messages:
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 0: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 2: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,198 - verifier.z3_verifier -   From Node 3: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 4: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 5: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 6: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier - Round 5 Messages:
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 0: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 1: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 2: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 3: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 4: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 5: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 6: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier - Round 6 Messages:
+[INFO] 2026-01-16 11:53:30,199 - verifier.z3_verifier -   From Node 0: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, Lost, Lost, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,200 - verifier.z3_verifier -   From Node 1: Lost, DoNothing_Zero, Lost, Lost, Lost, Lost, Lost
+[INFO] 2026-01-16 11:53:30,200 - verifier.z3_verifier -   From Node 2: Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,200 - verifier.z3_verifier -   From Node 3: Lost, DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,200 - verifier.z3_verifier -   From Node 4: DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,200 - verifier.z3_verifier -   From Node 5: Lost, DoNothing_Zero, Lost, Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,200 - verifier.z3_verifier -   From Node 6: Lost, DoNothing_Zero, DoNothing_Zero, DoNothing_Zero, Lost, DoNothing_Zero, DoNothing_Zero
+[INFO] 2026-01-16 11:53:30,200 - verifier.z3_verifier - ==============================
+[INFO] 2026-01-16 11:53:30,221 - process.general - Evaluation completed successfully.
