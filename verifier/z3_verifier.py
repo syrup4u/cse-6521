@@ -46,22 +46,11 @@ class Z3Verifier:
 
     def _state_constraints(self, state_class: AbstractState):
         lost_states = [self.type_mapping[state_class.get_lost_state().name]]
-        initial_states = [self.type_mapping[s.name] for s in state_class.get_initial_states()]
-        final_states = [self.type_mapping[s.name] for s in state_class.get_final_states()]
-        middle_states = [s for s in self.valid_states if s not in initial_states + final_states + lost_states]
+        self.initial_states = [self.type_mapping[s.name] for s in state_class.get_initial_states()]
+        self.final_states = [self.type_mapping[s.name] for s in state_class.get_final_states()]
         self.lost_state = lost_states[0]
-        # S1: all states must be valid in corresponding rounds
-        init_c = [z3.Or([self.all_states[0][n] == init_s for init_s in initial_states]) for n in range(self.num_nodes)]
-        mid_c = [
-            z3.Or([self.all_states[r][n] == mid_s for mid_s in middle_states+lost_states])
-            for r in range(1, self.num_rounds - 1)
-            for n in range(self.num_nodes)
-        ]
-        final_c = [
-            z3.Or(
-                [self.all_states[-1][n] == final_s for final_s in final_states+lost_states]
-            ) for n in range(self.num_nodes)
-        ]
+        # S1: all initial states must be valid
+        init_c = [z3.Or([self.all_states[0][n] == init_s for init_s in self.initial_states]) for n in range(self.num_nodes)]
         # S2: almost (num_rounds-1) nodes can be lost in total
         s2_c = [
             z3.PbLe(
@@ -84,7 +73,7 @@ class Z3Verifier:
                 self.all_states[self.num_rounds][n] != self.lost_state
             ) for n in range(self.num_nodes)
         ]
-        self.constraints += init_c + mid_c + final_c + s2_c + s3_c
+        self.constraints += init_c + s2_c + s3_c
         if self.unsat_core:
             self.solver.assert_and_track(z3.And(self.constraints), "State Constraints")
             self.constraints = []
@@ -217,7 +206,13 @@ class Z3Verifier:
                 z3.Or([self.all_states[-1][n] == self.type_mapping[ACState.Abort.name] for n in range(self.num_nodes)])
             )
         )
-        return [r1_c, r2_c, r3_c]
+        # R4: should reach decision if no lost
+        final_c = z3.And([
+            z3.Or(
+                [self.all_states[-1][n] == final_s for final_s in self.final_states+[self.lost_state]]
+            ) for n in range(self.num_nodes)
+        ])
+        return [r1_c, r2_c, r3_c, final_c]
 
     def _primary_backup_properties(self):
         # R1: final states must have corresponding initial states
@@ -236,7 +231,13 @@ class Z3Verifier:
                 z3.Or([self.all_states[-1][n] == self.type_mapping[PBState.Zero.name] for n in range(self.num_nodes)])
             )
         )
-        return [r1_c1, r1_c2, r2_c]
+        # R3: should reach decision if no lost
+        final_c = z3.And([
+            z3.Or(
+                [self.all_states[-1][n] == final_s for final_s in self.final_states+[self.lost_state]]
+            ) for n in range(self.num_nodes)
+        ])
+        return [r1_c1, r1_c2, r2_c, final_c]
 
     def verify(self):
         self.solver.add(self.constraints)
